@@ -1,15 +1,13 @@
 from django.db import models
 
-# Create your models here.
 
-class Screen(models.Model):
-    """ class of screen characteristic """
+class ProductBrand(models.Model):
+    """ class of product brand """
 
-    diagonal_screen = models.ForeignKey("ScreenDiagonal",verbose_name="ScreenDiagonal" ,on_delete=models.CASCADE)
-    screen_type = models.ForeignKey("ScreenType",verbose_name="ScreenType", on_delete=models.CASCADE)
-    screen_frequency = models.ForeignKey("ScreenFrequency", verbose_name="ScreenFrequency", on_delete=models.CASCADE)
-    camera = models.CharField('camera', max_length=255)
-
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True,
+                            verbose_name="URL", null=True)
+    description = models.TextField(null=True)
 
 class ScreenDiagonal(models.Model):
     """ screen diagonal category class"""
@@ -35,28 +33,21 @@ class ScreenType(models.Model):
 class ScreenFrequency(models.Model):
     """screen frequency category class"""
 
-    frequency_number = models.IntegerField("frequency")
+    frequency_number = models.CharField(max_length=100)
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.frequency_number
 
-
-class Processor(models.Model):
-    """processor class"""
-
-    name = models.ForeignKey("ProcessorType", verbose_name=("ProcessorType"), on_delete=models.CASCADE)
-    operation_system = models.ForeignKey("OperationSystem", verbose_name=("OperationSystem"), on_delete=models.CASCADE)
-    description = models.TextField(null=True)
-    
 
 class ProcessorType(models.Model):
     """class of processor category class""" 
 
-    name = models.CharField("processoetype", max_length=255)
+    name = models.CharField("processor type", max_length=255)
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
+    description = models.TextField(null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -71,15 +62,7 @@ class OperationSystem(models.Model):
     description = models.TextField(null=True)
     
     def __str__(self) -> str:
-        return self.name
-
-
-class RandomAccessMemory(models.Model):
-    """operative memory class"""
-
-    memory_capacity = models.ForeignKey("MemoryCapacity", verbose_name=("MemoryCapacity"), on_delete=models.CASCADE)
-    memory_slots = models.ForeignKey("MemorySlot", verbose_name=("MemorySlot"), on_delete=models.CASCADE)
-    memory_type = models.ForeignKey("MemoryType", verbose_name=("NemoryType"), on_delete=models.CASCADE)
+        return self.name    
 
 
 class MemoryCapacity(models.Model):
@@ -89,6 +72,8 @@ class MemoryCapacity(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
+    def __str__(self) -> str:
+        return self.number_of_gigabite
 
 class MemorySlot(models.Model):
     """memory slot class"""
@@ -97,6 +82,8 @@ class MemorySlot(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
+    def __str__(self) -> str:
+        return str(self.number_of_slots)
 
 class MemoryType(models.Model):
     """memory type category class"""
@@ -104,6 +91,9 @@ class MemoryType(models.Model):
     name = models.CharField("memory_type", max_length=100)
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class DataStorageDevices(models.Model):
     """data storage devices class"""
@@ -113,17 +103,19 @@ class DataStorageDevices(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
+    def __str__(self) -> str:
+        return f"{self.hard_drive_capacity} {self.hard_drive_type}"
 
 class VideoCard(models.Model):
     """video card class"""
 
     video_card = models.CharField(max_length=100) 
-    videocard_memory = models.ForeignKey("VideoCardMemory", verbose_name=("VideoCardMemory"),
-                                    on_delete=models.CASCADE, null=True)       
     description = models.TextField(null=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
+    def __str__(self) -> str:
+        return self.video_card
 
 class VideoCardMemory(models.Model): #in order to filter by this
     """ class of vdeo card memory (capacity) """
@@ -132,43 +124,8 @@ class VideoCardMemory(models.Model): #in order to filter by this
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
-
-class Corp(models.Model):
-    """corpus class"""
-
-    color = models.ForeignKey("ColorCorp", verbose_name=("ColorCorp"), on_delete=models.CASCADE)
-    weight = models.IntegerField()
-    battery = models.ForeignKey("Battery", verbose_name=("Battery"), on_delete=models.CASCADE)
-    manipulators = models.CharField(max_length=50)
-    height = models.IntegerField()
-    width = models.IntegerField()
-    depth = models.IntegerField()
-    corp_material = models.CharField(max_length=100)
-
-
-class ColorCorp(models.Model):
-    """class of color of corpus"""
-
-    color_name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True,
-                            verbose_name="URL", null=True)
-
-
-class Battery(models.Model):
-    """battery class"""
-
-    name = models.CharField(max_length=255)
-    capacity = models.IntegerField()
-    description = models.TextField(null=True)                            
-
-
-class Connection(models.Model):
-    """connection class"""
-
-    network_adapters = models.CharField(max_length=255)
-    wireless_connection = models.CharField(max_length=255)
-    input_output = models.CharField(max_length=255)
-
+    def __str__(self) -> str:
+        return self.video_card_capacity
 
 class ProductType(models.Model):
     """type of prosuct class"""
@@ -178,7 +135,10 @@ class ProductType(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
     icon = models.ImageField(
-        upload_to="icons/Data%y/%m/%d/", null=True, blank=True)     
+        upload_to="icons/Data%y/%m/%d/", null=True, blank=True)   
+
+    def __str__(self) -> str:
+        return self.name      
 
 class CountryMade(models.Model):
     """country where product was made"""
@@ -188,6 +148,8 @@ class CountryMade(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
 
+    def __str__(self) -> str:
+        return self.name
 
 class CountryBrand(models.Model):
     """country where brand was founded"""
@@ -196,4 +158,6 @@ class CountryBrand(models.Model):
     flag = models.ImageField(upload_to="country_brand__flags/Data%y/%m/%d/", null=True, blank=True)        
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
-                       
+
+    def __str__(self) -> str:
+        return self.name                   

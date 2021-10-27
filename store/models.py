@@ -1,7 +1,9 @@
 from django.db import connection, models
 
-from characteristics.models import Connection, Corp, CountryBrand, \
-    CountryMade, DataStorageDevices, Processor, ProductType, RandomAccessMemory, Screen, VideoCard
+from characteristics.models import  CountryBrand, \
+    CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
+        OperationSystem, ProcessorType, ProductBrand, ProductType, \
+        ScreenDiagonal, ScreenFrequency, ScreenType, VideoCard, VideoCardMemory
 
 # Create your models here.
 
@@ -27,29 +29,67 @@ class Product(models.Model):
                                         on_delete=models.CASCADE, null=True)
     warranty = models.IntegerField(null=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Characteristics(models.Model):
     """ Characteristic class """
 
     product = models.ForeignKey("Product", verbose_name=("Product"),
                                 on_delete=models.CASCADE, null=True)
+    brand = models.ForeignKey(ProductBrand, verbose_name=("ProductBrand"), 
+                                on_delete=models.CASCADE, null=True)
 
-    screen = models.ForeignKey(Screen, verbose_name="Screen", 
-                                on_delete=models.CASCADE, null=True)
-    processor = models.ForeignKey(Processor, verbose_name=("Processor"),
-                                on_delete=models.CASCADE, null=True)
-    random_access_memory = models.ForeignKey(RandomAccessMemory,
-                                verbose_name=("RandomAccessMemory"), 
-                                on_delete=models.CASCADE, null=True)   
-    data_storage = models.ForeignKey(DataStorageDevices, verbose_name=("DataStorageDevices"),
-                                on_delete=models.CASCADE, null=True)
-    video_card = models.ForeignKey(VideoCard, verbose_name=("VideoCard"),
-                                on_delete=models.CASCADE, null=True)
-    corpus = models.ForeignKey(Corp, verbose_name=("Corp"),
-                                on_delete=models.CASCADE, null=True)  
-    connection = models.ForeignKey(Connection, verbose_name=("Connection"),
-                                on_delete=models.CASCADE, null=True)                                                          
 
+    #Screen
+    diagonal_screen = models.ForeignKey(ScreenDiagonal, verbose_name="ScreenDiagonal", 
+                                on_delete=models.CASCADE, null=True)
+    screen_type = models.ForeignKey(ScreenType, verbose_name=("ScreenType"),
+                                on_delete=models.CASCADE, null=True)
+    screen_frequency = models.ForeignKey(ScreenFrequency,
+                                verbose_name=("ScreenFrequency"), 
+                                on_delete=models.CASCADE, null=True)
+    camera = models.CharField('camera', max_length=255, null=True)
+
+    #Processor
+    processor_name = models.ForeignKey(ProcessorType, verbose_name=("ProcessorType"), 
+                                on_delete=models.CASCADE, null=True)                 
+    operation_system = models.ForeignKey(OperationSystem, verbose_name=("OperationSystem"), 
+                                on_delete=models.CASCADE, null=True)
+
+    #RAM (RandomAccessMemory)
+    memory_capacity = models.ForeignKey(MemoryCapacity, verbose_name=("MemoryCapacity"), 
+                                on_delete=models.CASCADE, null=True)
+    memory_slots = models.ForeignKey(MemorySlot, verbose_name=("MemorySlot"), 
+                                on_delete=models.CASCADE, null=True)
+    memory_type = models.ForeignKey(MemoryType, verbose_name=("NemoryType"), 
+                                on_delete=models.CASCADE, null=True)
+
+    #hard drive
+    data_storage = models.ForeignKey(DataStorageDevices, verbose_name=("DataStorageDevices"), 
+                                on_delete=models.CASCADE, null=True)
+
+    #Video Card
+    video_card = models.ForeignKey(VideoCard, verbose_name=("VideoCard"), 
+                                on_delete=models.CASCADE, null=True)
+    video_card_memory = models.ForeignKey(VideoCardMemory, verbose_name=("VideoCardMemory"), 
+                                on_delete=models.CASCADE, null=True)
+
+    #corpus
+    color = models.CharField(max_length=255, null=True)
+    weight = models.IntegerField(null=True)
+    battery = models.CharField(max_length=255, null=True)
+    manipulators = models.CharField(max_length=50, null=True)
+    height = models.IntegerField(null=True)
+    width = models.IntegerField(null=True)
+    depth = models.IntegerField(null=True)
+    corp_material = models.CharField(max_length=100, null=True)
+
+    #connection adapter
+    network_adapters = models.CharField(max_length=255, null=True)
+    wireless_connection = models.CharField(max_length=255, null=True)
+    input_output = models.CharField(max_length=255, null=True)
 
                        
 class CommentResponse(models.Model): 

@@ -1,17 +1,16 @@
+from typing import Collection
 from django.contrib import admin
-from characteristics.models import DataStorageDevices, MemoryCapacity, MemorySlot,\
-     MemoryType, OperationSystem, ProcessorType, Screen, \
+from characteristics.models import\
+     DataStorageDevices, MemoryCapacity, MemorySlot,\
+     MemoryType, OperationSystem, ProcessorType, ProductBrand,  \
         ScreenDiagonal, ScreenFrequency, \
         ScreenType, VideoCard, VideoCardMemory
 
 
 
 # Register your models here.
-class ScreenAdmin(admin.ModelAdmin):
-    """ admin class of screen """
-    
-    list_display = ("diagonal_screen","screen_type", "screen_frequency", "camera")  # that's will be displayed in django-admin
-    fields = ( "diagonal_screen", "screen_type", "screen_frequency", "camera")
+
+class BaseAdmin(admin.ModelAdmin):
     list_per_page = 200 #max post per page
     list_max_show_all = 50 #max posts after clicking on hyperref
     view_on_site = True
@@ -20,162 +19,103 @@ class ScreenAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-class ScreenDiagonalAdmin(admin.ModelAdmin):
+class ProductBrandAdmin(BaseAdmin):
+    """ admin class of each screen diagonal """
+
+    list_display = ("name",)  # that's will be displayed in django-admin
+    fields = ( "name", "slug", "description")
+    prepopulated_fields = {"slug": ("name",)}
+
+
+class ScreenDiagonalAdmin(BaseAdmin):
     """ admin class of each screen diagonal """
 
     list_display = ("name",)  # that's will be displayed in django-admin
     fields = ( "name", "slug")
     prepopulated_fields = {"slug": ("name",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
-class ScreenTypeAdmin(admin.ModelAdmin):
+class ScreenTypeAdmin(BaseAdmin):
     """ admin class of each screen type """
 
     list_display = ("name",)  # that's will be displayed in django-admin
     fields = ( "name", "slug", "description")
     prepopulated_fields = {"slug": ("name",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
-class ScreenFrequencyAdmin(admin.ModelAdmin):
+class ScreenFrequencyAdmin(BaseAdmin):
     """ admin class of each screen frequency """
 
     list_display = ("frequency_number",)  # that's will be displayed in django-admin
     fields = ( "frequency_number", "slug")
     prepopulated_fields = {"slug": ("frequency_number",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
-class ProcessorTypeAdmin(admin.ModelAdmin):
+class ProcessorTypeAdmin(BaseAdmin):
     """ admin class of each processor type """
 
     list_display = ("name",)  # that's will be displayed in django-admin
-    fields = ( "name", "slug")
+    fields = ( "name", "slug", "description")
     prepopulated_fields = {"slug": ("name",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
 
-    save_on_top = True
 
-class OperationSystemAdmin(admin.ModelAdmin):
+class OperationSystemAdmin(BaseAdmin):
     """ admin class of each operation system """
 
     list_display = ("name",)  # that's will be displayed in django-admin
     fields = ( "name", "slug","description")
     prepopulated_fields = {"slug": ("name",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True    
 
 
-class MemoryCapacityAdmin(admin.ModelAdmin):
+class MemoryCapacityAdmin(BaseAdmin):
     """ admin class of each number memory capacity """
 
     list_display = ("number_of_gigabite",)  # that's will be displayed in django-admin
     fields = ( "number_of_gigabite", "slug")
     prepopulated_fields = {"slug": ("number_of_gigabite",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True 
 
 
-class MemorySlotAdmin(admin.ModelAdmin):
+class MemorySlotAdmin(BaseAdmin):
     """ admin class of each number of memory slot """
 
     list_display = ("number_of_slots",)  # that's will be displayed in django-admin
     fields = ( "number_of_slots", "slug")
     prepopulated_fields = {"slug": ("number_of_slots",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True 
 
 
-class MemoryTypeAdmin(admin.ModelAdmin):
+class MemoryTypeAdmin(BaseAdmin):
     """ admin class of each type of memory """
 
     list_display = ("name",)  # that's will be displayed in django-admin
     fields = ( "name", "slug")
     prepopulated_fields = {"slug": ("name",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
-class DataStorageDevicesAdmin(admin.ModelAdmin):
+class DataStorageDevicesAdmin(BaseAdmin):
     """ admin class of each data storage (hard drive) """
 
     list_display = ("hard_drive_capacity", "hard_drive_type")  # that's will be displayed in django-admin
     fields = ( "hard_drive_capacity", "hard_drive_type", "slug")
-    prepopulated_fields = {"slug": ("hard_drive_type",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
+    prepopulated_fields = {"slug": ("hard_drive_capacity", "hard_drive_type",)}
 
 
-class VideoCardAdmin(admin.ModelAdmin):
+class VideoCardAdmin(BaseAdmin):
     """ admin class of each video card """
 
-    list_display = ("video_card", "videocard_memory",)  # that's will be displayed in django-admin
-    fields = ( "video_card"  "videocard_memory", "slug")
-    prepopulated_fields = {"slug": ("videocard_memory",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
+    list_display = ("video_card",)  # that's will be displayed in django-admin
+    fields = ( "video_card",  "description", "slug")
+    prepopulated_fields = {"slug": ("video_card",)}
 
 
-class VideoCardMemoryAdmin(admin.ModelAdmin):
+class VideoCardMemoryAdmin(BaseAdmin):
     """ admin class of each video card capacity """
 
     list_display = ("video_card_capacity",)  # that's will be displayed in django-admin
     fields = ( "video_card_capacity", "slug")
     prepopulated_fields = {"slug": ("video_card_capacity",)}
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
-
-
-admin.site.register(Screen, ScreenAdmin)  # in order to show it in django-admin
+admin.site.register(ProductBrand, ProductBrandAdmin)
 admin.site.register(ScreenDiagonal, ScreenDiagonalAdmin)  # in order to show it in django-admin
 admin.site.register(ScreenType, ScreenTypeAdmin)
 admin.site.register(ScreenFrequency, ScreenFrequencyAdmin)

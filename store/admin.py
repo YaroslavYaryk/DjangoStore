@@ -1,9 +1,12 @@
 from django.contrib import admin
+from characteristics.admin import BaseAdmin
+from store.models import Characteristics, Product
 
-from store.models import Product
 
-# Register your models here.
-class ProductAdmin(admin.ModelAdmin):
+
+
+
+class ProductAdmin(BaseAdmin):
 
     list_display = ( "name", "short_description","creation_date", "updation_date",
                     "photo","video", "is_published", "type_of_product", "country_made", \
@@ -16,14 +19,19 @@ class ProductAdmin(admin.ModelAdmin):
                     "photo","video", "is_published", "type_of_product", "country_made", \
                         "country_brand", "warranty")
     readonly_fields = ("updation_date", "creation_date",)
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
 
-    # inlines = [WomanImageInline] #lwt us add a couple of photos to each post   
+class CharacteristicAdmin(BaseAdmin):
 
-    save_on_top = True
+    list_display = ( "product", "processor_name", "operation_system",
+        "memory_capacity", "memory_type", "color")  # that's will be displayed in django-admin
+    list_display_links = ( "product",)  # this ones we can click like links
+    search_fields = ("product", "processor_name")
+    fields = ("product", "diagonal_screen", "screen_type", "screen_frequency",
+         "camera", "processor_name", "operation_system", "memory_capacity", 
+         "memory_slots","memory_type", "data_storage", "video_card", "video_card_memory",
+         "color", "weight", "battery", "manipulators", "height", "width", "depth",
+         "corp_material", "network_adapters", "wireless_connection", "input_output")
 
 
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
+admin.site.register(Characteristics, CharacteristicAdmin)
