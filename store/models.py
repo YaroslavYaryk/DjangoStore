@@ -1,4 +1,5 @@
 from django.db import connection, models
+from django.db.models.fields import IntegerField
 
 from characteristics.models import  CountryBrand, \
     CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
@@ -14,6 +15,8 @@ class Product(models.Model):
     # characteristics = models.ForeignKey("Characteristics", name="characteristics", on_delete=models.CASCADE)
     description = models.TextField("description", blank=True)
     short_description = models.TextField(null=True)
+    brand = models.ForeignKey(ProductBrand, verbose_name=("Brand of product"), 
+                                on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True,
                             verbose_name="URL", null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -28,6 +31,9 @@ class Product(models.Model):
     country_brand = models.ForeignKey(CountryBrand, verbose_name=("CountryBrand"), 
                                         on_delete=models.CASCADE, null=True)
     warranty = models.IntegerField(null=True)
+    price = models.IntegerField(null=True)
+    is_available = models.BooleanField(default=True)
+
 
     def __str__(self) -> str:
         return self.name
@@ -38,52 +44,49 @@ class Characteristics(models.Model):
 
     product = models.ForeignKey("Product", verbose_name=("Product"),
                                 on_delete=models.CASCADE, null=True)
-    brand = models.ForeignKey(ProductBrand, verbose_name=("ProductBrand"), 
-                                on_delete=models.CASCADE, null=True)
-
 
     #Screen
-    diagonal_screen = models.ForeignKey(ScreenDiagonal, verbose_name="ScreenDiagonal", 
+    diagonal_screen = models.ForeignKey(ScreenDiagonal, verbose_name="Screen diagonal", 
                                 on_delete=models.CASCADE, null=True)
-    screen_type = models.ForeignKey(ScreenType, verbose_name=("ScreenType"),
+    screen_type = models.ForeignKey(ScreenType, verbose_name=("Screen type"),
                                 on_delete=models.CASCADE, null=True)
     screen_frequency = models.ForeignKey(ScreenFrequency,
-                                verbose_name=("ScreenFrequency"), 
+                                verbose_name=("Screen frequency"), 
                                 on_delete=models.CASCADE, null=True)
-    camera = models.CharField('camera', max_length=255, null=True)
+    camera = models.CharField('camera', max_length=255, null=True, blank=True)
 
     #Processor
-    processor_name = models.ForeignKey(ProcessorType, verbose_name=("ProcessorType"), 
+    processor_name = models.ForeignKey(ProcessorType, verbose_name=("Processor type"), 
                                 on_delete=models.CASCADE, null=True)                 
-    operation_system = models.ForeignKey(OperationSystem, verbose_name=("OperationSystem"), 
+    operation_system = models.ForeignKey(OperationSystem, verbose_name=("Operation system"), 
                                 on_delete=models.CASCADE, null=True)
 
     #RAM (RandomAccessMemory)
-    memory_capacity = models.ForeignKey(MemoryCapacity, verbose_name=("MemoryCapacity"), 
+    memory_capacity = models.ForeignKey(MemoryCapacity, verbose_name=("Memory capacity"), 
                                 on_delete=models.CASCADE, null=True)
-    memory_slots = models.ForeignKey(MemorySlot, verbose_name=("MemorySlot"), 
+    memory_slots = models.ForeignKey(MemorySlot, verbose_name=("Memory slots"), 
                                 on_delete=models.CASCADE, null=True)
-    memory_type = models.ForeignKey(MemoryType, verbose_name=("NemoryType"), 
+    memory_type = models.ForeignKey(MemoryType, verbose_name=("Nemory type"), 
                                 on_delete=models.CASCADE, null=True)
 
     #hard drive
-    data_storage = models.ForeignKey(DataStorageDevices, verbose_name=("DataStorageDevices"), 
+    data_storage = models.ForeignKey(DataStorageDevices, verbose_name=("Hard drive capacity"), 
                                 on_delete=models.CASCADE, null=True)
 
     #Video Card
-    video_card = models.ForeignKey(VideoCard, verbose_name=("VideoCard"), 
+    video_card = models.ForeignKey(VideoCard, verbose_name=("Video card"), 
                                 on_delete=models.CASCADE, null=True)
-    video_card_memory = models.ForeignKey(VideoCardMemory, verbose_name=("VideoCardMemory"), 
+    video_card_memory = models.ForeignKey(VideoCardMemory, verbose_name=("Video card memory"), 
                                 on_delete=models.CASCADE, null=True)
 
     #corpus
     color = models.CharField(max_length=255, null=True)
-    weight = models.IntegerField(null=True)
+    weight = models.FloatField(null=True)
     battery = models.CharField(max_length=255, null=True)
     manipulators = models.CharField(max_length=50, null=True)
-    height = models.IntegerField(null=True)
-    width = models.IntegerField(null=True)
-    depth = models.IntegerField(null=True)
+    height = models.FloatField(null=True)
+    width = models.FloatField(null=True)
+    depth = models.FloatField(null=True)
     corp_material = models.CharField(max_length=100, null=True)
 
     #connection adapter
@@ -110,12 +113,12 @@ class CommentResponse(models.Model):
         return 'Comment by {} on {}'.format(self.name, self.post) 
 
 
-class WomanImage(models.Model):
-    post = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
-    images = models.FileField(upload_to="photos/Data%y/%m/%d/")
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    images = models.FileField( "images",upload_to="photos/Data%y/%m/%d/")
 
     def __str__(self):
-        return self.post.name
+        return self.product.name
 
     class Meta:
 

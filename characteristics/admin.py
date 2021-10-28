@@ -1,22 +1,12 @@
-from typing import Collection
 from django.contrib import admin
+from characteristics.core.admin import BaseAdmin, ImageBaseAdmin
 from characteristics.models import\
-     DataStorageDevices, MemoryCapacity, MemorySlot,\
-     MemoryType, OperationSystem, ProcessorType, ProductBrand,  \
+     CountryBrand, CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot,\
+     MemoryType, OperationSystem, ProcessorType, ProductBrand, ProductType,  \
         ScreenDiagonal, ScreenFrequency, \
         ScreenType, VideoCard, VideoCardMemory
+from django.utils.safestring import mark_safe        
 
-
-
-# Register your models here.
-
-class BaseAdmin(admin.ModelAdmin):
-    list_per_page = 200 #max post per page
-    list_max_show_all = 50 #max posts after clicking on hyperref
-    view_on_site = True
-    empty_value_display = 'unknown' #empty one of values
-
-    save_on_top = True
 
 
 class ProductBrandAdmin(BaseAdmin):
@@ -115,6 +105,37 @@ class VideoCardMemoryAdmin(BaseAdmin):
     prepopulated_fields = {"slug": ("video_card_capacity",)}
 
 
+class CountryMadeAdmin(BaseAdmin, ImageBaseAdmin):
+    """ admin class of each country where product was made """
+
+    list_display = ("name", "get_flag")  # that's will be displayed in django-admin
+    fields = ( "name", "flag","slug")
+    prepopulated_fields = {"slug": ("name",)}
+
+    ImageBaseAdmin.get_flag.short_description = "flag"
+
+
+
+
+class CountryBrandAdmin(BaseAdmin, ImageBaseAdmin):
+    """ admin class of each country where brand was founded """
+
+    list_display = ("name", "get_flag")  # that's will be displayed in django-admin
+    fields = ( "name", "flag","slug")
+    prepopulated_fields = {"slug": ("name",)}
+
+    ImageBaseAdmin.get_flag.short_description = "flag"
+
+
+class ProductTypeAdmin(BaseAdmin, ImageBaseAdmin):
+    """ admin class of each product type(laptop, computer) """
+
+    list_display = ("name", "get_icon")  # that's will be displayed in django-admin
+    fields = ( "name", "description","slug", "icon")
+    prepopulated_fields = {"slug": ("name",)}
+
+    ImageBaseAdmin.get_icon.short_description = "icon"
+
 admin.site.register(ProductBrand, ProductBrandAdmin)
 admin.site.register(ScreenDiagonal, ScreenDiagonalAdmin)  # in order to show it in django-admin
 admin.site.register(ScreenType, ScreenTypeAdmin)
@@ -127,4 +148,6 @@ admin.site.register(MemoryType, MemoryTypeAdmin)
 admin.site.register(DataStorageDevices, DataStorageDevicesAdmin)
 admin.site.register(VideoCard, VideoCardAdmin)
 admin.site.register(VideoCardMemory, VideoCardMemoryAdmin)
-
+admin.site.register(CountryBrand, CountryBrandAdmin)
+admin.site.register(CountryMade, CountryMadeAdmin)
+admin.site.register(ProductType, ProductTypeAdmin)
