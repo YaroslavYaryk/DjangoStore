@@ -1,5 +1,5 @@
-from django.db import connection, models
-from django.db.models.fields import IntegerField
+from django.db import  models
+from django.urls import reverse
 
 from characteristics.models import  CountryBrand, \
     CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
@@ -37,6 +37,11 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        """to add link to path the same as title is"""
+        return reverse("product", kwargs={"slug_id": self.slug})
+    
 
 
 class Characteristics(models.Model):

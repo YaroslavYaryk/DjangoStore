@@ -28,13 +28,14 @@ class ProductAdmin(BaseAdmin):
 
     form = ProductAdminForm
     list_display = ( "name", "type_of_product", "brand", "short_description", 
-                    "type_of_product", "get_flag","is_published")  # that's will be displayed in django-admin
+                    "type_of_product", "get_flag","is_published", "is_available")  # that's will be displayed in django-admin
     list_display_links = ( "name",)  # this ones we can click like links
     search_fields = ("name", "short_description")
     list_editable = ["is_published"]
     inlines = [ProductImageAdmin]
+    prepopulated_fields = {"slug": ("name",)}
     # prepopulated_fields = {"slug": ("name",)}
-    fields = ( "name", "type_of_product", "brand",  "short_description", "description",
+    fields = ( "name", "slug", "type_of_product", "brand",  "short_description", "description",
                     "photo","video", "is_published",  "country_made", \
                         ("country_brand", "get_flag"), "warranty", "price", "is_available")
     readonly_fields = ("updation_date", "creation_date", "get_flag")
@@ -60,8 +61,8 @@ class CharacteristicAdmin(BaseAdmin):
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ('images',)
-    list_display_links = ('images',)
+    list_display = ( "product" ,'images',)
+    list_display_links = ("product", 'images',)
     fields = ('images',)
 
 
