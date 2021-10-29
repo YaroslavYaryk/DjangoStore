@@ -7,7 +7,8 @@ from store.services.home_page import get_all_product
 def start_page(request):
 
 	storage = {
-		"all_products" : get_all_product()
+		"all_products" : get_all_product(),
+		"first_product": get_all_product().first()
 	}
 
 	return render(request, "store/home.html", context=storage)

@@ -7,40 +7,67 @@
     --color-background: white;
     --color-foreground: #666;
     --color-foreground-highlight: black;
+    /* background: #fff; */
+    /* background: #000; */
+  }
+
+  .content{
+    background: #2b343c;
   }
   
   html {
     height: 100%;
+    background: #2b343c;
+    color: #ccc;
   }
   
   body {
     align-items: center;
-    background: #eee;
-    /* display: grid;
-    justify-items: center; */
+    background: #2b343c;
+    color: #ccc;
     margin: 0;
   }
 
   .content{
     display: grid;
     grid-template-rows: 100px 1fr 40px;
+    background: #2b343c;
   }
   
   header {
     margin: -40px 0 0 0 ;
     background-color: var(--color-background);
     display: grid;
-    grid-template-columns: 120px 500px   170px;
+    grid-template-columns: 120px 500px   ;
     /* padding: 20px 20px; */
     width: calc(100% - 40px);
+    background: #2b343c;
+    color: azure;
+
+  }
+  
+  .user{
+    /* display: flex; */
+    align-items: center;
+    /* justify-content: start; */
+    margin: 10px 40px 0 -20px;
+    background: #2b343c
   }
 
+  .icons{
+    margin-left: -20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr );
+    background: #2b343c;
+    color: azure;
+
+  }
 
   .div{
-    /* display: grid;
-    grid-template-columns: 100px 80px 80px; */
-    display: flex;
-    flex: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr );
+    background: #2b343c
   }
 
   .lang_content{
@@ -48,12 +75,14 @@
     margin-right: 30px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
+    background: #2b343c
   }
 
   .slesh{
     font-size: 40px;
    
     justify-content: center;
+    background: #2b343c
   }
   
 
@@ -65,6 +94,9 @@
     text-decoration: none;
     color: #000;
     padding: 0 5px;
+    background: #2b343c;
+    color: azure;
+
   }
   
   form#search {
@@ -81,6 +113,7 @@
   }
   
   form#search input {
+    background: rgb(214, 207, 207);
     border: solid #ccc;
     border-width: 1px 0 1px 1px;
     border-radius: 2px 0 0 2px;
@@ -123,15 +156,16 @@
     margin-right: 50px;
     display: flex;
     align-items: center;
+    
   }
 
-  .user{
+  /* .user{
     display: flex;
     align-items: center;
-  }
+  } */
   
   a#shopping-cart::after {
-    color: black;
+    color: #fff;
     content: attr(data-badge);
     font-size: 12px;
     font-weight: bold;
@@ -148,15 +182,16 @@
   }
   
   a#shopping-cart svg {
-    fill: var(--color-foreground);
+    fill: #fff;
     height: 32px;
     position: relative;
     top: 2px;
     width: 125px;
+    
   }
   
   a#shopping-cart svg:hover {
-    fill: var(--color-foreground-highlight);
+    fill: #ffffffad;
   }
   
   a#shopping-cart svg text {
@@ -172,15 +207,16 @@
       grid-template-columns: 200px auto 160px;
       padding: 40px;
       width: calc(100% - 80px);
+      background: #2b343c
+
     }
   
     header h1 {
+    background: #2b343c;
+
       font-size: 24px;
     }
   
-    form#search label {
-      display: inline;
-    }  
   
     form#search input::placeholder {
       opacity: 0;
@@ -191,23 +227,131 @@
       width: 100px;
     }
     a#shopping-cart svg text {
+      
       display: inherit;
     }
   }
+
+  .menu_header{
+    margin-left: 60px;
+    color: blanchedalmond;
+    text-transform: uppercase;
+    position: relative;
+    background: #19232c;
+  }
   
+  .menu_header::before{
+    background: #19232c;
+
+    position: absolute;
+    content: url("../img/icons/ukraine_icon_127856.png");
+    left: 100px;
+    top: -2px;
+;
+  }
+ 
   
 /* ----------------------------- */
 
+.content{
+  background: #2b343c;
 
-section{
-  min-height: 830px;
+  display: grid;
+  grid-template-rows: 100px    1fr ;
 }
 
-footer{
-  background: rgb(148, 124, 238);
+.section3{
+  color: rgb(251, 245, 245);
+}
+
+
+
+/* ---------------------------------------------- */
+/* sidebar */
+aside {
+ 
+  width: 250px;
+  position: fixed;
+  height: 100%;
+  box-shadow: 0 0 10px black;
+}
+aside ul {
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #000;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+    background: #2b343c;
+
+  color: #0d47a1;
+  width: 100%;
+  height: 100%;
+}
+aside ul a {
+  display: block;
+  color: initial;
+  text-decoration: none;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+aside ul a.active {
+  background-color: #04aa6d;
+  color: white;
+}
+aside ul a:hover {
+  background: grey;
+  color: #fff;
 }
 
+@media screen and (max-width: 700px) {
+  aside {
+  background: #2b343c;
+
+    width: 100%;
+    height: auto;
+  }
+  aside ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  aside ul a {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  aside {
+    height: 100%;
+  }
+  aside ul {
+  background: #2b343c;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+  }
+}
+
+.login_table{
+  background: #19232c;
+}
+
+.inner-sidebar li a{
+  color: rgb(218, 201, 201);
+}
+
+.menu-content{
+  /* background: #2b343c; */
+
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
