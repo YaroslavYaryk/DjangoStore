@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from characteristics.admin import BaseAdmin
-from store.models import Characteristics, Product, ProductImage
+from store.models import Characteristics, Product, ProductImage, ProductLike
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget 
 
@@ -35,7 +35,7 @@ class ProductAdmin(BaseAdmin):
     inlines = [ProductImageAdmin]
     prepopulated_fields = {"slug": ("name",)}
     # prepopulated_fields = {"slug": ("name",)}
-    fields = ( "name", "slug", "type_of_product", "brand",  "short_description", "description",
+    fields = ( "name", "only_name","slug", "type_of_product", "brand",  "short_description", "description",
                     "photo","video", "is_published",  "country_made", \
                         ("country_brand", "get_flag"), "warranty", "price", "is_available")
     readonly_fields = ("updation_date", "creation_date", "get_flag")
@@ -65,6 +65,12 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_display_links = ("product", 'images',)
     fields = ('images',)
 
+@admin.register(ProductLike)
+class ProductLikeAdmin(admin.ModelAdmin):
+    list_display = ( "post" ,'user',)
+    list_display_links = ("post", 'user',)
+    fields = ( "post" ,'user',)
+    readonly_fields = ("post" ,'user',)
 
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
 admin.site.register(Characteristics, CharacteristicAdmin)

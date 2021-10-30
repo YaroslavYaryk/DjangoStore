@@ -67,6 +67,11 @@ body {
     margin-top: -3px;
   }
 
+  .menu_active_element{
+    border-bottom: 3px solid rgb(224, 167, 61);
+    margin-top: -3px;
+  }
+
   .stockAvailability-true{
     padding: 0 5px;
     color: #4a924d;
@@ -129,4 +134,359 @@ body {
 
 .like-next-to-price:hover{
   color: red;
+}
+
+
+
+/* aditional products */
+
+/* Included color classes.. 
+	.red 
+	.blue 
+	.orange
+*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+figure.snip1171 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 310px;
+  width: 100%;
+  background: #000000;
+  color: #333;
+  text-align: left;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  border: 5px solid #2b343c;
+}
+figure.snip1171 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+figure.snip1171 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+figure.snip1171 figcaption {
+  position: relative;
+  background-color: #ffffff;
+  padding: 20px 25px 50px;
+}
+figure.snip1171 h3 {
+  position: absolute;
+  bottom: 100%;
+  text-transform: uppercase;
+  padding: 0px 25px;
+  line-height: 44px;
+  margin: 0;
+  left: 0;
+  font-weight: 400;
+  background-color: #000000;
+  color: #ffffff;
+}
+figure.snip1171 h3 span {
+  font-weight: 800;
+}
+figure.snip1171 h3:before {
+  position: absolute;
+  left: 100%;
+  border-style: solid;
+  border-width: 44px 0 0 12px;
+  border-color: transparent transparent transparent #000000;
+  content: '';
+  top: 0;
+}
+figure.snip1171 p {
+  font-size: 0.8em;
+  font-weight: 500;
+  text-align: left;
+  margin: 0;
+  line-height: 1.6em;
+}
+figure.snip1171 .price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #ffffff;
+  background-color: #000000;
+  padding: 0 10px;
+  line-height: 40px;
+  font-weight: 800;
+}
+figure.snip1171 .price:before {
+  position: absolute;
+  right: 100%;
+  border-style: solid;
+  border-width: 0 12px 40px 0;
+  border-color: transparent #000000 transparent;
+  content: '';
+  top: 0;
+}
+figure.snip1171 .add-to-cart-aditional {
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #000000;
+  line-height: 40px;
+  padding: 0 10px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+.add-to-cart-aditional :before {
+  position: absolute;
+  right: 100%;
+  border-style: solid;
+  border-width: 0 0 40px 12px;
+  border-color: transparent transparent #000000;
+  content: '';
+  top: 0;
+}
+figure.snip1171.blue {
+  background-color: #2472a4;
+}
+figure.snip1171.blue h3,
+figure.snip1171.blue a,
+figure.snip1171.blue .price {
+  background-color: #2472a4;
+}
+figure.snip1171.blue .price:before {
+  border-color: transparent #2472a4 transparent;
+}
+figure.snip1171.blue h3:before {
+  border-color: transparent transparent transparent #2472a4;
+}
+.add-to-cart-aditional :before {
+  border-color: transparent transparent #2472a4;
+}
+figure.snip1171.red {
+  background-color: #ab3326;
+}
+figure.snip1171.red h3,
+figure.snip1171.red a,
+figure.snip1171.red .price {
+  background-color: #ab3326;
+}
+figure.snip1171.red .price:before {
+  border-color: transparent #ab3326 transparent;
+}
+figure.snip1171.red h3:before {
+  border-color: transparent transparent transparent #ab3326;
+}
+figure.snip1171.red a:before {
+  border-color: transparent transparent #ab3326;
+}
+figure.snip1171.orange {
+  background-color: #d67118;
+}
+figure.snip1171.orange h3,
+figure.snip1171.orange a,
+figure.snip1171.orange .price {
+  background-color: #d67118;
+}
+figure.snip1171.orange .price:before {
+  border-color: transparent #d67118 transparent;
+}
+figure.snip1171.orange h3:before {
+  border-color: transparent transparent transparent #d67118;
+}
+figure.snip1171.orange a:before {
+  border-color: transparent transparent #d67118;
+}
+figure.snip1171:hover img,
+figure.snip1171.hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.description-card{
+  font-size: 12px;
+}
+
+.card-name-title{
+  font-size: 13px;
+}
+
+.additional_products{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr );
+}
+
+.aditional_read_more{
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #000000;
+  line-height: 40px;
+  padding: 0 10px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.aditional_read_more :before {
+  position: absolute;
+  right: 100%;
+  border-style: solid;
+  border-width: 0 0 40px 12px;
+  border-color: transparent transparent #000000;
+  content: '';
+  top: 0;
+}
+
+.read-more-add-to-cart-aditional{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr );
+}
+
+
+/*!
+ * Start Bootstrap - Busines Frontpage (https://startbootstrap.com/template-overviews/business-frontpage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-business-frontpage/blob/master/LICENSE)
+ */
+
+
+/* card */
+.dress-card-img-top {
+  width:100%;
+  border-radius: 7px 7px 0 0;
+}
+
+.dress-card-body {
+  padding:1rem;
+  background: #fff;
+  border-radius: 0 0 7px 7px;
+}
+
+.dress-card-title {
+  line-height: 0.5rem;
+}
+
+.dress-card-crossed {
+  text-decoration: line-through;
+}
+
+.dress-card-price {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.dress-card-off {
+  color: #E06C9F;
+}
+
+.dress-card-para {
+  margin-bottom: 0.2rem;
+  font-size: 1.0rem;
+  margin-bottom: 0rem;
+}
+
+.dress-card {
+  border-radius: 14px;
+}
+
+.dress-card-heart {
+  font-size: 1em;
+  color: #DB2763;
+  margin: 4.5px;
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  
+}
+
+.surprise-bubble {
+  position: absolute;
+  bottom: 12rem;
+  right: 2rem;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  padding: 1rem;
+  color: white;
+  -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.surprise-bubble a {
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  font-family: arial;
+  text-decoration: none;
+  position: absolute;
+  top: 9px;
+  left: 20px;
+  opacity: 0;
+  -webkit-transition-delay: 2s;
+  /* Safari */
+  transition-delay: 2s;
+  -webkit-transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.surprise-bubble:hover {
+  border-radius: 999rem;
+  padding: 1rem;
+  width: 26%;
+  height: 30px;
+  background: #DB2763;
+  color: white;
+  -webkit-transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.surprise-bubble:hover a {
+  opacity: 1;
+  -webkit-transition-delay: 2s;
+  /* Safari */
+  transition-delay: 2s;
+  -webkit-transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.card-button {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 9px;
+}
+.card-button a {
+  text-decoration: none;
+}
+
+.card-button-inner {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.bag-button {
+  background: #E06C9F;
+  color: white;
+}
+
+.bag-button :hover{
+  background: #e299b9;
+}
+
+.wish-button {
+  border: 1px solid #E06C9F;
+  color: #E06C9F;
+}
+
+/* pgoto block */
+
+.image-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr );
 }

@@ -170,6 +170,17 @@ h1 {
   justify-content: end; */
 }
 
+.example-1 .menu-button:hover {
+
+  background: rgb(37, 71, 105);
+
+  color: aliceblue;
+  margin: 0 20px;
+  font-size: 13px;
+  /* display: flex;
+  justify-content: end; */
+}
+
 .product-price{
   margin: 0 20px;
 

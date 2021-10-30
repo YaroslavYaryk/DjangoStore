@@ -1,5 +1,5 @@
 from django.db import  models
-from django.urls import reverse
+from django.contrib.auth.models import User
 
 from characteristics.models import  CountryBrand, \
     CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
@@ -12,6 +12,7 @@ class Product(models.Model):
     """ class of single product """
 
     name = models.CharField("name", max_length=255)
+    only_name = models.CharField("only_name", max_length=255, null=True)
     # characteristics = models.ForeignKey("Characteristics", name="characteristics", on_delete=models.CASCADE)
     description = models.TextField("description", blank=True)
     short_description = models.TextField(null=True)
@@ -37,10 +38,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-    def get_absolute_url(self):
-        """to add link to path the same as title is"""
-        return reverse("product", kwargs={"slug_id": self.slug})
     
 
 
@@ -99,6 +96,9 @@ class Characteristics(models.Model):
     wireless_connection = models.CharField(max_length=255, null=True)
     input_output = models.CharField(max_length=255, null=True)
 
+    def __str__(self) -> str:
+        return self.product.name
+
                        
 class CommentResponse(models.Model): 
     post = models.ForeignKey(Product,
@@ -131,3 +131,16 @@ class ProductImage(models.Model):
         verbose_name = "Image"
         verbose_name_plural = "Images"
         ordering = ["id"]  # sorting categories at site
+
+
+class ProductLike(models.Model):
+
+    """ add like to our post """
+
+    post = models.ForeignKey(
+        Product, related_name="likes", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, related_name="likes",
+                             on_delete=models.CASCADE, null=True)        
+
+    def __str__(self) -> str:
+        return f"{self.post.only_name} {self.user.username}"

@@ -1,0 +1,10 @@
+<h2>{{product.name}}</h2>
+  <ul class="header_menu_list">
+    {% for key, value  in header_menu.items %}
+      {% if not  key ==  special_element %}
+        <li><a href="{% url value slug_id=product.slug %}">{{key}}</a></li>
+      {% else %}
+        <li><a class="menu_active_element" href="{% url value slug_id=product.slug %}">{{key}}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
