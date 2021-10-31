@@ -6,6 +6,7 @@
     {% get_read_header_menu product=product special_element='Photo'  %}
 
     <div class="image-container">
+        <img src="{{product.photo.url}}" width="100%" alt="{{product.name}}"/>
         {% for elem in images %}
             <img src="{{elem.images.url}}" width="100%" alt="{{elem.product.name}}"/>
         {% endfor %}

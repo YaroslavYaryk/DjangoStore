@@ -4,7 +4,7 @@
 {% block link %}
 	<link rel="stylesheet" href="{% static 'market/store/css/style-read_more.css' %}">
   <script src="{% static 'market/store/js/read_more.js' %}"></script>
-  <title>Document</title>
+  <title>{{product.only_name}}</title>
 {% endblock %}
 
 {% block main-content %}
@@ -47,15 +47,29 @@
         {% endif %}
         <div class="price-like">
           <h1 class="my-4">${{product.price}}</h1>  
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart like-next-to-price" viewBox="0 0 16 16">
-            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-          </svg>
+          <div class="card-footer d-flex justify-content-end product-like-count">
+
+                {% if not is_liked %}
+                    <a href="{% url 'like_product' post_id=product.slug product_id=product.slug %}" style="color:#FF0000;" id="likebtn{{ product.id }}"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"    class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg> 
+                    </a>
+                    <span class="ml-3 product_like_count">{{product.likes.count}}</span>
+                {% else %}
+                    <a href="{% url 'like_product' post_id=product.slug product_id=product.slug %}" style="color: red" id="likebtn{{ product.id }}">    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                     </a>
+                    <span class="ml-5 product_like_count"> {{product.likes.count}}</span>
+                {% endif %}
+          </div>  
         </div>        
         <div class="buy-add-to-cart">
           <a href="" class="btn btn-success add-to-cart-buy-cart"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag buy-for-buy-button" viewBox="0 0 16 16">
             <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
           </svg> Buy</a>
-          <a href="" class="btn btn-primary add-to-cart-buy-cart add-to-cart">
+          <a href="{% url 'add_to_cart' product_slug=product.slug %}" class="btn btn-primary add-to-cart-buy-cart add-to-cart">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart3 cart-for-cart-button" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg> Add to cart</a>
@@ -66,29 +80,53 @@
         </ul>
       </div>
     </div>
+
+
     <div class="different-similar-products">
       <h3>Similar products from other sellers</h3>
       <div class="additional_products">
         
-        {% for aditional_product in aditional_products %}
+        {% for aditional_product, value in special_dict_menu.items %}
           <figure class="snip1171">
+
             <img src="{{aditional_product.photo.url}}" width="300px" height="175px" alt="sample71"/>
+            
             <div class="price">${{aditional_product.price}}</div>
             <figcaption>
-              <a href="{{aditional_product.get_absolute_url}}"><h3 style="font-size: 10px;">{{aditional_product.only_name}}</h3></a>
-              <p>
-                Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.
+              <a href="{% url 'read_more_about_all' slug_id=aditional_product.slug %}"><h3 style="font-size: 10px;">{{aditional_product.only_name}}</h3></a>
+              <p style="font-size: 12px;">
+                {{product.short_description}}
               </p>
+              <div class="like-additional-products"  > 
+                <div class="card-footer d-flex justify-content-end aditional_product_like"">
+                  {% if not value %}
+                      <a href="{% url 'like_product' post_id=aditional_product.slug product_id=product.slug %}" style="color:#FF0000; " id="likebtn{{ aditional_product.id }}"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"    class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg> 
+                      </a>
+                      <span class="ml-3 product_like_count" style="color: red;">{{aditional_product.likes.count}}</span>
+                  {% else %}
+                      <a href="{% url 'like_product' post_id=aditional_product.slug product_id=product.slug %}" style="color: red; " id="likebtn{{ aditional_product.id }}">    
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                       </a>
+                      <span class="ml-5 product_like_count" style="color: red;"> {{aditional_product.likes.count}}</span>
+                  {% endif %}
+                </div> 
                 <a  class="add-to-cart-aditional" href="#">Add to Cart</a>
+              </div>  
             </figcaption>
           </figure>
         {% endfor %}    
       </div>
     </div>  
   </div>
-  <p>{{product.description|safe}}</p>
+
   
 </div>
 
 {% endblock %}
+
 

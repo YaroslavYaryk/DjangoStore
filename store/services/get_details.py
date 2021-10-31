@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from store.models import Characteristics, Product, ProductImage
+from store.models import Characteristics, Product, ProductImage, ProductLike
 from django.http import Http404
+from django.contrib import messages
 
 
 def get_special_product(product_id):
@@ -36,6 +37,11 @@ def get_list_of_special(product_obj):
     return list_result[:5]
 
 
+def get_dict_aditional_like(user, list_similar):
+
+    return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in list_similar}
+
+
 def get_header_menu():
 
     return {
@@ -45,3 +51,46 @@ def get_header_menu():
         "Video" : "read_video",
         "Photo" : "read_photo"
     }
+
+
+def press_like_to_product(request, response, post_id):
+
+    user = request.user
+    try:
+        product = Product.objects.get(slug=post_id)  # get post
+        like = ProductLike.objects.filter(user=user, post=product)
+
+        if like:
+            like.delete()  # thre is like put
+        else:
+            ProductLike.objects.create(user=user, post=product)  # create like
+    except TypeError:  # is not signed in
+        messages.add_message(request, messages.WARNING,
+                             'to put like you need to sign in first ')
+        return response
+
+    return  response 
+
+
+def set_cookies_for_product_like(response, user, post_id):
+
+    product = get_special_product(post_id)
+    like = ProductLike.objects.filter(user=user, post=product)    
+    response.set_cookie(product.only_name.replace(" ", "_").strip('"'), "like.com") if like else response.set_cookie(
+        product.only_name.replace(" ", "_").strip('"'), "dislike.com")
+
+
+def check_if_post_like_and_get_count(slug_id, user):
+
+    liked = 0
+    if user != "AnonymousUser":
+        try:
+            liked = ProductLike.objects.filter(user=user, post=Product.objects.
+                get(slug=slug_id))
+            # get like if its liked
+        except TypeError:
+            pass
+    else:
+        liked = 0
+
+    return liked    

@@ -151,8 +151,8 @@ figure.snip1171 {
   position: relative;
   overflow: hidden;
   margin: 10px;
-  min-width: 220px;
-  max-width: 310px;
+  min-width: 300px;
+  max-width: 350px;
   width: 100%;
   background: #000000;
   color: #333;
@@ -489,4 +489,24 @@ figure.snip1171.hover img {
 .image-container{
   display: grid;
   grid-template-columns: repeat(1, 1fr );
+}
+
+
+.product_like_count{
+  margin: 0 0 0 10px;
+}
+
+.product-like-count{
+  background: #2b343c;
+  border: 2px  solid #2b343c;
+}
+
+
+
+.aditional_product_like{
+  border: 3px solid #FFFFFF;
+  background: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
