@@ -3,7 +3,8 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls.base import reverse
 from django.views.generic import ListView
-from store.services.get_cart import add_productcart_to_product, create_cart_product, get_cart_by_user
+from store.utils import DataMixin
+from store.services.get_cart import add_productcart_to_cart, create_cart_product, get_cart_by_user, get_cart_product, remove_product_from_cart
 from store.services.get_home import get_dict_all_products_like, get_path_to_redirect
 from store.models import  Cart, CartProduct, Product
 from store.services.get_details import check_if_post_like_and_get_count, get_all_aditional_image_by_slug_id, get_dict_aditional_like, \
@@ -13,7 +14,7 @@ from store.services.get_details import check_if_post_like_and_get_count, get_all
 # Create your views here.
 
 
-class Home(ListView):
+class Home(DataMixin ,ListView):
     model = Product
     # success_url = reverse_lazy("home")
     template_name = "store/home.html"
@@ -23,11 +24,17 @@ class Home(ListView):
 
         return Product.objects.all()
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        data["title"] = "Home"
-        data["all_products_like"] = get_dict_all_products_like(self.request.user)
-        return data
+
+    def get_context_data(self, *args, **kwargs):
+
+        # Cart.objects.filter(owner=self.request.user).delete()
+
+        context = super().get_context_data(**kwargs)  # like dynamic list
+        c_def = self.get_user_context(
+            title="Home",
+            all_products_like=get_dict_all_products_like(self.request.user))
+        return dict(list(context.items()) + list(c_def.items()))
+
 
 
 def get_all_product_details(request, slug_id):
@@ -100,12 +107,25 @@ def get_cart(request):
 
 def add_to_cart(request, product_slug):
     
-    user = User.objects.first()
+    user = request.user
 
     cart = get_cart_by_user(user)
     product = get_special_product(product_slug)
 
     cart_product = create_cart_product(user, cart, product)
-    add_productcart_to_product(cart, cart_product)
+    add_productcart_to_cart(user, cart, cart_product, product)
+
+    return HttpResponseRedirect(reverse("get_cart"))
+
+
+def remove_from_cart(request, product_slug):
+    
+    user = request.user
+
+    cart = get_cart_by_user(user)
+    product = get_special_product(product_slug)
+
+    cart_product = get_cart_product(user = user, product = product)
+    remove_product_from_cart(cart, cart_product, user,product)
 
     return HttpResponseRedirect(reverse("get_cart"))

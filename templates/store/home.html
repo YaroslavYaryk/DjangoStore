@@ -40,7 +40,7 @@
 
 						<div class="price-card">
 							<a src="" class="btn btn-success product-price">{{product.price}}грн</a>
-							<a  class=" btn menu-button"  href=""> add to cart</a>
+							<a  class=" btn menu-button"  href="{% url 'add_to_cart' product_slug=product.slug %}"> add to cart</a>
 						</div>	
 					</div>
 					

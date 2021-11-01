@@ -11,3 +11,7 @@ def get_read_header_menu(product, special_element):
 			"product": product,
 			"special_element": special_element}	
 
+@register.simple_tag()
+def multiply(a, b, *args, **kwargs):
+    # you would need to do any localization of the result here
+    return a * b // 100

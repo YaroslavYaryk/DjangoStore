@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 from characteristics.models import CountryBrand, \
     CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
     OperationSystem, ProcessorType, ProductBrand, ProductType, \
@@ -153,14 +154,16 @@ class CartProduct(models.Model):
         "User"), on_delete=models.CASCADE)
     cart = models.ForeignKey("Cart", verbose_name=(
         "Cart"), on_delete=models.CASCADE, related_name="related_product")
-    product = models.ForeignKey(Product, verbose_name=(
-        "Product"), on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
+    
     quantity = models.PositiveIntegerField(default=1)
     total_price = models.DecimalField(default=0,
         max_digits=9, decimal_places=2, verbose_name="Total price")
 
     def __str__(self) -> str:
-        return f"CartProduct( {self.user.username} {self.product.only_name} )"
+        return f"CartProduct( {self.user.username} {self.content_object.only_name} )"
 
 
 class Cart(models.Model):
@@ -173,8 +176,8 @@ class Cart(models.Model):
     total_products = models.PositiveIntegerField(default=0)
     total_price = models.DecimalField(default=0,
         max_digits=9, decimal_places=2, verbose_name="Total price")
-    in_order = models.BooleanField(default=True)
-    is_anonymous = models.BooleanField(default=True)
+    in_order = models.BooleanField(default=False)
+    is_anonymous = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.owner.username} {self.products}"

@@ -274,3 +274,12 @@
 .left-sidebar{
   min-height: 100vh;
 }
+
+
+/* ++++++++++++ */
+
+.count_of_cart_products{
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+}
