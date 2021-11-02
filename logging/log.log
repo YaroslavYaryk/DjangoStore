@@ -1,0 +1,335 @@
+2021-11-02 18:11:41,165  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 103, in get_check_coupon
+    discount = user_coupon.first().discount
+AttributeError: 'UserCoupon' object has no attribute 'discount'
+2021-11-02 18:12:10,624  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 103, in get_check_coupon
+    discount = Coupon.objects.get(user=user, coupon_code=user_coupon.coupon_code)
+AttributeError: 'QuerySet' object has no attribute 'coupon_code'
+2021-11-02 18:12:23,675  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 103, in get_check_coupon
+    discount = Coupon.objects.get(user=user, coupon_code=user_coupon.coupon_code)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 424, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1286, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1112, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1539, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: coupon_code, discount, id
+2021-11-02 18:12:39,841  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 117, in get_cart
+    return render(request, "market/cart.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 516, in render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/templatetags/menu_tags.py", line 17, in multiply
+    return a * (100 - b) // 100 if b else a
+TypeError: unsupported operand type(s) for -: 'int' and 'Coupon'
+2021-11-02 20:38:33,457  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 102, in get_check_coupon
+    log.info(user_coupon)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/loguru/_logger.py", line 1971, in info
+    __self._log("INFO", None, False, __self._options, __message, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/loguru/_logger.py", line 1917, in _log
+    "message": str(message),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/models.py", line 203, in __str__
+    return f"{self.user} - {self.coupon_code}"
+AttributeError: 'UserCoupon' object has no attribute 'coupon_code'
+2021-11-02 20:40:11,742  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 104, in get_check_coupon
+    discount = Coupon.objects.get(coupon_code=user_coupon.coupon.coupon_code).discount
+AttributeError: 'NoneType' object has no attribute 'coupon_code'
+2021-11-02 20:48:59,770  django.request ERROR    <--> Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 105, in get_cart
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 101, in get_check_coupon
+    usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(user=user), key=lambda x:x.coupon.discount)][-1]
+IndexError: list index out of range
+2021-11-02 20:51:55,512  django.request ERROR    <--> Internal Server Error: /remove_from_cart/noutbuk-acer-aspire-3-a315-34-c1dv-nxhe3eu05j-charcoal-black
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.CheckViolation: new row for relation "store_cart" violates check constraint "store_cart_total_price_72a272e7_check"
+DETAIL:  Failing row contains (23, 1, -19998, f, f, 1).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 140, in remove_from_cart
+    remove_product_from_cart(cart, cart_product, user,product)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 74, in remove_product_from_cart
+    cart.save()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 763, in save_base
+    updated = self._save_table(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 845, in _save_table
+    updated = self._do_update(base_qs, using, pk_val, values, update_fields,
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 899, in _do_update
+    return filtered._update(values) > 0
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: new row for relation "store_cart" violates check constraint "store_cart_total_price_72a272e7_check"
+DETAIL:  Failing row contains (23, 1, -19998, f, f, 1).
+
+2021-11-02 20:52:15,854  django.request ERROR    <--> Internal Server Error: /remove_product/noutbuk-acer-aspire-3-a315-34-c1dv-nxhe3eu05j-charcoal-black/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 153, in remove_one_product
+    remove_product_from_cart(cart, cart_product, user,product, True)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 62, in remove_product_from_cart
+    cart.products.remove(cart_product[0])
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 318, in __getitem__
+    return qs._result_cache[0]
+IndexError: list index out of range
+2021-11-02 20:53:50,236  django.request ERROR    <--> Internal Server Error: /remove_product/noutbuk-acer-aspire-3-a315-34-c1dv-nxhe3eu05j-charcoal-black/
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 153, in remove_one_product
+    remove_product_from_cart(cart, cart_product, user,product, True)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 64, in remove_product_from_cart
+    cart.total_price -= cart_product[0].total_price
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 300, in __getitem__
+    return self._result_cache[k]
+IndexError: list index out of range
+2021-11-02 20:58:05,570  django.request ERROR    <--> Internal Server Error: /remove_from_cart/noutbuk-honor-magicbook-x-15-bbr-wai9a-space-grey
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.CheckViolation: new row for relation "store_cart" violates check constraint "store_cart_total_products_check"
+DETAIL:  Failing row contains (26, -1, 0, f, f, 1).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 140, in remove_from_cart
+    remove_product_from_cart(cart, cart_product, user,product)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_cart.py", line 76, in remove_product_from_cart
+    cart.save()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 726, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 763, in save_base
+    updated = self._save_table(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 845, in _save_table
+    updated = self._do_update(base_qs, using, pk_val, values, update_fields,
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/base.py", line 899, in _do_update
+    return filtered._update(values) > 0
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/compiler.py", line 1175, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: new row for relation "store_cart" violates check constraint "store_cart_total_products_check"
+DETAIL:  Failing row contains (26, -1, 0, f, f, 1).
+
+2021-11-02 21:16:29,026  django.request ERROR    <--> Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'get_categories_list'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 127, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 124, in get_parent
+    return self.find_template(parent, context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 103, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 522, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 111: 'get_categories_list', expected 'endblock'. Did you forget to register or load this tag?
+2021-11-02 21:34:04,806  django.request ERROR    <--> Internal Server Error: /category/laptop
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 166, in get_category
+    products_of_category = Product.objects.get_object_or_404(type_of_product__slug = category_slug)
+AttributeError: 'Manager' object has no attribute 'get_object_or_404'
+2021-11-02 21:35:02,096  django.request ERROR    <--> Internal Server Error: /category/laptop
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 166, in get_category
+    products_of_category = get_object_or_404(Product, type_of_product__slug = category_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 76, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 439, in get
+    raise self.model.MultipleObjectsReturned(
+store.models.Product.MultipleObjectsReturned: get() returned more than one Product -- it returned 8!

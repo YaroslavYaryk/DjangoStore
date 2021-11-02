@@ -201,3 +201,28 @@ input:focus::-webkit-input-placeholder {
     color: #fff;
 }
 
+
+.price_delete_from_cart{
+    margin-top: 20px;
+}
+
+.trash_can{
+    color: #fff;
+}
+
+.trash_can:hover{
+    color: rgba(255, 255, 255, 0.404);
+}
+
+.clean_cart{
+    text-decoration: none;
+    color: #fff;
+}
+
+.quantity{
+    margin-top: 20px;
+}
+
+.cart_product_quantity{
+    margin: 0 20px;
+}

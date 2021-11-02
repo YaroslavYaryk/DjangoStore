@@ -1,0 +1,94 @@
+2021-11-02 18:09:29.165 | INFO     | store.services.get_cart:get_check_coupon:102 - <QuerySet []>
+2021-11-02 18:09:29.178 | INFO     | store.services.get_cart:get_check_coupon:102 - <QuerySet []>
+2021-11-02 18:10:05.060 | INFO     | store.services.get_cart:get_check_coupon:102 - <QuerySet []>
+2021-11-02 18:10:05.077 | INFO     | store.services.get_cart:get_check_coupon:102 - <QuerySet []>
+2021-11-02 18:11:41.069 | INFO     | store.services.get_cart:get_check_coupon:101 - <QuerySet [<UserCoupon: Admin - ABIU6o9V>]>
+2021-11-02 18:12:10.511 | INFO     | store.services.get_cart:get_check_coupon:101 - <QuerySet [<UserCoupon: Admin - ABIU6o9V>]>
+2021-11-02 18:12:23.423 | INFO     | store.services.get_cart:get_check_coupon:101 - Admin - ABIU6o9V
+2021-11-02 18:12:39.269 | INFO     | store.services.get_cart:get_check_coupon:101 - Admin - ABIU6o9V
+2021-11-02 18:12:39.277 | INFO     | store.services.get_cart:get_check_coupon:101 - Admin - ABIU6o9V
+2021-11-02 18:13:01.309 | INFO     | store.services.get_cart:get_check_coupon:101 - Admin - ABIU6o9V
+2021-11-02 18:13:01.319 | INFO     | store.services.get_cart:get_check_coupon:101 - Admin - ABIU6o9V
+2021-11-02 18:18:35.721 | INFO     | store.services.get_cart:get_check_coupon:113 - Admin - ABIU6o9V
+2021-11-02 18:18:39.393 | INFO     | store.services.get_cart:get_check_coupon:113 - Admin - ABIU6o9V
+2021-11-02 18:18:44.029 | INFO     | store.services.get_cart:get_check_coupon:113 - Admin - ABIU6o9V
+2021-11-02 18:21:19.200 | INFO     | store.services.get_cart:get_check_coupon:113 - Admin - ABIU6o9V
+2021-11-02 18:22:10.074 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - B7lsrHwl
+2021-11-02 18:22:19.262 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - B7lsrHwl
+2021-11-02 20:26:56.687 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - B7lsrHwl
+2021-11-02 20:33:00.402 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - B7lsrHwl
+2021-11-02 20:40:11.627 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - None
+2021-11-02 20:41:52.470 | INFO     | store.services.get_cart:get_check_coupon:102 - None
+2021-11-02 20:42:11.781 | INFO     | store.services.get_cart:get_check_coupon:102 - Admin - ABIU6o9V - 20
+2021-11-02 20:45:02.485 | INFO     | store.services.get_cart:get_check_coupon:105 - Admin - ABIU6o9V - 20
+2021-11-02 20:45:33.378 | INFO     | store.services.get_cart:get_check_coupon:105 - Admin - KkQfrZD2 - 5
+2021-11-02 20:46:12.828 | INFO     | store.services.get_cart:get_check_coupon:105 - Admin - EilzbTfD - 10
+2021-11-02 20:47:38.151 | INFO     | store.services.get_cart:get_check_coupon:104 - Admin - EilzbTfD - 10
+2021-11-02 20:48:00.439 | INFO     | store.services.get_cart:get_check_coupon:104 - None
+2021-11-02 20:49:22.831 | INFO     | store.services.get_cart:get_check_coupon:103 - []
+2021-11-02 20:49:42.212 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - EilzbTfD - 10>]
+2021-11-02 20:49:58.193 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>]
+2021-11-02 20:51:08.109 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:23.699 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:27.790 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:32.279 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:34.694 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:38.911 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:41.882 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:46.896 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:51:51.561 | INFO     | store.services.get_cart:get_check_coupon:102 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:03.876 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:11.405 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:19.082 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:21.554 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:25.701 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:27.557 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:29.119 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:30.799 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:35.388 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:37.401 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:46.176 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:49.998 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:54:56.232 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:55:00.434 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:18.862 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:20.832 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:32.109 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:37.501 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:42.844 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:56:46.795 | INFO     | store.services.get_cart:get_check_coupon:103 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:57:46.380 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:57:48.309 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:57:52.022 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:57:54.580 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:58:00.456 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:58:02.807 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:59:41.348 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:59:47.220 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:59:49.850 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 20:59:51.495 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:02.368 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:04.889 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:12.838 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:14.227 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:18.160 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:23.537 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:27.768 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:29.676 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:33.203 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:39.043 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:43.171 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:46.140 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:51.564 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:53.705 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:57.720 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:00:59.398 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:01.816 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:16.234 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:17.881 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:22.643 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:26.574 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:29.282 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:01:31.097 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:39:03.772 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-02 21:39:08.994 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]

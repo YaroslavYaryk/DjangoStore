@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from characteristics.admin import BaseAdmin
-from store.models import Characteristics, Product, ProductImage, ProductLike
+from store.models import Characteristics, Coupon, Product, ProductImage, ProductLike, UserCoupon
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget 
 
@@ -71,6 +71,16 @@ class ProductLikeAdmin(admin.ModelAdmin):
     list_display_links = ("post", 'user',)
     fields = ( "post" ,'user',)
     readonly_fields = ("post" ,'user',)
+
+@admin.register(Coupon)
+class CouponAdmin(admin.ModelAdmin):
+    list_display = ( "coupon_code" ,'discount',)
+    fields = ( "coupon_code" ,'discount',)
+
+@admin.register(UserCoupon)
+class UserCouponAdmin(admin.ModelAdmin):
+    list_display = ( "user" ,'coupon',)
+    fields = ( "user" ,'coupon',)
 
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
 admin.site.register(Characteristics, CharacteristicAdmin)

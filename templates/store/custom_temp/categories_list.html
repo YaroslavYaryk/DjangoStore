@@ -1,0 +1,8 @@
+{% for elem in categories %}
+    <li class="nav-item">
+        <a href="{% url 'get_category' elem.slug %}" class="nav-link active" aria-current="page">
+        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+        {{elem.name}}s
+        </a>
+    </li>
+{% endfor %}    

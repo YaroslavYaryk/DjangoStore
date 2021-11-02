@@ -159,8 +159,8 @@ class CartProduct(models.Model):
     content_object = GenericForeignKey("content_type", "object_id")
     
     quantity = models.PositiveIntegerField(default=1)
-    total_price = models.DecimalField(default=0,
-        max_digits=9, decimal_places=2, verbose_name="Total price")
+    total_price = models.PositiveBigIntegerField(default=0,
+        verbose_name="Total price")
 
     def __str__(self) -> str:
         return f"CartProduct( {self.user.username} {self.content_object.only_name} )"
@@ -174,10 +174,30 @@ class Cart(models.Model):
     products = models.ManyToManyField(
         CartProduct, blank=True, related_name="related_cart")
     total_products = models.PositiveIntegerField(default=0)
-    total_price = models.DecimalField(default=0,
-        max_digits=9, decimal_places=2, verbose_name="Total price")
+    total_price = models.PositiveBigIntegerField(default=0,
+        verbose_name="Total price")
     in_order = models.BooleanField(default=False)
     is_anonymous = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.owner.username} {self.products}"
+
+
+class Coupon(models.Model):
+    """ class of coupone {code: discount} """
+
+    coupon_code = models.CharField("coupon", max_length=100 )
+    discount = models.PositiveIntegerField("discount", default=0)
+
+    def __str__(self) -> str:
+        return f"{self.coupon_code} - {self.discount}"
+
+class UserCoupon(models.Model):
+    """ class of coupone {code: discount} """
+
+    user = models.ForeignKey(User, verbose_name=(
+        "User"), on_delete=models.CASCADE)
+    coupon = models.ForeignKey(Coupon, verbose_name=("Coupon"), on_delete=models.CASCADE, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.user} - {self.coupon}"        

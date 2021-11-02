@@ -1,6 +1,13 @@
 from django.contrib.contenttypes.models import ContentType
-from store.models import Cart, CartProduct
+from store.forms import CouponForm
+from store.models import Cart, CartProduct, Coupon, UserCoupon
 from django.contrib.admin.options import get_content_type_for_model
+from loguru import logger as log
+
+
+log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log2.log",
+        enqueue=True, level="DEBUG", rotation="10 MB")
+
 
 def get_cart_by_user(user):
 
@@ -32,7 +39,6 @@ def add_productcart_to_cart(user, cart, cart_product, product):
 
     type_content = get_content_type_for_model(product)
     existing_cart = cart.products.filter(user = user, content_type = type_content, object_id=product.pk).first()
-    print(existing_cart)
     if not existing_cart:
         cart.products.add(cart_product)
         cart.total_products += 1
@@ -48,13 +54,65 @@ def remove_cart_product(user, product):
     get_cart_product(user, product).delete()
     
 
-def remove_product_from_cart(cart, cart_product, user, product):
+def remove_product_from_cart(cart, cart_product, user, product, one_product=False):
 
-    for elem in cart_product:
-        print(elem)
-        cart.products.remove(elem)
-        cart.total_price -= elem.total_price
-    remove_cart_product(user, product)
-    cart.total_products -= 1
+    if one_product:
+        type_content = get_content_type_for_model(product)
+        existing_cart = cart.products.filter(user = user, content_type = type_content, object_id=product.pk).first()
+        if cart_product:
+            cart.products.remove(cart_product[0])
+            cart.total_price -= cart_product[0].total_price
+        existing_cart.quantity -= 1
+        existing_cart.save()
+        if  existing_cart.quantity < 1:
+            cart.total_products -= 1
+            remove_cart_product(user, product)
+    else:
+        for elem in cart_product:
+            cart.products.remove(elem)
+            cart.total_price -= elem.total_price
+        cart.total_products -= 1
+        remove_cart_product(user, product)
     cart.save()
     
+
+
+def remove_all_from_cart(user):
+
+    Cart.objects.filter(owner=user).delete()
+    CartProduct.objects.filter(user=user).delete()
+
+
+def get_check_coupon(request, user, cart):
+
+    discount = 0
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CouponForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            coupon = form.cleaned_data['coupon']
+            coupon_queryset = Coupon.objects.filter(coupon_code = coupon)
+            if coupon_queryset:
+                discount = coupon_queryset.first().discount
+                UserCoupon.objects.update_or_create(user=user, coupon=coupon_queryset.first())
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = CouponForm()
+        usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(user=user), key=lambda x:x.coupon.discount)]
+        log.info(usr_coupon)
+        if usr_coupon:
+            discount = Coupon.objects.get(coupon_code=usr_coupon[-1].coupon.coupon_code).discount
+          
+
+    cart_button = True
+    if not cart.total_products:
+        cart_button = False
+
+    return form, discount, cart_button    
+
+
+
+#     select store_usercoupon.coupon_code, store_coupon.discount  from store_usercoupon join store_coupon on store_coupon.coupon_code = store_usercoupon.
+#  coupon_code order by discount DESC

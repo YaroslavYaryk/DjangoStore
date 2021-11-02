@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls.base import reverse
 from django.views.generic import ListView
+from store.forms import CouponForm
 from store.utils import DataMixin
-from store.services.get_cart import add_productcart_to_cart, create_cart_product, get_cart_by_user, get_cart_product, remove_product_from_cart
+from store.services.get_cart import add_productcart_to_cart, create_cart_product, get_cart_by_user, get_cart_product, get_check_coupon, remove_all_from_cart, remove_product_from_cart
 from store.services.get_home import get_dict_all_products_like, get_path_to_redirect
 from store.models import  Cart, CartProduct, Product
 from store.services.get_details import check_if_post_like_and_get_count, get_all_aditional_image_by_slug_id, get_dict_aditional_like, \
@@ -48,7 +50,8 @@ def get_all_product_details(request, slug_id):
         "header_menu": get_header_menu(),
         "special_menu_function": "All about the product",
         "special_dict_menu": get_dict_aditional_like(request.user, get_list_of_special(get_special_product(slug_id))),
-        "is_liked": liked
+        "is_liked": liked,
+        "cart": get_cart_by_user(request.user)
     }
 
     return render(request, "store/get_more.html", context=content)
@@ -98,10 +101,19 @@ def get_cart(request):
 
     user = request.user
     cart = get_cart_by_user(user)
+
+    
+    form, discount, cart_button = get_check_coupon(request, user, cart)
+
     context = {
         "cart" : cart ,
-        "products" : cart.products.all() 
-    }
+        "products" : cart.products.all(),
+        'form': form,
+        "discount" : discount,
+        "cart_button": cart_button,
+        }    
+   
+
     return render(request, "market/cart.html", context=context)
 
 
@@ -129,3 +141,32 @@ def remove_from_cart(request, product_slug):
     remove_product_from_cart(cart, cart_product, user,product)
 
     return HttpResponseRedirect(reverse("get_cart"))
+
+def remove_one_product(request, product_slug):
+
+    user = request.user
+
+    cart = get_cart_by_user(user)
+    product = get_special_product(product_slug)
+
+    cart_product = get_cart_product(user = user, product = product)
+
+    remove_product_from_cart(cart, cart_product, user,product, True)
+    return HttpResponseRedirect(reverse("get_cart"))
+
+def delete_cart(request):
+
+    user = request.user
+    remove_all_from_cart(user)
+    return HttpResponseRedirect(reverse("get_cart"))
+
+
+def get_category(request, category_slug):
+    
+    products_of_category = Product.objects.filter(type_of_product__slug = category_slug)
+
+    context = {
+        "products_of_category": products_of_category,
+    }
+
+    return render(request, "store/get_categories.html", context=context)
