@@ -9,6 +9,6 @@ class DataMixin(object):
 
     def get_user_context(self, **kwargs):
         context = kwargs
-        
-        context["cart"] = get_cart_by_user(self.request.user)
+        if self.request.user.is_authenticated:
+            context["cart"] = get_cart_by_user(self.request.user)
         return context

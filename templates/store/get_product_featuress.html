@@ -4,5 +4,277 @@
 
 {% block main-content %}
     {% get_read_header_menu product=product special_element='Features'  %}
+    <div class="features_conteiner"">
+        <div class="features_list">
+            <div class="features_header">
+                <span class="features_list_header">Characteristics of </span> {{product.name}}
+            </div>
+            <div class="features_screen">
+                <div class="features_title">
+                    Screen
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name"">Screen diagonal </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">
+                            <a href="{% url 'get_charact_diagonal_screen' characteristic.diagonal_screen.slug %}">
+                                {{characteristic.diagonal_screen}}
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Type of screen </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> 
+                       {{characteristic.screen_type}}</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Screen update frequency </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.screen_frequency}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="features_processor">
+                <div class="features_title">
+                    Processor
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name"">Processor </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.processor_name}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Operating system</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.operation_system}}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="features_ram">
+                <div class="features_title">
+                    RAM
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name">The amount of RAM</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.memory_capacity}}</td>
+                        
+                    </tr>
+                    <tr >
+                        <td class="characteristic_name">Number of slots for RAM</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.memory_slots}}</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name">Type of RAM</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value" > {{characteristic.memory_type}} </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="features_data_collectors">
+                <div class="features_title">
+                    Data collectors
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name">The volume of the drive</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.data_storage.hard_drive_capacity}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name">Drive memory type</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.data_storage.hard_drive_type}} </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="features_video_card">
+                <div class="features_title">Video card
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name"">Video card</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.video_card}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Video card memory</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.video_card_memory}}</td>
+                        
+                    </tr>
+                </table>
+            </div>
+            <div class="features_screen">
+                <div class="features_title">
+                    Corps
+                </div>
+                <table>
+                    <tr>
+                        <td class="characteristic_name"">Color </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.color}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Weight </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.weight}} </td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic_name"">Battery capacity</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.battery}}</td>
+                        <tr>
+                            <td class="characteristic_name"">Manipulators</td>
+                            
+                            {% for i in '034000888999'|make_list %}
+                                <td>.....</td>
+                            {% endfor %}
+                            <td class="characteristic_value"> {{characteristic.manipulators}}</td>
+                        </tr>
+                        <tr>
+                            <td class="characteristic_name"">Dimensions (W x H x H)</td>
+                            
+                            {% for i in '034000888999'|make_list %}
+                                <td>.....</td>
+                            {% endfor %}
+                            <td class="characteristic_value"> {{characteristic.height}} x {{characteristic.width}} x {{characteristic.depth}} mm</td>
+                        </tr>
+                    </tr>
+                </table>
+            </div>
+            <div class="features_connection">
+                <div class="features_title">
+                    Connection
+                </div>
+                <table>
+                    <tr class="features_table_row">
+                        <td class="characteristic_name"">Network adapters</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value">{{characteristic.network_adapters}}</td>
+                    </tr>
+                    <tr class="features_table_row">
+                        <td class="characteristic_name"">Connectors and I / O ports</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.input_output}} </td>
+                    </tr>
+                    <tr class="features_table_row">
+                        <td class="characteristic_name"">Wireless connection</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.wireless_connection}}</td>
+                    </tr>    
+                    <tr class="features_table_row">
+                        <td class="characteristic_name""> Manufacturing country</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.product.country_made}}</td>
+                    </tr> 
+                    <tr class="features_table_row">
+                        <td class="characteristic_name""> Short characteristics
+                        </td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.product.short_description}}</td>
+                    </tr> 
+                    <tr class="features_table_row">
+                        <td class="characteristic_name""> View</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.product.type_of_product}}</td>
+                    </tr> 
+                    <tr class="features_table_row">
+                        <td class="characteristic_name""> Brand Registration Country</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.product.country_brand}}</td>
+                    </tr> 
+                    <tr class="features_table_row">
+                        <td class="characteristic_name""> Warranty</td>
+                        
+                        {% for i in '034000888999'|make_list %}
+                            <td>.....</td>
+                        {% endfor %}
+                        <td class="characteristic_value"> {{characteristic.product.warranty}}</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="features_product_details">
+            {{product}}
+        </div>
+    </div>
 {% endblock %}
 

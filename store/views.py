@@ -1,16 +1,16 @@
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.urls.base import reverse
 from django.views.generic import ListView
-from store.forms import CouponForm
+from characteristics.models import ScreenDiagonal
 from store.utils import DataMixin
-from store.services.get_cart import add_productcart_to_cart, create_cart_product, get_cart_by_user, get_cart_product, get_check_coupon, remove_all_from_cart, remove_product_from_cart
+from store.services.get_cart import add_productcart_to_cart, create_cart_product, get_cart_by_user, get_cart_product, get_cart_products, get_check_coupon, remove_all_from_cart, remove_product_from_cart
 from store.services.get_home import get_dict_all_products_like, get_path_to_redirect
-from store.models import  Cart, CartProduct, Product
-from store.services.get_details import check_if_post_like_and_get_count, get_all_aditional_image_by_slug_id, get_dict_aditional_like, \
-    get_header_menu, get_list_of_special, get_special_product, press_like_to_product, set_cookies_for_product_like
+from store.models import Product
+from store.services.get_details import check_if_post_like_and_get_count, get_all_aditional_image_by_slug_id, get_characteristic_by_field, get_characteristic_by_product, get_dict_aditional_like, \
+    get_header_menu, get_list_of_special, get_special_product, press_like_to_product
 
 
 # Create your views here.
@@ -60,6 +60,7 @@ def get_all_product_details(request, slug_id):
 def get_product_featuress(request, slug_id):
     content = {
         "product": get_special_product(slug_id),
+        "characteristic": get_characteristic_by_product(get_special_product(slug_id))
     }
     return render(request, "store/get_product_featuress.html", context=content)
 
@@ -107,7 +108,7 @@ def get_cart(request):
 
     context = {
         "cart" : cart ,
-        "products" : cart.products.all(),
+        "products" : get_cart_products(cart),
         'form': form,
         "discount" : discount,
         "cart_button": cart_button,
@@ -170,3 +171,15 @@ def get_category(request, category_slug):
     }
 
     return render(request, "store/get_categories.html", context=context)
+
+
+def get_charact_diagonal_screen(request, charact_slug):
+    """get products by diagonal screen"""
+
+    characteristic = get_characteristic_by_field(charact_slug, ScreenDiagonal, "diagonal_screen")
+    
+    context = {
+        "characteristic" : characteristic
+    }
+
+    return render(request, "store/characteristics/diagonal_screen.html", context=context)

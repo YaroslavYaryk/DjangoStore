@@ -38,9 +38,9 @@ def get_list_of_special(product_obj):
 
 
 def get_dict_aditional_like(user, list_similar):
-
-    return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in list_similar}
-
+    if user.is_authenticated:
+        return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in list_similar}
+    return {prod: "" for prod in list_similar}
 
 def get_header_menu():
 
@@ -67,6 +67,7 @@ def press_like_to_product(request, response, post_id):
     except TypeError:  # is not signed in
         messages.add_message(request, messages.WARNING,
                              'to put like you need to sign in first ')
+        # reirect to sign in  
         return response
 
     return  response 
@@ -94,3 +95,19 @@ def check_if_post_like_and_get_count(slug_id, user):
         liked = 0
 
     return liked    
+
+def get_characteristic_by_product(product):
+
+    return Characteristics.objects.get(product=product)    
+
+
+def get_characteristic_field(charact_slug, characteristic):
+
+    return characteristic.objects.get(slug = charact_slug)
+
+
+def get_characteristic_by_field(charact_slug, characteristic, field):
+
+    characteristic_field = get_characteristic_field(charact_slug, characteristic)    
+
+    return Characteristics.objects.filter(diagonal_screen = characteristic_field)

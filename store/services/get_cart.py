@@ -10,11 +10,11 @@ log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/lo
 
 
 def get_cart_by_user(user):
-
-    result = Cart.objects.filter(owner=user, in_order=False)
-    if result:
-        return result.first()
-    return Cart.objects.create(owner=user)
+    if user.is_authenticated:
+        result = Cart.objects.filter(owner=user, in_order=False)
+        if result:
+            return result.first()
+        return Cart.objects.create(owner=user)
 
 
 def create_cart_product(user, cart, product):
@@ -85,34 +85,37 @@ def remove_all_from_cart(user):
 
 def get_check_coupon(request, user, cart):
 
-    discount = 0
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = CouponForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            coupon = form.cleaned_data['coupon']
-            coupon_queryset = Coupon.objects.filter(coupon_code = coupon)
-            if coupon_queryset:
-                discount = coupon_queryset.first().discount
-                UserCoupon.objects.update_or_create(user=user, coupon=coupon_queryset.first())
+    if cart:
+        discount = 0
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = CouponForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                coupon = form.cleaned_data['coupon']
+                coupon_queryset = Coupon.objects.filter(coupon_code = coupon)
+                if coupon_queryset:
+                    discount = coupon_queryset.first().discount
+                    UserCoupon.objects.update_or_create(user=user, coupon=coupon_queryset.first())
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = CouponForm()
-        usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(user=user), key=lambda x:x.coupon.discount)]
-        log.info(usr_coupon)
-        if usr_coupon:
-            discount = Coupon.objects.get(coupon_code=usr_coupon[-1].coupon.coupon_code).discount
-          
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            form = CouponForm()
+            usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(user=user), key=lambda x:x.coupon.discount)]
+            log.info(usr_coupon)
+            if usr_coupon:
+                discount = Coupon.objects.get(coupon_code=usr_coupon[-1].coupon.coupon_code).discount
+            
 
-    cart_button = True
-    if not cart.total_products:
-        cart_button = False
+        cart_button = True
+        if not cart.total_products:
+            cart_button = False
 
-    return form, discount, cart_button    
+        return form, discount, cart_button    
+    return None, None,None
 
 
+def get_cart_products(cart):
 
-#     select store_usercoupon.coupon_code, store_coupon.discount  from store_usercoupon join store_coupon on store_coupon.coupon_code = store_usercoupon.
-#  coupon_code order by discount DESC
+    if cart:
+        return cart.products.all()

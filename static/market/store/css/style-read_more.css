@@ -510,3 +510,36 @@ figure.snip1171.hover img {
   bottom: 0;
   left: 0;
 }
+
+/* features page */
+.features_conteiner{
+  margin-top:20px;
+  display: grid; 
+  grid-template-columns: 1000px 200px;
+}
+
+.features_header{
+  font-size: 24px;
+  color: rgb(224, 212, 212);
+}
+
+.features_list_header{
+  color: rgb(156, 150, 150);
+}
+
+.features_title{
+  margin: 35px 0 10px 0 ;
+  font-size: 23px;
+}
+
+.characteristic_value{
+  padding: 0 20px;
+}
+
+.characteristic_name{
+  width: 200px;
+}
+
+.features_table_row{
+  height: 50px;
+}

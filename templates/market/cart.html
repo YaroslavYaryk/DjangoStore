@@ -93,10 +93,15 @@
                                     <button class="btn btn-primary btn-lg btn-block btn_summart_cart disabled" style="margin-top: 0;"  type="submit">Get Coupon</button>
                                 {% endif %}
                             </form>
+                            
                             {% with discount=discount %}     
                             <h3>Summary</h3>
                             <div class="summary-item"><span class="text">Subtotal: </span><span class="price">${{cart.total_price}}</span></div>
-                            <div class="summary-item"><span class="text">Discount: </span><span class="price">{{discount}}%</span></div>
+                            {% if cart.total_price %}
+                                <div class="summary-item"><span class="text">Discount: </span><span class="price">{{discount}}%</span></div>
+                            {% else %}
+                                <div class="summary-item"><span class="text">Discount: </span><span class="price">0%</span></div>
+                            {% endif %}
                             <div class="summary-item"><span class="text">Total:  
                             </span><span class="price">$  {% multiply cart.total_price discount %}</span></div>
                             
