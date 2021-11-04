@@ -1,3 +1,4 @@
+from characteristics.services.category_characteristic import get_queryset_for_all_characteristic
 from characteristics.models import ProductType
 from store.services.get_details import get_header_menu
 from django import template
@@ -27,3 +28,24 @@ def get_categories_list():
 	
 	return {"categories":categories}
 
+
+@register.inclusion_tag("store/custom_temp/characterstics_query.html")
+def get_characteristic_query(characteristic):
+	
+	return {"characteristic":characteristic}
+
+@register.simple_tag()
+def replace_word(word, first, second):
+    # you would need to do any localization of the result here
+    return word.replace(first, second).title()
+
+
+@register.inclusion_tag("store/custom_temp/category_characterstics_query.html")
+def get_characteristic_query_category(query, word):
+
+	result = {
+		"queryset" : query.get(word),
+		"word": word
+	}
+
+	return result

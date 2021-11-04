@@ -21,7 +21,7 @@
                             <td>.....</td>
                         {% endfor %}
                         <td class="characteristic_value">
-                            <a href="{% url 'get_charact_diagonal_screen' characteristic.diagonal_screen.slug %}">
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='diagonal_screen' charact_slug=characteristic.diagonal_screen.slug %}">
                                 {{characteristic.diagonal_screen}}
                             </a>
                         </td>
@@ -34,7 +34,10 @@
                             <td>.....</td>
                         {% endfor %}
                         <td class="characteristic_value"> 
-                       {{characteristic.screen_type}}</td>
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='screen_type' charact_slug=characteristic.screen_type.slug %}">
+                                {{characteristic.screen_type}}
+                            </a>    
+                        </td>
                     </tr>
                     <tr>
                         <td class="characteristic_name"">Screen update frequency </td>
@@ -42,7 +45,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value"> {{characteristic.screen_frequency}}</td>
+                        <td class="characteristic_value"> 
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='screen_frequency' charact_slug=characteristic.screen_frequency.slug %}">
+                                {{characteristic.screen_frequency}}
+                            </a>    
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -57,7 +64,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value">{{characteristic.processor_name}}</td>
+                        <td class="characteristic_value">
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='processor' charact_slug=characteristic.processor_name.slug %}">
+                                {{characteristic.processor_name}}
+                            </a>    
+                        </td>
                         
                     </tr>
                     <tr>
@@ -66,7 +77,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value"> {{characteristic.operation_system}}</td>
+                        <td class="characteristic_value"> 
+                            <a href="{% url 'get_characteristic_query' charact='operation_system' charact_slug=characteristic.operation_system.slug %}">
+                                {{characteristic.operation_system}}
+                            </a>    
+                        </td>
                     </tr>
                     
                 </table>
@@ -82,16 +97,22 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value">{{characteristic.memory_capacity}}</td>
-                        
+                        <td class="characteristic_value">
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='memory_capacity' charact_slug=characteristic.memory_capacity.slug %}">
+                                {{characteristic.memory_capacity}}
+                            </a>    
+                        </td>
                     </tr>
                     <tr >
                         <td class="characteristic_name">Number of slots for RAM</td>
-                        
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value"> {{characteristic.memory_slots}}</td>
+                        <td class="characteristic_value"> 
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='memory_slots' charact_slug=characteristic.memory_slots.slug %}">
+                                {{characteristic.memory_slots}}
+                            </a>        
+                        </td>
                     </tr>
                     <tr>
                         <td class="characteristic_name">Type of RAM</td>
@@ -99,7 +120,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value" > {{characteristic.memory_type}} </td>
+                        <td class="characteristic_value" > 
+                                <a class="features_link" href="{% url 'get_characteristic_query' charact='memory_type' charact_slug=characteristic.memory_type.slug %}">
+                                {{characteristic.memory_type}} 
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -114,16 +139,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value"> {{characteristic.data_storage.hard_drive_capacity}}</td>
-                        
-                    </tr>
-                    <tr>
-                        <td class="characteristic_name">Drive memory type</td>
-                        
-                        {% for i in '034000888999'|make_list %}
-                            <td>.....</td>
-                        {% endfor %}
-                        <td class="characteristic_value"> {{characteristic.data_storage.hard_drive_type}} </td>
+                        <td class="characteristic_value"> 
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='hard_drive' charact_slug=characteristic.data_storage.slug %}">
+                                {{characteristic.data_storage.hard_drive_capacity}} {{characteristic.data_storage.hard_drive_type}}
+                            </a>    
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -137,7 +157,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value">{{characteristic.video_card}}</td>
+                        <td class="characteristic_value">
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='video_card' charact_slug=characteristic.video_card.slug %}">
+                                {{characteristic.video_card}}
+                            </a>
+                        </td>
                         
                     </tr>
                     <tr>
@@ -146,8 +170,11 @@
                         {% for i in '034000888999'|make_list %}
                             <td>.....</td>
                         {% endfor %}
-                        <td class="characteristic_value">{{characteristic.video_card_memory}}</td>
-                        
+                        <td class="characteristic_value">
+                            <a class="features_link" href="{% url 'get_characteristic_query' charact='video_card_memory' charact_slug=characteristic.video_card_memory.slug %}">
+                                {{characteristic.video_card_memory}}
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </div>

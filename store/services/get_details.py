@@ -1,5 +1,11 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from characteristics.models import DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
+    OperationSystem, ProcessorType, ScreenDiagonal, ScreenFrequency, ScreenType, VideoCard, VideoCardMemory
+from characteristics.services.post_characteristic import get_characteristic_by_diagonal_screen, get_characteristic_by_hard_drive, \
+    get_characteristic_by_memory_capacity, get_characteristic_by_memory_slots, get_characteristic_by_memory_type, \
+        get_characteristic_by_operation_system, get_characteristic_by_processor, \
+            get_characteristic_by_screen_frequency, get_characteristic_by_screen_type, get_characteristic_by_video_card, get_characteristic_by_video_card_memory, get_characteristic_field
 from store.models import Characteristics, Product, ProductImage, ProductLike
 from django.http import Http404
 from django.contrib import messages
@@ -42,14 +48,15 @@ def get_dict_aditional_like(user, list_similar):
         return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in list_similar}
     return {prod: "" for prod in list_similar}
 
+
 def get_header_menu():
 
     return {
         "All about the product": "read_more_about_all",
-        "Features" : "read_features",
-        "Reviews" : 'read_reviews',
-        "Video" : "read_video",
-        "Photo" : "read_photo"
+        "Features": "read_features",
+        "Reviews": 'read_reviews',
+        "Video": "read_video",
+        "Photo": "read_photo"
     }
 
 
@@ -67,16 +74,16 @@ def press_like_to_product(request, response, post_id):
     except TypeError:  # is not signed in
         messages.add_message(request, messages.WARNING,
                              'to put like you need to sign in first ')
-        # reirect to sign in  
+        # reirect to sign in
         return response
 
-    return  response 
+    return response
 
 
 def set_cookies_for_product_like(response, user, post_id):
 
     product = get_special_product(post_id)
-    like = ProductLike.objects.filter(user=user, post=product)    
+    like = ProductLike.objects.filter(user=user, post=product)
     response.set_cookie(product.only_name.replace(" ", "_").strip('"'), "like.com") if like else response.set_cookie(
         product.only_name.replace(" ", "_").strip('"'), "dislike.com")
 
@@ -87,27 +94,47 @@ def check_if_post_like_and_get_count(slug_id, user):
     if user != "AnonymousUser":
         try:
             liked = ProductLike.objects.filter(user=user, post=Product.objects.
-                get(slug=slug_id))
+                                               get(slug=slug_id))
             # get like if its liked
         except TypeError:
             pass
     else:
         liked = 0
 
-    return liked    
+    return liked
+
 
 def get_characteristic_by_product(product):
 
-    return Characteristics.objects.get(product=product)    
+    return Characteristics.objects.get(product=product)
 
 
-def get_characteristic_field(charact_slug, characteristic):
-
-    return characteristic.objects.get(slug = charact_slug)
 
 
-def get_characteristic_by_field(charact_slug, characteristic, field):
+def get_characteristic_query_according_to_character_field(charact_slug, user, charact):
+    """ accorfing to type of characteristic return correct queryser
+        of products with this characteristic """
 
-    characteristic_field = get_characteristic_field(charact_slug, characteristic)    
 
-    return Characteristics.objects.filter(diagonal_screen = characteristic_field)
+    if charact == "diagonal_screen":
+        return get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal))
+    elif charact == "screen_type":
+        return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenType))
+    elif charact == "screen_frequency":
+        return get_characteristic_by_screen_frequency(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+    elif charact == "processor":
+        return get_characteristic_by_processor(user,  get_characteristic_field( charact_slug, ProcessorType))
+    elif charact == "operation_system":
+        return get_characteristic_by_operation_system(user,  get_characteristic_field( charact_slug, OperationSystem))         
+    elif charact == "memory_capacity":
+        return get_characteristic_by_memory_capacity(user,  get_characteristic_field( charact_slug, MemoryCapacity))         
+    elif charact == "memory_slots":
+        return get_characteristic_by_memory_slots(user, get_characteristic_field( charact_slug, MemorySlot))
+    elif charact == "memory_type":
+        return get_characteristic_by_memory_type(user, get_characteristic_field( charact_slug, MemoryType))    
+    elif charact == "hard_drive":
+        return get_characteristic_by_hard_drive(user, get_characteristic_field( charact_slug, DataStorageDevices))
+    elif charact == "video_card":
+        return get_characteristic_by_video_card(user, get_characteristic_field( charact_slug, VideoCard))    
+    elif charact == "video_card_memory":
+        return get_characteristic_by_video_card_memory(user, get_characteristic_field( charact_slug, VideoCardMemory))    

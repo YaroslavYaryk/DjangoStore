@@ -1182,3 +1182,1130 @@ Traceback (most recent call last):
   File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 84, in reraise
     raise new from exc
 django.template.exceptions.TemplateDoesNotExist: store/store/get_more.html
+2021-11-04 05:19:34,306  django.request ERROR    <--> Internal Server Error: /characteristic/screen_diagonal156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 179, in get_charact_diagonal_screen
+    characteristic = get_characteristic_by_field(charact_slug, ScreenDiagonal)
+TypeError: get_characteristic_by_field() missing 1 required positional argument: 'field'
+2021-11-04 05:28:49,476  django.request ERROR    <--> Internal Server Error: /characteristic/screen_diagonal156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_charact_diagonal_screen
+    return render(request, "store/characteristics/diagonal_screen.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 814, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 1389, in url
+    args.append(parser.compile_filter(value))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 662, in __init__
+    raise TemplateSyntaxError("Could not parse the remainder: '%s' "
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '=product.slug' from 'charact.product_slug=product.slug'
+2021-11-04 06:57:23,400  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user ,ScreenDiagonal)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 138, in get_characteristic_query_according_to_character_field
+    print(get_characteristic_by_diagonal_screen(charact_slug, request.user ,ScreenDiagonal))
+AttributeError: 'str' object has no attribute 'user'
+2021-11-04 07:16:00,564  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact ,ScreenDiagonal)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(charact_slug, user ,characteristic)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 29, in get_characteristic_by_screen_type
+    characteristic_field = get_characteristic_field(
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 07:16:40,213  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact ,ScreenDiagonal)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(charact_slug, user ,characteristic)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 29, in get_characteristic_by_screen_type
+    characteristic_field = get_characteristic_field(
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 07:21:14,403  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_qury_according_to_character_field(charact_slug, request.user, charact)
+NameError: name 'get_characteristic_qury_according_to_character_field' is not defined
+2021-11-04 07:21:18,861  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+NameError: name 'get_characteristic_qury_according_to_character_field' is not defined
+2021-11-04 07:21:21,112  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+NameError: name 'get_characteristic_qury_according_to_character_field' is not defined
+2021-11-04 07:21:26,981  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+NameError: name 'get_characteristic_qury_according_to_character_field' is not defined
+2021-11-04 07:21:30,393  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+NameError: name 'get_characteristic_qury_according_to_character_field' is not defined
+2021-11-04 07:35:39,629  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_diagonal_screen(charact_slug, user ,ScreenDiagonal)
+TypeError: get_characteristic_by_diagonal_screen() takes 2 positional arguments but 3 were given
+2021-11-04 07:39:23,667  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:39:46,944  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:39:48,411  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:39:52,012  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:41:30,981  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 7, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:42:19,259  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 7, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:42:56,107  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 7, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenFrequency.DoesNotExist: ScreenFrequency matching query does not exist.
+2021-11-04 07:46:18,422  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/90-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 182, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 120, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 31, in get_characteristic_by_screen_type
+    queryset = Characteristics.objects.filter(screen_type=characteristic_field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1320, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1147, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1128, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "90 Hz": Must be "ScreenType" instance.
+2021-11-04 08:09:03,686  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/60-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 181, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 08:09:18,886  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 181, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 08:09:58,730  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/60-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 181, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 08:10:39,546  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/60-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 181, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 08:11:50,195  django.request ERROR    <--> Internal Server Error: /characteristic/processor/intel-core-i7
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 181, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 09:45:57,437  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/14-1366x768
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 117, in get_characteristic_query_according_to_character_field
+    "screen_type" : get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenType)) ,
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenType.DoesNotExist: ScreenType matching query does not exist.
+2021-11-04 09:48:58,645  django.request ERROR    <--> Internal Server Error: /characteristic/operation_system/windows
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 09:49:05,844  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 09:49:10,229  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/60-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 09:49:13,639  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/14-1366x768
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 117, in get_characteristic_query_according_to_character_field
+    "screen_type" : get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenType)) ,
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenType.DoesNotExist: ScreenType matching query does not exist.
+2021-11-04 09:52:59,962  django.request ERROR    <--> Internal Server Error: /characteristic/screen_frequency/60-hz
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 09:54:47,575  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 116, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 10:03:56,451  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 115, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 11:02:45,661  django.request ERROR    <--> Internal Server Error: /characteristic/memory_capacity/8-gb
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 633, in __init__
+    raise TemplateSyntaxError("Could not parse some characters: "
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: titleeplace|('_', ' ')||title
+2021-11-04 11:02:58,351  django.request ERROR    <--> Internal Server Error: /characteristic/memory_capacity/8-gb
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 633, in __init__
+    raise TemplateSyntaxError("Could not parse some characters: "
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: title.replace|('_', ' ')||title
+2021-11-04 11:03:10,435  django.request ERROR    <--> Internal Server Error: /characteristic/memory_capacity/8-gb
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 662, in __init__
+    raise TemplateSyntaxError("Could not parse the remainder: '%s' "
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '('_', ' ')' from 'title.replace('_', ' ')'
+2021-11-04 11:05:31,143  django.request ERROR    <--> Internal Server Error: /characteristic/memory_capacity/8-gb
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 1034, in find_library
+    return parser.libraries[name]
+KeyError: 'replace'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 1091, in load
+    lib = find_library(parser, name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/defaulttags.py", line 1036, in find_library
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'replace' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_urls
+cache
+i18n
+l10n
+log
+menu_tags
+static
+tz
+2021-11-04 11:08:01,172  django.request ERROR    <--> Internal Server Error: /characteristic/memory_capacity/8-gb
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 187, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 119, in compile_func
+    args, kwargs = parse_bits(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 260, in parse_bits
+    kwarg = token_kwargs([bit], parser)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 1040, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 662, in __init__
+    raise TemplateSyntaxError("Could not parse the remainder: '%s' "
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ',' from 'title,'
+2021-11-04 11:16:28,416  django.request ERROR    <--> Internal Server Error: /characteristic/memory_type/ddr3
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 141, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_memory_slots(user, get_characteristic_field( charact_slug, MemoryType))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 69, in get_characteristic_by_memory_slots
+    queryset = Characteristics.objects.filter(memory_slots=characteristic_field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1320, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1147, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1128, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "DDR3": Must be "MemorySlot" instance.
+2021-11-04 15:26:26,104  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/ips
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 119, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:31:35,903  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 119, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:35:02,380  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 119, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:35:51,923  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 119, in get_characteristic_query_according_to_character_field
+    "diagonal_screen" : get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:37:20,186  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 118, in get_characteristic_query_according_to_character_field
+    characteristic_queryset = [get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:37:40,006  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 118, in get_characteristic_query_according_to_character_field
+    characteristic_queryset = [get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 15:37:43,738  django.request ERROR    <--> Internal Server Error: /characteristic/screen_type/wva
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 118, in get_characteristic_query_according_to_character_field
+    characteristic_queryset = [get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal)),
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 6, in get_characteristic_field
+    return characteristic.objects.get(slug=charact_slug)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+characteristics.models.ScreenDiagonal.DoesNotExist: ScreenDiagonal matching query does not exist.
+2021-11-04 16:32:34,422  django.request ERROR    <--> Internal Server Error: /characteristic/video_card/geforce-gtx-1050-ti
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 180, in get_characteristic_query
+    characteristic = get_characteristic_query_according_to_character_field(charact_slug, request.user, charact)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/get_details.py", line 138, in get_characteristic_query_according_to_character_field
+    return get_characteristic_by_video_card(user, get_characteristic_field( charact_slug, VideoCard))
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/services/post_characteristic.py", line 93, in get_characteristic_by_video_card
+    queryset = Characteristics.objects.filter(data_storage=characteristic_field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 941, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 961, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/query.py", line 968, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1393, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1412, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1320, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1147, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/db/models/sql/query.py", line 1128, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "GeForce GTX 1050 Ti": Must be "DataStorageDevices" instance.
+2021-11-04 18:53:28,755  django.request ERROR    <--> Internal Server Error: /category/laptop
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'replace_word'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/store/views.py", line 176, in get_category
+    return render(request, "store/get_categories.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 170, in render
+    return self._render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 905, in render_annotated
+    return self.render(context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 225, in render
+    t = context.template.engine.get_template(self.filename)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 3: 'replace_word'. Did you forget to register or load this tag?
+2021-11-04 21:41:02,479  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/133-1366x768
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/characteristics/views.py", line 20, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 152, in compile_func
+    args, kwargs = parse_bits(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 306, in parse_bits
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'get_characteristic_query' did not receive value(s) for the argument(s): 'word'
+2021-11-04 21:47:40,001  django.request ERROR    <--> Internal Server Error: /characteristic/diagonal_screen/156-1920x1080
+Traceback (most recent call last):
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yaroslav/Programming/Python/Django/StoreProject/market/characteristics/views.py", line 20, in get_characteristic_query
+    return render(request, "store/characteristics/characteristic_query.html", context=context)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loaders/base.py", line 29, in get_template
+    return Template(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 152, in compile_func
+    args, kwargs = parse_bits(
+  File "/home/yaroslav/.local/lib/python3.8/site-packages/django/template/library.py", line 306, in parse_bits
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'get_characteristic_query' did not receive value(s) for the argument(s): 'word'

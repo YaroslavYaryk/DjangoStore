@@ -103,3 +103,4 @@
 2021-11-03 18:51:20.120 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
 2021-11-03 20:42:49.241 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
 2021-11-03 20:42:53.108 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-04 11:09:14.390 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]

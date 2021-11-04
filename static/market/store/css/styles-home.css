@@ -219,3 +219,12 @@ h1 {
   top: -10px;
 }
 
+
+/* category */
+.category_characteristic :hover{
+  border: 3px solid #fff;
+}
+
+.main_list_characteristic li{
+  margin-top: 10px;
+}

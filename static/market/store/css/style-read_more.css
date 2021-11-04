@@ -543,3 +543,12 @@ figure.snip1171.hover img {
 .features_table_row{
   height: 50px;
 }
+
+.features_link{
+  text-decoration: none;
+  color: antiquewhite;
+}
+
+.features_link:hover{
+  color: blue;
+}

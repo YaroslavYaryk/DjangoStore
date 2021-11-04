@@ -1,10 +1,133 @@
 {% extends '../market/base.html' %}
 {% load static %}
+{% load menu_tags %}
 
 {% block link %}
     <link rel="stylesheet" href="{% static 'market/store/css/styles-home.css' %}">
   
   <title>{{product.only_name}}</title>
+{% endblock %}
+
+{% block list %}
+<div class="flex-shrink-0 p-3 " style="width: 220px;">
+  <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+    <span class="fs-5 text-white  fw-semibold">Collapsible</span>
+  </a>
+  <ul class="list-unstyled ps-0 main_list_characteristic " >
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center text-white rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+        > diagonal screen
+      </button>
+      <div class="collapse " id="home-collapse">
+        <ul class="btn-toggle-nav  text-white fw-normal pb-1 small text-black" type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="diagonal_screen" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle  text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+       > screen type
+      </button>
+      <div class="collapse" id="home-collapse">
+        <ul class="btn-toggle-nav text-white  fw-normal pb-1 small" type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="screen_type" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+       > screen frequancy
+      </button>
+      <div class="collapse" id="home-collapse">
+        <ul class="btn-toggle-nav text-white  fw-normal pb-1 small" type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="screen_frequency" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+       > processor name
+      </button>
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav text-white  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="processor_name" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+       > operation system
+      </button>
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav text-white  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="operation_system" %}
+        </ul>
+      </div>
+    </li>
+    <!-- <li class="border-top my-3"></li> -->
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#memory-collapse" aria-expanded="false">
+       > memory capacity
+      </button>
+      <div class="collapse" id="memory-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="memory_capacity" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#memory-collapse" aria-expanded="false">
+       > memory slots
+      </button>
+      <div class="collapse" id="memory-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="memory_slots" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#memory-collapse" aria-expanded="false">
+       > memory type
+      </button>
+      <div class="collapse" id="memory-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="memory_type" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#data_storage-collapse" aria-expanded="false">
+       > data storage
+      </button>
+      <div class="collapse" id="data_storage-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="data_storage" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#video_card-collapse" aria-expanded="false">
+       > video card
+      </button>
+      <div class="collapse" id="video_card-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="video_card" %}
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button class="btn btn-toggle text-white align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#video_card-collapse" aria-expanded="false">
+       > video card memory
+      </button>
+      <div class="collapse" id="video_card-collapse">
+        <ul class="btn-toggle-nav  fw-normal pb-1 small"type=none>
+          {% get_characteristic_query_category query=characteristic_queryset word="video_card_memory" %}
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
 {% endblock %}
 
 {% block main-content %}

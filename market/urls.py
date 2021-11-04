@@ -11,6 +11,7 @@ from store.views import add_to_cart, delete_cart, get_cart, remove_from_cart, re
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("store.urls", namespace="")),
+    path("characteristic/", include("characteristics.urls", namespace="")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("cart/", get_cart, name="get_cart"),
     path("add_to_cart/<slug:product_slug>", add_to_cart, name="add_to_cart"),
