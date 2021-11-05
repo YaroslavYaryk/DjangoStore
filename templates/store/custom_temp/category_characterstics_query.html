@@ -1,7 +1,8 @@
-{% load menu_tags%}
+{% load menu_tags %}
 
 {% for elem in queryset %}
-    <li><a href="{% url 'get_characteristic_query' charact=word charact_slug=elem.slug %}" class=" link-dark category_characteristic rounded text-white">{{elem}}</a></li>
+    <li><a href="{% url 'get_characteristic_query' charact=word charact_slug=elem.slug %}" 
+        class=" link-dark category_characteristic rounded text-white">{{elem}}</a></li>
 {% endfor %}
 
 

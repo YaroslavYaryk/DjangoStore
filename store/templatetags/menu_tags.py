@@ -1,4 +1,3 @@
-from characteristics.services.category_characteristic import get_queryset_for_all_characteristic
 from characteristics.models import ProductType
 from store.services.get_details import get_header_menu
 from django import template
@@ -25,7 +24,7 @@ def multiply(a, b, *args, **kwargs):
 def get_categories_list():
 	
 	categories = ProductType.objects.annotate(publ = F("product__is_available"), cnt = Count("product", filter = Q(publ__gt = 0))).filter(cnt__gt = 0)	
-	
+	print(categories)
 	return {"categories":categories}
 
 
@@ -38,6 +37,11 @@ def get_characteristic_query(characteristic):
 def replace_word(word, first, second):
     # you would need to do any localization of the result here
     return word.replace(first, second).title()
+
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 
 @register.inclusion_tag("store/custom_temp/category_characterstics_query.html")

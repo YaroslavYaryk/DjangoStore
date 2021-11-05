@@ -7,13 +7,13 @@ from store.utils import DataMixin
 from store.services.get_cart import add_productcart_to_cart, create_cart_product, \
     get_cart_by_user, get_cart_product, get_cart_products, get_check_coupon, \
         remove_all_from_cart, remove_product_from_cart
-from store.services.get_home import get_dict_all_products_like, get_path_to_redirect
+from store.services.get_home import get_dict_all_products_like, get_dict_query_products_like, get_path_to_redirect
 from store.models import Product
 from store.services.get_details import check_if_post_like_and_get_count, \
     get_all_aditional_image_by_slug_id, \
-        get_characteristic_by_product, get_characteristic_query_according_to_character_field, get_dict_aditional_like, \
+        get_characteristic_by_product, get_dict_aditional_like, \
     get_header_menu, get_list_of_special, get_special_product, press_like_to_product
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -24,6 +24,7 @@ class Home(DataMixin ,ListView):
     template_name = "store/home.html"
     context_object_name = 'all_products'
 
+    
     def get_queryset(self):
 
         return Product.objects.all()
@@ -38,7 +39,6 @@ class Home(DataMixin ,ListView):
             title="Home",
             all_products_like=get_dict_all_products_like(self.request.user))
         return dict(list(context.items()) + list(c_def.items()))
-
 
 
 def get_all_product_details(request, slug_id):
@@ -62,6 +62,7 @@ def get_all_product_details(request, slug_id):
 def get_product_featuress(request, slug_id):
     content = {
         "product": get_special_product(slug_id),
+        "cart": get_cart_by_user(request.user),
         "characteristic": get_characteristic_by_product(get_special_product(slug_id))
     }
     return render(request, "store/get_product_featuress.html", context=content)
@@ -164,16 +165,28 @@ def delete_cart(request):
     return HttpResponseRedirect(reverse("get_cart"))
 
 
-def get_category(request, category_slug):
+
+class Category(DataMixin ,ListView):
+    model = Product
+    # success_url = reverse_lazy("home")
+    template_name = "store/get_categories.html"
+    context_object_name = 'products'
     
-    products_of_category = Product.objects.filter(type_of_product__slug = category_slug)
+    def get_queryset(self):
 
-    context = {
-        "products_of_category": products_of_category,
-        "characteristic_queryset" : get_queryset_for_all_characteristic()
-    }
-
-    return render(request, "store/get_categories.html", context=context)
+        category_slug = self.kwargs["category_slug"]
+        return Product.objects.filter(type_of_product__slug = category_slug)
 
 
+    def get_context_data(self, *args, **kwargs):
+
+        # Cart.objects.filter(owner=self.request.user).delete()
+        category_slug = self.kwargs["category_slug"]
+        context = super().get_context_data(**kwargs)  # like dynamic list
+        c_def = self.get_user_context(
+            category = Product.objects.filter(type_of_product__slug = category_slug).first().type_of_product,
+            characteristic_queryset = get_queryset_for_all_characteristic(),
+            product_likes = get_dict_query_products_like(self.request.user, category_slug)
+        )
+        return dict(list(context.items()) + list(c_def.items()))
 

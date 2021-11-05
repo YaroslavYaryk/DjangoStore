@@ -546,9 +546,9 @@ figure.snip1171.hover img {
 
 .features_link{
   text-decoration: none;
-  color: antiquewhite;
+  color: rgb(204, 174, 135);
 }
 
 .features_link:hover{
-  color: blue;
+  color: rgb(103, 103, 231);
 }

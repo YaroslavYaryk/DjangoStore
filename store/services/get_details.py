@@ -111,30 +111,29 @@ def get_characteristic_by_product(product):
 
 
 
-def get_characteristic_query_according_to_character_field(charact_slug, user, charact):
+def get_characteristic_query_according_to_character_field(charact_slug, user, charact, get_queryset=False):
     """ accorfing to type of characteristic return correct queryser
         of products with this characteristic """
 
-
     if charact == "diagonal_screen":
-        return get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal))
+        return get_characteristic_by_diagonal_screen(user,  get_characteristic_field( charact_slug, ScreenDiagonal), get_queryset)
     elif charact == "screen_type":
-        return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenType))
+        return get_characteristic_by_screen_type(user,  get_characteristic_field( charact_slug, ScreenType), get_queryset)
     elif charact == "screen_frequency":
-        return get_characteristic_by_screen_frequency(user,  get_characteristic_field( charact_slug, ScreenFrequency))
+        return get_characteristic_by_screen_frequency(user,  get_characteristic_field( charact_slug, ScreenFrequency), get_queryset)
     elif charact == "processor":
-        return get_characteristic_by_processor(user,  get_characteristic_field( charact_slug, ProcessorType))
+        return get_characteristic_by_processor(user,  get_characteristic_field( charact_slug, ProcessorType), get_queryset)
     elif charact == "operation_system":
-        return get_characteristic_by_operation_system(user,  get_characteristic_field( charact_slug, OperationSystem))         
+        return get_characteristic_by_operation_system(user,  get_characteristic_field( charact_slug, OperationSystem), get_queryset)         
     elif charact == "memory_capacity":
-        return get_characteristic_by_memory_capacity(user,  get_characteristic_field( charact_slug, MemoryCapacity))         
+        return get_characteristic_by_memory_capacity(user,  get_characteristic_field( charact_slug, MemoryCapacity), get_queryset)         
     elif charact == "memory_slots":
-        return get_characteristic_by_memory_slots(user, get_characteristic_field( charact_slug, MemorySlot))
+        return get_characteristic_by_memory_slots(user, get_characteristic_field( charact_slug, MemorySlot), get_queryset)
     elif charact == "memory_type":
-        return get_characteristic_by_memory_type(user, get_characteristic_field( charact_slug, MemoryType))    
+        return get_characteristic_by_memory_type(user, get_characteristic_field( charact_slug, MemoryType), get_queryset)    
     elif charact == "hard_drive":
-        return get_characteristic_by_hard_drive(user, get_characteristic_field( charact_slug, DataStorageDevices))
+        return get_characteristic_by_hard_drive(user, get_characteristic_field( charact_slug, DataStorageDevices), get_queryset)
     elif charact == "video_card":
-        return get_characteristic_by_video_card(user, get_characteristic_field( charact_slug, VideoCard))    
+        return get_characteristic_by_video_card(user, get_characteristic_field( charact_slug, VideoCard), get_queryset)    
     elif charact == "video_card_memory":
-        return get_characteristic_by_video_card_memory(user, get_characteristic_field( charact_slug, VideoCardMemory))    
+        return get_characteristic_by_video_card_memory(user, get_characteristic_field( charact_slug, VideoCardMemory), get_queryset)    

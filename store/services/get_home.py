@@ -7,6 +7,13 @@ def get_dict_all_products_like(user):
         return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in Product.objects.all()}
     return {prod:"" for prod in Product.objects.all()}
 
+def get_dict_query_products_like(user, category_slug):
+    if user.is_authenticated:
+        return {prod: ProductLike.objects.filter(user=user, post=prod) for prod in  Product.objects.filter(type_of_product__slug = category_slug)}
+    return {prod:"" for prod in Product.objects.all()}
+
+
+
 def get_path_to_redirect(path_to_redirect):
     """ return path to redirect according to page
     where we put like """

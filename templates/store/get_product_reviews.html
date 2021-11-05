@@ -2,6 +2,15 @@
 {% load static %}
 {% load menu_tags %}
 
+
+
+{% block history_links %}
+<a href="{% url 'read_more_about_all' slug_id=product.slug  %}" class="hisory_links_elem" >{{ product.only_name }}</a> / 
+<span class="hisory_links_elem span_link" >Reviews</span>
+
+{% endblock %}
+
+
 {% block main-content %}
     {% get_read_header_menu product=product special_element='Reviews'  %}
 {% endblock %}

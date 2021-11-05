@@ -7,7 +7,18 @@
   <title>{{product.only_name}}</title>
 {% endblock %}
 
+
+
+
 {% block main-content %}
+
+<div class="hisory_links">
+  <a class="hisory_links_elem" href="{% url 'home' %}">Home</a>	 / 
+  {% block history_links %}
+    <a class="hisory_links_elem" href="{% url 'get_category' category_slug=product.type_of_product.slug %}">{{product.type_of_product}}</a> /
+    <span class="hisory_links_elem span_link" >{{ product.only_name }}</span>
+  {% endblock %}
+</div>
 
   <h2>{{product.name}}</h2>
   <ul class="header_menu_list">

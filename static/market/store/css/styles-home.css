@@ -228,3 +228,35 @@ h1 {
 .main_list_characteristic li{
   margin-top: 10px;
 }
+
+/* pagination */
+
+
+.pagination{
+  margin-top: 20px;
+  justify-content: center;
+
+}
+
+.pagination a {
+  font-size: 26px;
+  display: inline-block;
+  color: rgb(247, 243, 243);
+  /* float: left; */
+  padding: 8px 20px;
+  text-decoration: none;
+}
+
+.link_pagin:hover:not(.active) {
+  background-color: rgb(146, 114, 78);
+  border-radius:  50%
+}
+
+.link_pagin{
+  border-radius:  50%
+}
+
+.link_pagin__active{
+
+  background: #b67327
+}

@@ -1,9 +1,16 @@
 <div class="card-column">
-    {% for product, liked in characteristic.items %}
+    {% for product in products %}
         <div class="row">
             <div class="example-1 card">
                 <div class="wrapper">
-                    <a href="{% url 'read_more_about_all' slug_id=product.slug %}"><img src="{{product.photo.url}}" width="370px" alt=""></a>
+                    {% if product.type_of_product.name == "phone" %}
+						<a href="{% url 'read_more_about_all' slug_id=product.slug %}"><img src="{{product.photo.url}}" style="margin-left: 100px;" width="170px" height="300px" alt=""></a>
+					{% elif product.type_of_product.name == "Computer" %}
+						<a href="{% url 'read_more_about_all' slug_id=product.slug %}"><img src="{{product.photo.url}}" width="370px" height="300px"  alt=""></a>	
+					{% else %}
+						<a href="{% url 'read_more_about_all' slug_id=product.slug %}"><img src="{{product.photo.url}}" width="370px"  alt=""></a>
+						
+					{% endif %}
                     <div class="data">
                         <div class="content">
                             
@@ -29,7 +36,7 @@
                             </div> 
 
                             <div class="price-card">
-                                <a src="" class="btn btn-success product-price">{{product.price}}грн</a>
+                                <a src="" class="btn btn-success product-price">{{product.price}}$</a>
                                 <a  class=" btn menu-button"  href="{% url 'add_to_cart' product_slug=product.slug %}"> add to cart</a>
                             </div>	
                         </div>

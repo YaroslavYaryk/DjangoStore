@@ -345,3 +345,18 @@
   float: right;
   padding-right: 8px;
 } 
+
+.hisory_links{
+  background: #1d252c;
+  margin: 0 0 10px -10px;
+  padding: 0 10px;
+}
+.hisory_links_elem{
+  margin: 0 10px;
+  color: coral;
+  text-decoration: none;
+}
+
+.span_link{
+  color: bisque;
+}
