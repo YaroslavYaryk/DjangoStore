@@ -201,3 +201,36 @@ class UserCoupon(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} - {self.coupon}"        
+
+
+class UserSearchHistory(models.Model):
+    """ class of user search history """
+
+    user = models.ForeignKey(User, verbose_name=(
+        "User"), on_delete=models.CASCADE)
+    search_value = models.CharField(max_length=100)
+
+
+    def __str__(self) -> str:
+        return f"{self.user} - '{self.search_value}'"
+
+
+class IpModel(models.Model):
+
+    """class for getting ip adress of anyone"""
+    product = models.ForeignKey(Product, related_name="ip", on_delete=models.CASCADE, null=True)
+    ip = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.ip}"
+
+
+class UserOrderHistory(models.Model):
+    """ class of user sort history """
+
+    ip = models.CharField(max_length=100, null=True)
+    order_place = models.CharField(max_length=100)
+
+
+    def __str__(self) -> str:
+        return f"{self.user} - '{self.order_place}'"

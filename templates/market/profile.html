@@ -1,0 +1,43 @@
+{% extends "../market/base.html" %}
+{% load static %}
+
+{% block link %}
+    {% if user.is_authenticated %}
+	   	<link rel="icon" type="" href="{% static 'menu/img/ico/home_pink.png' %}">
+	   	<title>{{title}}</title>
+	   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	   	<style>
+	   		
+	   	</style>
+    {% else %}
+        <title>NONE</title>
+    {% endif %}       
+{% endblock %}
+
+{% block main-content %}
+    {% if user.is_authenticated %}
+    <div id="card"><img class="profile" src="//yt3.ggpht.com/ytc/AKedOLTIwUUe8_OwijGdNaJST5VW6L7yPo8kON2xce90=s400-c-k-c0x00ffffff-no-rj" width="90"><br>
+        <div class="name-header">{{user.first_name}} {{user.last_name}}</div>
+        <font size="3">Gachatuber</font>
+        <div id="name" style="color: aliceblue;">{{user.email}}</div>
+        <br>
+        <div id="new">Total product cart</div>
+        <div id="divider">{{cart.total_products}}</div>
+        <div id="divider"></div>
+        <br>
+        <div id="new">Total price cart</div>
+        <div id="divider">${{cart.total_price}}</div>
+        <br>
+        <div id="divider"></div>
+        <div class="grid_profile_element">
+            <font style="font-family: Comic Neue; letter-spacing: 0.6px" size="2.4">
+            <font style="font-family: system-ui;">©</font>Gassy Hannah. 2021.
+            </font>
+            <a class="btn btn-success" href="{% url 'password_change' %}">Change password</a>
+        </div>
+    </div>  
+    {% endif %}
+{% endblock %}
+
+{% block paginate %}
+{% endblock %}

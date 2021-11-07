@@ -27,8 +27,8 @@ def get_all_aditional_image_by_slug_id(slug_id):
 
 def get_list_of_special(product_obj):
 
-    product_character = Characteristics.objects.get(
-        product__name=product_obj.name)
+    product_character = Characteristics.objects.filter(
+        product__name=product_obj.name).first()
 
     similar_characteristics = Characteristics.objects.filter((
         Q(processor_name=product_character.processor_name) |

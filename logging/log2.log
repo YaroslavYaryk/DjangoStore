@@ -104,3 +104,19 @@
 2021-11-03 20:42:49.241 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
 2021-11-03 20:42:53.108 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
 2021-11-04 11:09:14.390 | INFO     | store.services.get_cart:get_check_coupon:105 - [<UserCoupon: Admin - KkQfrZD2 - 5>, <UserCoupon: Admin - EilzbTfD - 10>, <UserCoupon: Admin - ABIU6o9V - 20>]
+2021-11-07 09:17:13.541 | INFO     | store.services.get_cart:get_check_coupon:105 - []
+2021-11-07 09:35:57.758 | INFO     | store.services.get_cart:get_check_coupon:105 - []
+2021-11-07 09:36:07.634 | INFO     | store.services.get_cart:get_check_coupon:105 - []
+2021-11-07 09:36:21.964 | INFO     | store.services.get_cart:get_check_coupon:105 - []
+2021-11-07 15:45:29.361 | WARNING  | store.views:get_context_data:43 - <QueryDict: {}>
+2021-11-07 15:45:29.361 | WARNING  | store.views:get_context_data:43 - <QueryDict: {}>
+2021-11-07 15:46:51.820 | WARNING  | store.views:get_queryset:37 - <QueryDict: {}>
+2021-11-07 15:46:51.820 | WARNING  | store.views:get_queryset:37 - <QueryDict: {}>
+2021-11-07 15:48:58.272 | WARNING  | store.views:get_queryset:37 - <QueryDict: {}>
+2021-11-07 15:48:58.272 | WARNING  | store.views:get_queryset:37 - <QueryDict: {}>
+2021-11-07 15:49:17.125 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['most liked 👆']}>
+2021-11-07 15:49:17.125 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['most liked 👆']}>
+2021-11-07 15:49:28.620 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['most popular 👇']}>
+2021-11-07 15:49:28.620 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['most popular 👇']}>
+2021-11-07 15:49:39.164 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['newest']}>
+2021-11-07 15:49:39.164 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['newest']}>

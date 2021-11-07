@@ -1,32 +1,13 @@
-{% extends '../market/base.html' %}
+{% extends '../store/home.html' %}
 {% load static %}
 {% load menu_tags %}
 
 {% block link %}
-	<link rel="stylesheet" href="{% static 'market/store/css/styles-home.css' %}">
+    <link rel="stylesheet" href="{% static 'market/store/css/styles-home.css' %}">
 	<title>{{title}}</title>
 {% endblock %}
 
 
-{% block order %}
-	<div class="d-flex justify-content-end" style="margin-right: 35px;">
-
-		<div class="dropdown">
-			Sort by: 
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-			  {{order}}
-			</button>
-			<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-			  <li><a class="dropdown-item" href="{% url 'sort_newest' place=place %}">newest</a></li>
-			  <li><a class="dropdown-item" href="{% url 'sort_most_viewed_up' place=place %}">most popular 👆</a></li>
-			  <li><a class="dropdown-item" href="{% url 'sort_most_viewed_down' place=place %}">most popular 👇</a></li>
-			  <li><a class="dropdown-item" href="{% url 'sort_most_liked_up' place=place %}">most liked 👆</a></li>
-			  <li><a class="dropdown-item" href="{% url 'sort_most_liked_down' place=place %}">most liked 👇</a></li>
-
-			</ul>
-		  </div>
-	</div>
-{% endblock %}
 
 
 {% block main-content %}

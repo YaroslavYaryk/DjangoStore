@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     'store',
-    'characteristics'
+    'characteristics',
+    "social_django",
 ]
 
 MIDDLEWARE = [
@@ -193,3 +194,50 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ADMINS = [('Me', 'djangocommunitypython@gmail.com'), ]
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# SERVER_EMAIL = 'duhanov2003@gmail.com'
+EMAIL_PORT = 587
+# DEFAULT_FROM_EMAIL = 'duhanov2003@gmail.com'
+EMAIL_HOST_USER = 'duhanov2003@gmail.com'
+EMAIL_HOST_PASSWORD = '31032003uaroslav'
+EMAIL_USE_TLS = True
+
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    # 'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "796246915455-u9o08oa749tlgd2o126eq0v884oju2r7.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "Qt18SdY9IUcL10X8MGLwMp3r"

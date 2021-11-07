@@ -27,7 +27,7 @@ class ProductsByCharacteristic(DataMixin ,ListView):
         charact_slug = self.kwargs["charact_slug"]
         charact = self.kwargs["charact"]
         characteristic = get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)
-        if characteristic:
+        if characteristic: # ovewrite
             character = characteristic[0]
             field_value = characteristic[1]
         else:

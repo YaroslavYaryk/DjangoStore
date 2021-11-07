@@ -1,5 +1,5 @@
 from django.urls.base import reverse
-from store.models import Characteristics, Product, ProductImage, ProductLike
+from store.models import  Product, ProductLike, UserSearchHistory
 
 
 def get_dict_all_products_like(user):
@@ -21,3 +21,15 @@ def get_path_to_redirect(path_to_redirect):
     if path_to_redirect == "home":
         return reverse('home')
     return reverse("read_more_about_all", args=[str(path_to_redirect)])
+
+
+def get_input_search_query(request):
+
+    search_query = request.GET.get("search_query")
+
+    if search_query and request.user.is_authenticated:
+        UserSearchHistory.objects.create(user = request.user, search_value = search_query)
+    else:
+        search_query = UserSearchHistory.objects.all().last().search_value
+
+    return search_query    

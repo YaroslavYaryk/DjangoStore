@@ -24,14 +24,13 @@ def multiply(a, b, *args, **kwargs):
 def get_categories_list():
 	
 	categories = ProductType.objects.annotate(publ = F("product__is_available"), cnt = Count("product", filter = Q(publ__gt = 0))).filter(cnt__gt = 0)	
-	print(categories)
 	return {"categories":categories}
 
 
 @register.inclusion_tag("store/custom_temp/characterstics_query.html")
-def get_characteristic_query(characteristic):
+def get_characteristic_query(characteristic, likes):
 	
-	return {"characteristic":characteristic}
+	return {"products":characteristic, "likes_dict": likes}
 
 @register.simple_tag()
 def replace_word(word, first, second):

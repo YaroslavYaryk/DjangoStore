@@ -360,3 +360,141 @@
 .span_link{
   color: bisque;
 }
+
+
+.side_bar_link{
+  color: antiquewhite;
+}
+
+
+.side_bar_link:hover{
+  color: coral;
+}
+
+
+/* profile */
+
+@import url("//fonts.googleapis.com/css2?family=Mali:wght@200;400;700");
+@import url("//fonts.googleapis.com/css?family=Comic+Neue");
+@import url("//fonts.googleapis.com/icon?family=Material+Icons+Two+Tone");
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: Mali;
+  background-image: url(//background-tiles.com/overview/red/textures/large/5008.png);
+  /* or use background image with blurry filter on it  */
+  -webkit-background-image: url(//background-tiles.com/overview/red/textures/large/5008.png) !important;
+  -moz-background-image: url(//background-tiles.com/overview/red/textures/large/5008.png);
+  padding: 48px;
+  text-align: center;
+  color: white;
+}
+
+#card {
+  background: #2e1818;
+  -moz-background: #2e1818;
+  -webkit-background: #2e1818;
+  border-radius: 6px;
+  display: inline-block;
+  -moz-display: inline-block;
+  -webkit-display: inline-block;
+  -webkit-box-shadow: 8px 20px 25px #210c0c;
+          box-shadow: 8px 20px 25px #210c0c;
+  width: 483px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.profile {
+  background: #362222;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.name-header {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+#name {
+  font-family: Mali;
+  color: #5b5b5b;
+  font-weight: 200;
+}
+
+#new {
+  font-size: 29px;
+}
+
+#divider {
+  border-top: 1.3px solid darkgray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 456px;
+  text-align: center;
+  display: inline-block;
+}
+
+.twitter {
+  background: #1da1f2;
+}
+
+.instagram {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8a3ab9), to(#4c68d7));
+  background: linear-gradient(#8a3ab9, #4c68d7);
+}
+
+.vimeo {
+  background: #86c9ef;
+}
+
+.youtube {
+  background: red;
+}
+
+.facebook {
+  background: #3b5998;
+}
+
+.github {
+  background: black;
+}
+
+.unpreviewed-link {
+  background: grey;
+}
+
+.preview {
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  font-family: "Comic Neue", sans-serif;
+  padding: 4px 8px 4px 8px;
+  border-radius: 6px;
+}
+
+.material-icons-two-tone {
+  font-family: "Material Icons Two Tone";
+  font-weight: normal;
+  -webkit-filter: invert(0.3) sepia(1) saturate(6) hue-rotate(321deg);
+          filter: invert(0.3) sepia(1) saturate(6) hue-rotate(321deg);
+  font-style: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-size: 28px;
+  display: inline-block;
+}
+
+.grid_profile_element{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
