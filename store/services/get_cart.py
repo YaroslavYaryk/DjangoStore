@@ -10,11 +10,10 @@ log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/lo
 
 
 def get_cart_by_user(user):
-    if user.is_authenticated:
-        result = Cart.objects.filter(owner=user, in_order=False)
-        if result:
-            return result.first()
-        return Cart.objects.create(owner=user)
+    result = Cart.objects.filter(owner=user, in_order=False)
+    if result:
+        return result.first()
+    return Cart.objects.create(owner=user)
 
 
 def create_cart_product(user, cart, product):
@@ -83,7 +82,7 @@ def remove_all_from_cart(user):
     CartProduct.objects.filter(user=user).delete()
 
 
-def get_check_coupon(request, user, cart):
+def get_check_coupon(request, ip, cart):
 
     if cart:
         discount = 0
@@ -96,12 +95,12 @@ def get_check_coupon(request, user, cart):
                 coupon_queryset = Coupon.objects.filter(coupon_code = coupon)
                 if coupon_queryset:
                     discount = coupon_queryset.first().discount
-                    UserCoupon.objects.update_or_create(user=user, coupon=coupon_queryset.first())
+                    UserCoupon.objects.update_or_create(ip=ip, coupon=coupon_queryset.first())
 
         # if a GET (or any other method) we'll create a blank form
         else:
             form = CouponForm()
-            usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(user=user), key=lambda x:x.coupon.discount)]
+            usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(ip=ip), key=lambda x:x.coupon.discount)]
             log.info(usr_coupon)
             if usr_coupon:
                 discount = Coupon.objects.get(coupon_code=usr_coupon[-1].coupon.coupon_code).discount

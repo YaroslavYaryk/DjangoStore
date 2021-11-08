@@ -17,9 +17,11 @@ def get_place(request, order_place):
         if order_place:
             UserOrderHistory.objects.create(ip=get_client_ip(request), order_place=order_place)
         else:
-            order_place = UserOrderHistory.objects.filter(ip = get_client_ip(request)).last() 
+            order_place = UserOrderHistory.objects.filter(ip = get_client_ip(request)).last().order_place
+            if not order_place:
+                raise Exception 
     except Exception:
-        order_place = "home" 
+        order_place = "newest" 
     finally:
         return order_place
 

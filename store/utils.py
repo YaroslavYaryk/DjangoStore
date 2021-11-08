@@ -1,3 +1,5 @@
+from django.contrib import messages
+from store.services.get_category import get_client_ip
 from store.services.get_cart import get_cart_by_user
 
 
@@ -10,20 +12,16 @@ class DataMixin(object):
     
     def __init__(self) -> None:
         
-        self.choice_order = {
-            "most popular 👇": "-ip",
-            "most popular 👆": "ip",
-            "most liked 👆": "likes",
-            "most liked 👇": "-likes"
-            }
-
         self.order_list = ["newest", "most popular 👇",
-                    "most popular 👆", "most liked 👆", "most liked 👇"]
+                    "most popular 👆", "price 👆", "price 👇"]
 
-    def get_user_context(self, **kwargs):
+    def get_user_context(self, *args, **kwargs):
+        ip = get_client_ip(self.request)
         context = kwargs
-        if self.request.user.is_authenticated:
-            context["cart"] = get_cart_by_user(self.request.user)
-            context["user"] = self.request.user
-            context["order_list"] = self.order_list
+        context["cart"] = get_cart_by_user(ip)
+        context["order_list"] = self.order_list
         return context
+
+    def form_invalid(self, form):
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)     

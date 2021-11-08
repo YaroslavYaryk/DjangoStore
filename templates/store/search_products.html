@@ -8,6 +8,29 @@
   <link rel="stylesheet" href="{% static 'market/store/css/styles-home.css' %}">
 {% endblock %}
 
+
+{% block order %}
+	<div class="d-flex justify-content-md-end" style="margin-right: 35px;">
+	 	<form action='' >
+			<div class="dropdown dropdown-dark">
+				<select name="order" id='order' class="dropdown-select">
+					{% if order %}
+						<option class="dropdown-item active-item" value="{{order}}">{{order}}</option>
+					{% endif %}
+					
+					{% for elem in order_list %}
+					{% if not elem == order %}
+						<option value="{{elem}}">{{elem}}</option>
+					{% endif %}	
+				{% endfor %}
+				</select>
+			  </div>
+			<input style="height: 30px; margin-top: -22px;" class="btn btn-success" type="submit" value="Order">
+	 	</form>
+	</div>
+{% endblock %}
+
+
 {% block main-content %}
 <div class="card-column">
   {% for product in products %}
@@ -55,6 +78,8 @@
               </div>
           </div>
       </div>
+  {% empty %}
+    <h5>Sorry but there is no a thing by your query</h5>    
   {% endfor %}
 </div> 
 {% endblock %}

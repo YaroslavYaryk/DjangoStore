@@ -552,3 +552,17 @@ figure.snip1171.hover img {
 .features_link:hover{
   color: rgb(103, 103, 231);
 }
+
+.menu-button {
+
+  background: rgb(79, 124, 168);
+  margin: 0 20px;
+  font-size: 13px;
+  /* display: flex;
+  justify-content: end; */
+}
+
+.comment_block{
+  display: grid;
+  grid-template-columns: 850px 120px;
+}

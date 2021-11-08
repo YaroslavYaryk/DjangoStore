@@ -79,8 +79,8 @@ class CouponAdmin(admin.ModelAdmin):
 
 @admin.register(UserCoupon)
 class UserCouponAdmin(admin.ModelAdmin):
-    list_display = ( "user" ,'coupon',)
-    fields = ( "user" ,'coupon',)
+    list_display = ( "ip" ,'coupon',)
+    fields = ( "ip" ,'coupon',)
 
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
 admin.site.register(Characteristics, CharacteristicAdmin)

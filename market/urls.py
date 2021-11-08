@@ -50,3 +50,9 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+
+
+handler404 = "store.views.handle_not_found"
+handler500 = "store.views.handle_server_error"
+handler400 = "store.views.handle_url_error"
+handler403 = "store.views.handler_forbiden"

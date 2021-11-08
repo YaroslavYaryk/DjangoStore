@@ -150,8 +150,8 @@ class ProductLike(models.Model):
 class CartProduct(models.Model):
     """ class of product-cart for user """
 
-    user = models.ForeignKey(User, verbose_name=(
-        "User"), on_delete=models.CASCADE)
+    user = models.CharField(max_length=100, null=True)
+
     cart = models.ForeignKey("Cart", verbose_name=(
         "Cart"), on_delete=models.CASCADE, related_name="related_product")
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -163,14 +163,14 @@ class CartProduct(models.Model):
         verbose_name="Total price")
 
     def __str__(self) -> str:
-        return f"CartProduct( {self.user.username} {self.content_object.only_name} )"
+        return f"CartProduct( {self.user} {self.content_object.only_name} )"
 
 
 class Cart(models.Model):
     """ class of cart of products """
 
-    owner = models.ForeignKey(User, verbose_name=(
-        "Owner"), on_delete=models.CASCADE)
+    owner = models.CharField(max_length=100, null=True)
+
     products = models.ManyToManyField(
         CartProduct, blank=True, related_name="related_cart")
     total_products = models.PositiveIntegerField(default=0)
@@ -180,7 +180,7 @@ class Cart(models.Model):
     is_anonymous = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f"{self.owner.username} {self.products}"
+        return f"{self.owner} {self.products}"
 
 
 class Coupon(models.Model):
@@ -195,19 +195,19 @@ class Coupon(models.Model):
 class UserCoupon(models.Model):
     """ class of coupone {code: discount} """
 
-    user = models.ForeignKey(User, verbose_name=(
-        "User"), on_delete=models.CASCADE)
+    ip = models.CharField(max_length=100, null=True)
+
     coupon = models.ForeignKey(Coupon, verbose_name=("Coupon"), on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
-        return f"{self.user} - {self.coupon}"        
+        return f"{self.ip} - {self.coupon}"        
 
 
 class UserSearchHistory(models.Model):
     """ class of user search history """
 
-    user = models.ForeignKey(User, verbose_name=(
-        "User"), on_delete=models.CASCADE)
+    ip = models.CharField(max_length=100, null=True)
+
     search_value = models.CharField(max_length=100)
 
 
@@ -233,4 +233,40 @@ class UserOrderHistory(models.Model):
 
 
     def __str__(self) -> str:
-        return f"{self.user} - '{self.order_place}'"
+        return f"{self.ip} - '{self.order_place}'"
+
+
+class ProductComment(models.Model):
+
+    """Model for creating comment part """
+    product = models.ForeignKey(
+        Product, related_name="all_comments", on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE)
+    comment = models.TextField(max_length=200)
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment[:30]
+
+    def get_comment_likes(self):
+        return self.likes.count()
+
+    class Meta:
+
+        """our model display in django-admin"""
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+        ordering = ["creation_date"]  # sorting categories at site
+
+
+class LikedComment(models.Model):
+    """Class container thats gonna consist user that already liked comment"""
+
+    post_comment = models.ForeignKey(
+        ProductComment, related_name="likes_comment", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="likes_comment",
+                             on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.post_comment) if len(str(self.post_comment)) < 100 else str(self.post_comment)[:100]

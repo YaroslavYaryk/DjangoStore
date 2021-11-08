@@ -42,6 +42,9 @@ def replace_word(word, first, second):
 def get_item(dictionary, key):
     return dictionary.get(key)
 
+@register.filter
+def get_index(lister, index):
+    return lister[index]
 
 @register.inclusion_tag("store/custom_temp/category_characterstics_query.html")
 def get_characteristic_query_category(query, word):

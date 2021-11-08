@@ -9,18 +9,48 @@
   <title>{% replace_word word=title first="_" second=" " %}</title>
 {% endblock %}
 
-
-{% block main-content %}
-  {% if field_value %}
+{% block headers %}
+{% if field_value %}
     <h3>Laptops with {% replace_word word=title first="_" second=" " %} of {{field_value}}</h3>
     <br>
   {% else %}
-  <h3>There is no products with tic characteristic</h3>
+  <h3>There is no products with this characteristic</h3>
   <br>
   {% endif %}
+{% endblock %}
 
+
+{% block order %}
+{% if field_value %}
+    <div class="d-flex justify-content-md-end" style="margin-right: 35px;">
+      <form action='' >
+        <div class="dropdown dropdown-dark">
+          <select name="order" id='order' class="dropdown-select">
+            {% if order %}
+              <option class="dropdown-item active-item" value="{{order}}">{{order}}</option>
+            {% endif %}
+            
+            {% for elem in order_list %}
+            {% if not elem == order %}
+              <option value="{{elem}}">{{elem}}</option>
+            {% endif %}	
+          {% endfor %}
+          </select>
+          </div>
+        <input style="height: 30px; margin-top: -22px;" class="btn btn-success" type="submit" value="Order">
+      </form>
+    </div>
+{% endif %}
+{% endblock %}
+
+
+
+{% block main-content %}
+
+{% if field_value %}
   <div class="card-column">
     {% for product in products %}
+    
         <div class="row">
             <div class="example-1 card">
                 <div class="wrapper">
@@ -67,5 +97,6 @@
         </div>
     {% endfor %}
 </div> 
+{% endif %}
 {% endblock %}
 

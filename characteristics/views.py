@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
+from store.services.get_home import get_order_dict, get_order_dict2
+from store.services.order import get_place
 from characteristics.services.category_characteristic import get_queryset_for_all_characteristic
 from store.models import Product
 from store.utils import DataMixin
@@ -19,23 +21,30 @@ class ProductsByCharacteristic(DataMixin ,ListView):
 
         charact_slug = self.kwargs["charact_slug"]
         charact = self.kwargs["charact"]
-        return get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact, True)
+        choice = self.request.GET.get("order")
+        self.choice = get_place(self.request, choice) 
+        # print(get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact, True, get_order_dict2().get(self.choice)))
+        return get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact, True, get_order_dict2().get(self.choice))[0]
 
 
     def get_context_data(self, *args, **kwargs):
 
         charact_slug = self.kwargs["charact_slug"]
         charact = self.kwargs["charact"]
-        characteristic = get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)
-        if characteristic: # ovewrite
+        try:
+            characteristic = get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)
+            print(f"characteristic {get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)} ")
             character = characteristic[0]
             field_value = characteristic[1]
-        else:
+            
+        except TypeError:
             character = None
-            field_value = None    
+            field_value = None
+                        
         context = super().get_context_data(**kwargs)  # like dynamic list
         c_def = self.get_user_context(
             characteristic = character, 
+            order = self.choice,
             title =  charact,
             cart = get_cart_by_user(self.request.user),
             field_value = field_value,

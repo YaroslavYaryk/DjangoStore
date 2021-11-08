@@ -120,3 +120,15 @@
 2021-11-07 15:49:28.620 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['most popular 👇']}>
 2021-11-07 15:49:39.164 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['newest']}>
 2021-11-07 15:49:39.164 | WARNING  | store.views:get_queryset:37 - <QueryDict: {'order': ['newest']}>
+2021-11-08 06:15:00.399 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:15:00.399 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:15:05.858 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:15:05.858 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:16:48.688 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:16:48.688 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:25:21.569 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:25:21.569 | INFO     | store.services.get_cart:get_check_coupon:104 - []
+2021-11-08 06:29:10.133 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: 127.0.0.1 - 7Sq6OpeM - 3>]
+2021-11-08 06:29:10.133 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: 127.0.0.1 - 7Sq6OpeM - 3>]
+2021-11-08 17:19:39.747 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: 127.0.0.1 - 7Sq6OpeM - 3>]
+2021-11-08 17:19:39.747 | INFO     | store.services.get_cart:get_check_coupon:104 - [<UserCoupon: 127.0.0.1 - 7Sq6OpeM - 3>]
