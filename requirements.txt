@@ -1,6 +1,4 @@
 appdirs==1.4.3
-apt-clone==0.2.1
-apturl==0.5.2
 asgiref==3.4.1
 astroid==2.8.3
 attrs==19.3.0
@@ -8,17 +6,14 @@ autopep8==1.6.0
 beautifulsoup4==4.8.2
 black==21.9b0
 blinker==1.4
-Brlapi==0.7.0
 certifi==2019.11.28
 chardet==3.0.4
 click==8.0.3
 colorama==0.4.3
-command-not-found==0.3
 configobj==5.0.6
 cryptography==2.8
 cupshelpers==1.0
 dbus-python==1.2.16
-defer==1.0.6
 defusedxml==0.7.1
 distro==1.4.0
 Django==3.2.8
