@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-d2_$s9)&ziu)j+)so1nm*7lyry3v)b39*h0q@)$zy8an1ip**#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -91,44 +91,44 @@ DATABASES = {
 }
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
         
-        'file': {
-            'format': '%(asctime)s  %(name)-12s %(levelname)-8s <--> %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
+#         'file': {
+#             'format': '%(asctime)s  %(name)-12s %(levelname)-8s <--> %(message)s'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
         
-        'to_file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'formatter': 'file',
-            'filename': '/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log.log',
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'simple'
-        },
-    },
-    'loggers': {
-        '': {
-            'level': 'WARNING',
-            'handlers': ['to_file']
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
+#         'to_file': {
+#             'level': 'WARNING',
+#             'class': 'logging.FileHandler',
+#             'formatter': 'file',
+#             'filename': '/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log.log',
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler',
+#             'formatter': 'simple'
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'level': 'WARNING',
+#             'handlers': ['to_file']
+#         },
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#     }
+# }
 
 
 # Password validation

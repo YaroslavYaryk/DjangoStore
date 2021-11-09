@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from store.services.get_category import get_client_ip
 from store.models import  Product, ProductLike, UserSearchHistory
-from django.core.mail import send_mail, BadHeaderError, EmailMessage, EmailMultiAlternatives
 
 
 def get_dict_all_products_like(user):

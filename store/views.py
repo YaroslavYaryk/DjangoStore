@@ -14,22 +14,16 @@ from store.utils import DataMixin
 from store.services.get_cart import add_productcart_to_cart, create_cart_product, \
     get_cart_by_user, get_cart_product, get_cart_products, get_check_coupon, \
         remove_all_from_cart, remove_product_from_cart
-from store.services.get_home import get_dict_all_products_like, get_dict_query_products_like, get_input_search_query, get_order_dict, get_path_to_redirect
+from store.services.get_home import get_dict_all_products_like, \
+get_dict_query_products_like, get_input_search_query, get_order_dict, get_path_to_redirect
 from store.models import Product, ProductComment
 from store.services.get_details import check_if_post_like_and_get_count, \
     get_all_aditional_image_by_slug_id, \
         get_characteristic_by_product, get_dict_aditional_like, get_dict_all_comments_like, \
     get_header_menu, get_list_of_special, get_special_product, press_like_to_comment, press_like_to_product
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import Http404
-from django.utils.translation import ugettext as _
-from django.views.generic.edit import FormMixin
 from django.views.generic.list import ListView
-from loguru import logger as log
 
-
-log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log2.log",
-        enqueue=True, level="DEBUG", rotation="10 MB")
 
 
 class Home(DataMixin ,ListView):

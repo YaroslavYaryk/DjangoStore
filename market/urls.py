@@ -44,7 +44,7 @@ urlpatterns = [
           template_name='registration/password_change_done.html'),
           name='password_change_done'),
     # path("logout/<slug:admin_name>", LogoutUser.as_view(), name="logout"),
-    # url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     path('', include('social_django.urls', namespace='social')),
     url(r'^static/(?P<path>.*)$', serve,
         {'document_root': settings.STATIC_ROOT}),

@@ -4,11 +4,7 @@ from store.services.get_category import get_client_ip
 from store.services.get_home import get_dict_all_products_like
 from store.models import Product, UserOrderHistory
 from store.utils import DataMixin
-from loguru import logger as log
 
-
-log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log3.log",
-        enqueue=True, level="DEBUG", rotation="10 MB")
 
 
 def get_place(request, order_place):

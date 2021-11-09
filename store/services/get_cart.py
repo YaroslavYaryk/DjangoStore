@@ -2,12 +2,6 @@ from django.contrib.contenttypes.models import ContentType
 from store.forms import CouponForm
 from store.models import Cart, CartProduct, Coupon, UserCoupon
 from django.contrib.admin.options import get_content_type_for_model
-from loguru import logger as log
-
-
-log.add("/home/yaroslav/Programming/Python/Django/StoreProject/market/logging/log2.log",
-        enqueue=True, level="DEBUG", rotation="10 MB")
-
 
 def get_cart_by_user(user):
     result = Cart.objects.filter(owner=user, in_order=False)
@@ -101,7 +95,6 @@ def get_check_coupon(request, ip, cart):
         else:
             form = CouponForm()
             usr_coupon = [elem for elem in sorted(UserCoupon.objects.filter(ip=ip), key=lambda x:x.coupon.discount)]
-            log.info(usr_coupon)
             if usr_coupon:
                 discount = Coupon.objects.get(coupon_code=usr_coupon[-1].coupon.coupon_code).discount
             
