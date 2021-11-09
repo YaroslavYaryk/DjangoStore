@@ -18,6 +18,7 @@ commonmark==0.9.1
 defusedxml==0.7.1
 distlib==0.3.3
 distro==1.4.0
+
 dj-database-url==0.5.0
 Django==3.2.7
 django-ckeditor==6.1.0
