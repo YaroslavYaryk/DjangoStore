@@ -43,7 +43,7 @@ def get_list_of_special(product_obj):
         Q(price__gte=product_obj.price-1000) & Q(price__lte=product_obj.price+1000))
     list_result += [elem for elem in similar_product_price if elem not in list_result]
     list_result.remove(product_obj)
-    return list_result[:5]
+    return list_result[:4]
 
 
 def get_dict_aditional_like(user, list_similar):
@@ -62,8 +62,25 @@ def get_header_menu():
         "Photo": "read_photo"
     }
 
+def press_like_to_product(request, response, product_id):
 
-def press_like_to_product(request, response, comment_pk):
+    user = request.user
+    try:
+        product = Product.objects.get(slug = product_id)
+        like = ProductLike.objects.filter(user=user, post=product)
+
+        if like:
+            like.delete()  # thre is like put
+        else:
+            ProductLike.objects.create(
+                user=user, post=product)  # create like
+    except TypeError:  # is not signed in
+        return HttpResponseRedirect(reverse('sign_in'))
+
+    return response
+
+
+def press_like_to_comment(request, response, comment_pk):
 
     user = request.user
     try:
@@ -120,7 +137,7 @@ def get_characteristic_query_according_to_character_field(charact_slug, user, ch
         return get_characteristic_by_screen_type(user,  get_characteristic_field(charact_slug, ScreenType), get_queryset, order_query)
     elif charact == "screen_frequency":
         return get_characteristic_by_screen_frequency(user,  get_characteristic_field(charact_slug, ScreenFrequency), get_queryset, order_query)
-    elif charact == "processor":
+    elif charact == "processor_name":
         return get_characteristic_by_processor(user,  get_characteristic_field(charact_slug, ProcessorType), get_queryset, order_query)
     elif charact == "operation_system":
         return get_characteristic_by_operation_system(user,  get_characteristic_field(charact_slug, OperationSystem), get_queryset, order_query)
@@ -130,7 +147,7 @@ def get_characteristic_query_according_to_character_field(charact_slug, user, ch
         return get_characteristic_by_memory_slots(user, get_characteristic_field(charact_slug, MemorySlot), get_queryset, order_query)
     elif charact == "memory_type":
         return get_characteristic_by_memory_type(user, get_characteristic_field(charact_slug, MemoryType), get_queryset, order_query)
-    elif charact == "hard_drive":
+    elif charact == "data_storage":
         return get_characteristic_by_hard_drive(user, get_characteristic_field(charact_slug, DataStorageDevices), get_queryset, order_query)
     elif charact == "video_card":
         return get_characteristic_by_video_card(user, get_characteristic_field(charact_slug, VideoCard), get_queryset, order_query)

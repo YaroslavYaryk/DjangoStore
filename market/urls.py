@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from store.views import LoginUser, LogoutUser, ProfileView, RegisterUser, add_to_cart, delete_cart, get_cart, remove_from_cart, remove_one_product
+from store.views import LoginUser, LogoutUser, ProfileView, RegisterUser, add_to_cart, delete_cart, get_cart, get_information_about, remove_from_cart, remove_one_product
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
@@ -24,6 +24,7 @@ urlpatterns = [
          name="remove_one_product"),  # quantity-1
     path("sign_in/", LoginUser.as_view(), name="sign_in"),
     path("register/", (RegisterUser.as_view()), name="register"),
+    path("about/", get_information_about, name="about"),
 
     path("accounts/profile/", ProfileView.as_view(), name="profile"),
     path("logout/<slug:admin_name>", LogoutUser.as_view(), name="logout"),

@@ -19,21 +19,17 @@ class ProductsByCharacteristic(DataMixin ,ListView):
 
     def get_queryset(self):
 
-        charact_slug = self.kwargs["charact_slug"]
-        charact = self.kwargs["charact"]
+        self.charact_slug = self.kwargs["charact_slug"]
+        self.charact = self.kwargs["charact"]
         choice = self.request.GET.get("order")
         self.choice = get_place(self.request, choice) 
-        # print(get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact, True, get_order_dict2().get(self.choice)))
-        return get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact, True, get_order_dict2().get(self.choice))[0]
+        return get_characteristic_query_according_to_character_field(self.charact_slug, self.request.user, self.charact, True, get_order_dict2().get(self.choice))[0]
 
 
     def get_context_data(self, *args, **kwargs):
 
-        charact_slug = self.kwargs["charact_slug"]
-        charact = self.kwargs["charact"]
         try:
-            characteristic = get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)
-            print(f"characteristic {get_characteristic_query_according_to_character_field(charact_slug, self.request.user, charact)} ")
+            characteristic = get_characteristic_query_according_to_character_field(self.charact_slug, self.request.user, self.charact)
             character = characteristic[0]
             field_value = characteristic[1]
             
@@ -45,12 +41,12 @@ class ProductsByCharacteristic(DataMixin ,ListView):
         c_def = self.get_user_context(
             characteristic = character, 
             order = self.choice,
-            title =  charact,
+            title =  self.charact,
             cart = get_cart_by_user(self.request.user),
             field_value = field_value,
+            charact_slug = self.charact_slug
         )
         return dict(list(context.items()) + list(c_def.items()))
-
 
 
 

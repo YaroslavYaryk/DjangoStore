@@ -1,0 +1,11 @@
+/*text*/
+.leftimg {
+    float:left; /* Выравнивание по левому краю */
+    margin: 22px 20px 7px 0; /* Отступы вокруг картинки */
+    max-height: 500px;
+  }
+
+.rightimg  {
+    float: right; /* Выравнивание по правому краю  */ 
+    margin: 7px 0 7px 15px; /* Отступы вокруг картинки */
+   }
