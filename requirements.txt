@@ -31,7 +31,6 @@ django-js-asset==1.2.2
 django-robots==4.0
 djangorestframework==3.12.4
 entrypoints==0.3
-grpcio==1.16.1
 gunicorn==20.1.0
 httplib2==0.14.0
 humanize==1.0.0
@@ -68,11 +67,8 @@ psycopg2-binary==2.9.1
 pycairo==1.16.2
 pycodestyle==2.8.0
 pycrypto==2.6.1
-pycups==1.9.73
 pycurl==7.43.0.2
 Pygments==2.3.1
-PyGObject==3.36.0
-PyICU==2.4.2
 pyinotify==0.9.6
 PyJWT==2.3.0
 pylint==2.11.1
