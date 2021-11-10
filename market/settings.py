@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'market_db',
         "USER": 'yaroslav',
         "PASSWORD": "qwerty",
-        "HOST": "127.0.0.1",
+        "HOST": "https://django-electro-store.herokuapp.com",
         "PORT": 5432
     }
 }
