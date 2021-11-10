@@ -82,6 +82,7 @@ def get_product_featuress(request, slug_id):
 
 def get_product_reviews(request, slug_id):
 
+
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = ProductCommentForm(request.POST)
@@ -89,7 +90,6 @@ def get_product_reviews(request, slug_id):
         if form.is_valid():
             comment = form.cleaned_data['comment']
             # process the data in form.cleaned_data as required
-            print("Ok")
             if request.user.is_authenticated:
                 ProductComment.objects.create(
                             product = get_special_product(slug_id), user = request.user,
@@ -97,7 +97,7 @@ def get_product_reviews(request, slug_id):
                         )
                         
             else:
-                return   HttpResponseRedirect(reverse("sign_in"))          
+                return   HttpResponseRedirect(reverse("sign_in"))             
             # redirect to a new URL:
             return HttpResponseRedirect(reverse("read_reviews", args=[slug_id]))
 
@@ -109,7 +109,7 @@ def get_product_reviews(request, slug_id):
         "comments" : ProductComment.objects.filter( product = get_special_product(slug_id)),
         "product": get_special_product(slug_id),
         "form": form,
-        "like_dict": get_dict_all_comments_like(request.user, get_special_product(slug_id)),
+        # "like_dict": get_dict_all_comments_like(request.user, get_special_product(slug_id)),
         "cart": get_cart_by_user(get_client_ip(request))
     }
     return render(request, "store/get_product_reviews.html", context=content)
@@ -136,7 +136,6 @@ def get_product_photo(request, slug_id):
 
 def likeView(request, product_id, post_id, cat):
     """ function for adding like to our product """
-    print(product_id, post_id, cat)
     if cat == '0':
         response = HttpResponseRedirect(
             get_path_to_redirect(product_id))

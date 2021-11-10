@@ -19,6 +19,7 @@ def get_special_product(product_id):
 
     # try except logic
     try:
+        
         return get_object_or_404(Product, slug=product_id)
     except Product.DoesNotExist:
         raise Http404("Given query not found....")
@@ -155,29 +156,36 @@ def get_characteristic_query_according_to_character_field(charact_slug, user, ch
         return get_characteristic_by_video_card_memory(user, get_characteristic_field(charact_slug, VideoCardMemory), get_queryset, order_query)
 
 
-def press_like_to_comment(request, response, post_id):
+# def press_like_to_comment(request, response, post_id):
 
-    user = request.user
-    try:
-        product = Product.objects.get(slug=post_id)  # get post
-        like = ProductLike.objects.filter(user=user, post=product)
+#     user = request.user
+#     try:
+#         print(f"post_id = {post_id}")
+#         product = Product.objects.get(slug=post_id)  # get post
+#         like = ProductLike.objects.filter(user=user, post=product)
 
-        if like:
-            like.delete()  # thre is like put
-        else:
-            ProductLike.objects.create(user=user, post=product)  # create like
-    except TypeError:  # is not signed in
-        messages.add_message(request, messages.WARNING,
-                             'to put like you need to sign in first ')
-        # reirect to sign in
-        return response
+#         if like:
+#             like.delete()  # thre is like put
+#         else:
+#             ProductLike.objects.create(user=user, post=product)  # create like
+#     except TypeError:  # is not signed in
+#         messages.add_message(request, messages.WARNING,
+#                              'to put like you need to sign in first ')
+#         # reirect to sign in
+#         return response
 
-    return response
+#     return response
 
 
 def get_dict_all_comments_like(user, product_id):
-    if user.is_authenticated:
 
+    a = {comm: LikedComment.objects.filter(user=user, post_comment=comm) 
+            for comm in ProductComment.objects.filter(product=get_special_product(slugify(product_id)))}
+    
+    print(f"{product_id}")
+    print(f"result = {a}")
+
+    if user.is_authenticated:
         return {comm: LikedComment.objects.filter(user=user, post_comment=comm) 
             for comm in ProductComment.objects.filter(product=get_special_product(slugify(product_id)))}
     return {comm: "" for comm in ProductComment.objects.filter(product=get_special_product(slugify(product_id)))}
