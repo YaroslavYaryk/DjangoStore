@@ -83,13 +83,17 @@ WSGI_APPLICATION = 'market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'market_db',
-        "USER": 'yaroslav',
-        "PASSWORD": "qwerty",
-        "HOST": "https://django-electro-store.herokuapp.com",
+        'NAME': 'd5m9h6u56bot9k',
+        "USER": 'xzhednzmxhjcyj',
+        "PASSWORD": "b106793a78e697ada3c9d44a02a9b492394d29039cfca7f329d79d328119ffc4",
+        "HOST": "ec2-23-23-181-251.compute-1.amazonaws.com",
         "PORT": 5432
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # LOGGING = {
