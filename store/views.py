@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls.base import reverse, reverse_lazy
 from django.utils.text import slugify
 from django.views.generic import ListView
@@ -143,6 +143,8 @@ def likeView(request, product_id, post_id, cat):
     elif cat in ['laptop', 'phone', 'computer']:
         response = HttpResponseRedirect(
             reverse(product_id, kwargs={"category_slug": cat})) 
+    elif cat == "search":
+        response = redirect(reverse('search_products'), get_input_search_query(request))         
     else:
         response = HttpResponseRedirect(
             reverse("get_characteristic_query", kwargs={"charact": product_id, "charact_slug": cat}))                   
