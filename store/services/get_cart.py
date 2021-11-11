@@ -27,9 +27,6 @@ def get_cart_product(user, product):
 
 def add_productcart_to_cart(user, cart, cart_product, product):
 
-    # Cart.objects.all().delete()
-    # CartProduct.objects.all().delete()
-
     type_content = get_content_type_for_model(product)
     existing_cart = cart.products.filter(user = user, content_type = type_content, object_id=product.pk).first()
     if not existing_cart:
@@ -83,7 +80,7 @@ def get_check_coupon(request, ip, cart):
         if request.method == 'POST':
             # create a form instance and populate it with data from the request:
             form = CouponForm(request.POST)
-            # check whether it's valid:
+            # check  it's valid:
             if form.is_valid():
                 coupon = form.cleaned_data['coupon']
                 coupon_queryset = Coupon.objects.filter(coupon_code = coupon)

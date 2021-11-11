@@ -59,7 +59,6 @@ def get_all_product_details(request, slug_id):
     content = {
         "product": get_special_product(slug_id),
         "image": get_all_aditional_image_by_slug_id(slug_id),
-        # "aditional_products": get_list_of_special(get_special_product(slug_id)),
         "header_menu": get_header_menu(),
         "special_menu_function": "All about the product",
         "special_dict_menu": get_dict_aditional_like(request.user, get_list_of_special(get_special_product(slug_id))),
@@ -109,7 +108,6 @@ def get_product_reviews(request, slug_id):
         "comments" : ProductComment.objects.filter( product = get_special_product(slug_id)),
         "product": get_special_product(slug_id),
         "form": form,
-        # "like_dict": get_dict_all_comments_like(request.user, get_special_product(slug_id)),
         "cart": get_cart_by_user(get_client_ip(request))
     }
     return render(request, "store/get_product_reviews.html", context=content)
@@ -147,7 +145,6 @@ def likeView(request, product_id, post_id, cat):
     else:
         response = HttpResponseRedirect(
             reverse("get_characteristic_query", kwargs={"charact": product_id, "charact_slug": cat}))                   
-    # set_cookies_for_product_like(response, request.user, post_id)
     return press_like_to_product(request, response, post_id)
 
 

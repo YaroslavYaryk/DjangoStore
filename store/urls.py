@@ -18,9 +18,5 @@ urlpatterns = [
     path("category/<slug:category_slug>", Category.as_view(), name="get_category"),
     path("search/", SearchProduct.as_view(), name="search_products"),
     path("send_message/", send_mail_register, name="send_message_to_user")
-    # path("sort_most_viewed_up/<str:place>", ProductViewsUp.as_view(), name="sort_most_viewed_up"),
-    # path("sort_most_viewed_down/<str:place>", ProductViewsDown.as_view(), name="sort_most_viewed_down"),
-    # path("sort_most_liked_down/<str:place>", ProductLikesDown.as_view(), name="sort_most_liked_down"),
-    # path("sort_most_liked_up/<str:place>", ProductLikesUp.as_view(), name="sort_most_liked_up"),
-    # path("sort_newest/<str:place>", ProductNewest.as_view(), name="sort_newest"),
+    
 ]    

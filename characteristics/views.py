@@ -13,7 +13,6 @@ from store.services.get_cart import get_cart_by_user
 
 class ProductsByCharacteristic(DataMixin ,ListView):
     model = Product
-    # success_url = reverse_lazy("home")
     template_name = "store/characteristics/characteristic_query.html"
     context_object_name = 'products'
 

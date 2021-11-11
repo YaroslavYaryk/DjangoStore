@@ -17,8 +17,6 @@ class RegisterUserForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={"class": "form-control"}))
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={"class": "form-control"}))
-    # captcha = CaptchaField(label='Solve next conundrum',
-    #                        error_messages={'invalid': 'Wrong answer'})
 
     class Meta:
         model = User

@@ -21,7 +21,6 @@ class ProductAdminForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
-        # skin = 'moono-dark';
 
 
 class ProductAdmin(BaseAdmin):
@@ -34,7 +33,6 @@ class ProductAdmin(BaseAdmin):
     list_editable = ["is_published"]
     inlines = [ProductImageAdmin]
     prepopulated_fields = {"slug": ("name",)}
-    # prepopulated_fields = {"slug": ("name",)}
     fields = ( "name", "only_name","slug", "type_of_product", "brand",  "short_description", "description",
                     "photo","video", "is_published",  "country_made", \
                         ("country_brand", "get_flag"), "warranty", "price", "is_available")

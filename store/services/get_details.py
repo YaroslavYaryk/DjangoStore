@@ -156,27 +156,6 @@ def get_characteristic_query_according_to_character_field(charact_slug, user, ch
         return get_characteristic_by_video_card_memory(user, get_characteristic_field(charact_slug, VideoCardMemory), get_queryset, order_query)
 
 
-# def press_like_to_comment(request, response, post_id):
-
-#     user = request.user
-#     try:
-#         print(f"post_id = {post_id}")
-#         product = Product.objects.get(slug=post_id)  # get post
-#         like = ProductLike.objects.filter(user=user, post=product)
-
-#         if like:
-#             like.delete()  # thre is like put
-#         else:
-#             ProductLike.objects.create(user=user, post=product)  # create like
-#     except TypeError:  # is not signed in
-#         messages.add_message(request, messages.WARNING,
-#                              'to put like you need to sign in first ')
-#         # reirect to sign in
-#         return response
-
-#     return response
-
-
 def get_dict_all_comments_like(user, product_id):
 
     a = {comm: LikedComment.objects.filter(user=user, post_comment=comm) 
