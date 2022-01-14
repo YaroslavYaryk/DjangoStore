@@ -5,11 +5,11 @@
 
 To install this repo you need to do following steps:
 
-###Step 1
+Step 1
 ```sh
 git clone https://github.com/YaroslavYaryk/DjangoStore.git
 ```
-###Step 2
+Step 2
 #####You need to create virtual environment on your pc:
 #####for Windows
 ```sh
