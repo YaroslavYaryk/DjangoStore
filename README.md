@@ -3,6 +3,7 @@
 ![](detail.png)
 ![](features.png)
 ![](reviews.png)
+![](cart.png)
 
 
 Perfect application for seeing and ordering electro-goods with all features like ordering, search, likes, commtnts, like on comments, etc
