@@ -7,6 +7,7 @@
 
 
 Perfect application for seeing and ordering electro-goods with all features like ordering, search, likes, commtnts, like on comments, etc
+
 To see the whole site you can visit [DjangoStore](https://django-electro-store.herokuapp.com/)
 
 To install this repo you need to do following steps:
