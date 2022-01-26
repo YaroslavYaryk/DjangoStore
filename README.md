@@ -1,9 +1,9 @@
 # DjangoStore
-![](home_page.png)
-![](detail.png)
-![](features.png)
-![](reviews.png)
-![](cart.png)
+![](img/home_page.png)
+![](img/detail.png)
+![](img/features.png)
+![](img/reviews.png)
+![](img/cart.png)
 
 
 Perfect application for seeing and ordering electro-goods with all features like ordering, search, likes, commtnts, like on comments, etc
