@@ -1,11 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from characteristics.models import CountryBrand, \
     CountryMade, DataStorageDevices, MemoryCapacity, MemorySlot, MemoryType, \
     OperationSystem, ProcessorType, ProductBrand, ProductType, \
     ScreenDiagonal, ScreenFrequency, ScreenType, VideoCard, VideoCardMemory
+from django.conf import settings
 
 # Create your models here.
 
@@ -140,7 +140,7 @@ class ProductLike(models.Model):
 
     post = models.ForeignKey(
         Product, related_name="likes", on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(User, related_name="likes",
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="likes",
                              on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
@@ -157,10 +157,10 @@ class CartProduct(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", "object_id")
-    
+
     quantity = models.PositiveIntegerField(default=1)
     total_price = models.PositiveBigIntegerField(default=0,
-        verbose_name="Total price")
+                                                 verbose_name="Total price")
 
     def __str__(self) -> str:
         return f"CartProduct( {self.user} {self.content_object.only_name} )"
@@ -175,7 +175,7 @@ class Cart(models.Model):
         CartProduct, blank=True, related_name="related_cart")
     total_products = models.PositiveIntegerField(default=0)
     total_price = models.PositiveBigIntegerField(default=0,
-        verbose_name="Total price")
+                                                 verbose_name="Total price")
     in_order = models.BooleanField(default=False)
     is_anonymous = models.BooleanField(default=False)
 
@@ -186,21 +186,23 @@ class Cart(models.Model):
 class Coupon(models.Model):
     """ class of coupone {code: discount} """
 
-    coupon_code = models.CharField("coupon", max_length=100 )
+    coupon_code = models.CharField("coupon", max_length=100)
     discount = models.PositiveIntegerField("discount", default=0)
 
     def __str__(self) -> str:
         return f"{self.coupon_code} - {self.discount}"
+
 
 class UserCoupon(models.Model):
     """ class of coupone {code: discount} """
 
     ip = models.CharField(max_length=100, null=True)
 
-    coupon = models.ForeignKey(Coupon, verbose_name=("Coupon"), on_delete=models.CASCADE, null=True)
+    coupon = models.ForeignKey(Coupon, verbose_name=(
+        "Coupon"), on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
-        return f"{self.ip} - {self.coupon}"        
+        return f"{self.ip} - {self.coupon}"
 
 
 class UserSearchHistory(models.Model):
@@ -210,7 +212,6 @@ class UserSearchHistory(models.Model):
 
     search_value = models.CharField(max_length=100)
 
-
     def __str__(self) -> str:
         return f"{self.user} - '{self.search_value}'"
 
@@ -218,7 +219,8 @@ class UserSearchHistory(models.Model):
 class IpModel(models.Model):
 
     """class for getting ip adress of anyone"""
-    product = models.ForeignKey(Product, related_name="ip", on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(
+        Product, related_name="ip", on_delete=models.CASCADE, null=True)
     ip = models.CharField(max_length=100)
 
     def __str__(self):
@@ -231,7 +233,6 @@ class UserOrderHistory(models.Model):
     ip = models.CharField(max_length=100, null=True)
     order_place = models.CharField(max_length=100)
 
-
     def __str__(self) -> str:
         return f"{self.ip} - '{self.order_place}'"
 
@@ -241,7 +242,7 @@ class ProductComment(models.Model):
     """Model for creating comment part """
     product = models.ForeignKey(
         Product, related_name="all_comments", on_delete=models.CASCADE)
-    user = models.ForeignKey(User,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     comment = models.TextField(max_length=200)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -265,7 +266,7 @@ class LikedComment(models.Model):
 
     post_comment = models.ForeignKey(
         ProductComment, related_name="likes_comment", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="likes_comment",
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="likes_comment",
                              on_delete=models.CASCADE)
 
     def __str__(self):

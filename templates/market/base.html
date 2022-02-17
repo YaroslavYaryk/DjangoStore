@@ -107,7 +107,7 @@
                 <td style="background: #19232c;"> 
                   <a class="side_bar_link" style="background: #19232c; " href="{% url 'profile'  %}">Profile</a> |
 
-                  <a class="side_bar_link" style="background: #19232c; " href="{% url 'logout' request.user %}">Log out</a>
+                  <a class="side_bar_link" style="background: #19232c; " href="{% url 'logout' request.user.user_name %}">Log out</a>
                 </td>
               </tr>
               
