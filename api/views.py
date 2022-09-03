@@ -5,7 +5,14 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.utils.text import slugify
 
-from store.models import Product, CommentResponse, ProductLike, LikedComment, UserSearchHistory, UserOrderHistory
+from store.models import (
+    Product,
+    CommentResponse,
+    ProductLike,
+    LikedComment,
+    UserSearchHistory,
+    UserOrderHistory,
+)
 from .serializers import (
     ProductSerializer,
     ProductPostSerializer,
@@ -19,7 +26,8 @@ from .serializers import (
     CouponSerializer,
     UserCouponSerializer,
     UserOrderHistorySerializer,
-    UserSearchHistorySerializer
+    UserSearchHistorySerializer,
+    ProductCommentPostPutSerializer,
 )
 from .services.product import get_comment_by_pk, get_coupon_by_pk, get_product_by_pk
 from store.services.get_category import get_client_ip
@@ -28,7 +36,7 @@ from store.services.get_details import *
 
 
 class ProductView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
 
@@ -67,7 +75,7 @@ class ProductView(APIView):
 
 
 class CommentResponseView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
 
@@ -80,14 +88,14 @@ class CommentResponseView(APIView):
         serializer = CommentResponseSerializer(data=request.data)
         if serializer.is_valid():
             CommentResponse.objects.create(
-                **serializer.data, post=get_product_by_pk(pk))
+                **serializer.data, post=get_product_by_pk(pk)
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, comment_pk):
         post = CommentResponse.objects.get(post__pk=pk, pk=comment_pk)
-        serializer = CommentResponseSerializer(
-            instance=post, data=request.data)
+        serializer = CommentResponseSerializer(instance=post, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -101,30 +109,38 @@ class CommentResponseView(APIView):
 
 
 class ProductCommentView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
 
-        queryset = ProductComment.objects.filter(product__pk=kwargs["pk"])
+        queryset = ProductComment.objects.filter(product__pk=kwargs["pk"], parent=None)
         serializer = ProductCommentSerializer(queryset, many=True)
 
         return Response(serializer.data)
 
     def post(self, request, pk):
 
-        data = {**request.data, "user": request.user.pk,
-                "product": pk}
-        serializer = ProductCommentSerializer(data=data)
+        data = {**request.data, "user": request.user.pk, "product": pk}
+
+        serializer = ProductCommentPostPutSerializer(data=data)
         if serializer.is_valid():
-            ProductComment.objects.create(
-                comment=serializer.data["comment"], product=get_product_by_pk(pk), user=request.user)
+            serializer.save()
+            # ProductComment.objects.create(
+            #     comment=serializer.data["comment"],
+            #     pros=serializer.data["comment"],
+            #     cons=serializer.data["comment"],
+            #     rating=serializer.data["rating"],
+            #     product=get_product_by_pk(pk),
+            #     parent=serializer.data["parent"],
+            #     user=request.user,
+            # )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.error_messages)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, comment_pk):
         post = ProductComment.objects.get(product__pk=pk, pk=comment_pk)
-        serializer = ProductCommentSerializer(
-            instance=post, data=request.data)
+        serializer = ProductCommentPostPutSerializer(instance=post, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -149,13 +165,13 @@ class CommentLikeView(APIView):
 
     def post(self, request, pk):
 
-        data = {**request.data, "post_comment": pk,
-                "user": request.user.pk}
+        data = {**request.data, "post_comment": pk, "user": request.user.pk}
 
         serializer = CommentLikeSerializer(data=data)
         if serializer.is_valid():
             LikedComment.objects.create(
-                post_comment=get_comment_by_pk(pk), user=request.user)
+                post_comment=get_comment_by_pk(pk), user=request.user
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -177,14 +193,12 @@ class ProductLikeView(APIView):
 
     def post(self, request, pk):
 
-        data = {**request.data, "user": request.user.pk,
-                "post": pk}
+        data = {**request.data, "user": request.user.pk, "post": pk}
 
         serializer = ProductLikeSerializer(data=data)
         if serializer.is_valid():
             print(request.user)
-            ProductLike.objects.create(
-                user=request.user, post=get_product_by_pk(pk))
+            ProductLike.objects.create(user=request.user, post=get_product_by_pk(pk))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -199,13 +213,13 @@ class CartView(APIView):
 
     def get(self, request, *args, **kwargs):
 
-        queryset = CartProduct.objects.filter(user=get_client_ip(request))
-        serializer = CartProductSerializer(queryset, many=True)
+        queryset = Cart.objects.filter(owner=request.user.id)
+        serializer = CartSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, pk):
         try:
-            ip = get_client_ip(request)
+            ip = request.user.id
             cart = get_cart_by_user(ip)
             product = Product.objects.get(pk=pk)
             cart_product = create_cart_product(ip, cart, product)
@@ -264,8 +278,7 @@ class CouponView(APIView):
 
     def put(self, request, pk):
         post = Coupon.objects.get(pk=pk)
-        serializer = CouponSerializer(
-            instance=post, data=request.data)
+        serializer = CouponSerializer(instance=post, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -294,12 +307,10 @@ class UserCouponView(APIView):
 
     def post(self, request, pk):
 
-        data = {**request.data, "ip": get_client_ip(request),
-                "coupon": pk}
+        data = {**request.data, "ip": get_client_ip(request), "coupon": pk}
         serializer = UserCouponSerializer(data=data)
         if serializer.is_valid():
-            UserCoupon.objects.create(
-                ip=data["ip"], coupon=get_coupon_by_pk(pk))
+            UserCoupon.objects.create(ip=data["ip"], coupon=get_coupon_by_pk(pk))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

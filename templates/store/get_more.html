@@ -3,7 +3,6 @@
 
 {% block link %}
 	<link rel="stylesheet" href="{% static 'market/store/css/style-read_more.css' %}">
-  <script src="{% static 'market/store/js/read_more.js' %}"></script>
   <title>{{product.only_name}}</title>
 {% endblock %}
 
@@ -36,26 +35,33 @@
     <div class="row">
       <div class="col-md-6">
         {% if product.type_of_product.name == 'phone' %}
-          <div class="phone_photoes" style="display: grid; grid-template-columns: repeat(2, 1fr );">
-            <img class="img-fluid" src="{{product.photo.url}}" style="max-height: 400px;" alt="" />
+          <div class="phone_photoes photos_block" style="">
+            <div class="main_photo" style="width:600px">
+              <img class="img-fluid main-image" src="{{product.photo.url}}" style="width:100%"  alt="" />
+            </div>
+            <br>
             <div class="product-thumbnails">
               <ul>
                 {% for elem in image %}
-                  <li style="display: grid; grid-template-columns: repeat(1,1fr); "><img  src="{{elem.images.url}}" style="width: 200px;" ></li>
+                  <li style="display: grid; grid-template-columns: repeat(1,1fr); background:white "><img class="product_image"  src="{{elem.images.url}}" style="width: 200px;" ></li>
                 {% endfor %} 
                 
               </ul>
             </div>
           </div>
         {% else %}
-          <img class="img-fluid" src="{{product.photo.url}}" style="max-height: 400px;" alt="" />
-          <div class="product-thumbnails">
-            <ul>
-              {% for elem in image %}
-                <li><img @click="currentThumnail(image.imageUrl, index)" src="{{elem.images.url}}" alt="{{elem.photo}}" /></li>
-              {% endfor %}
-              
-            </ul>
+          <div class="phone_photoes photos_block" style="">
+            <div class="main_photo" style="width:600px">
+              <img class="img-fluid main-image" src="{{product.photo.url}}" style="max-height: 400px;" alt="" />
+            </div>
+            <div class="product-thumbnails">
+              <ul>
+                {% for elem in image %}
+                  <li><img class="product_image" src="{{elem.images.url}}" alt="{{elem.photo}}" /></li>
+                {% endfor %}
+                
+              </ul>
+            </div>
           </div>
         {% endif %}
       </div>
@@ -130,7 +136,7 @@
                 {{product.short_description}}
               </p>
               <div class="like-additional-products"  > 
-                <div class="card-footer d-flex justify-content-end aditional_product_like"">
+                <div class="card-footer d-flex justify-content-end aditional_product_like">
                   {% if not value %}
                       <a href="{% url 'like_product' post_id=aditional_product.slug product_id=product.slug cat='0' %}" style="color:#FF0000; " id="likebtn{{ aditional_product.id }}"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"    class="bi bi-heart" viewBox="0 0 16 16">
@@ -162,6 +168,19 @@
 
   
 </div>
+
+<script>
+
+  var imagePreview = document.querySelector(".main-image")
+  var photos_block = document.querySelector(".photos_block")
+  photos_block.onclick = (e) =>{
+    e.preventDefault()
+    if (e.target.classList.contains('product_image')){
+      imagePreview.src = e.target.src
+    }
+  }
+
+</script>
 
 {% endblock %}
 

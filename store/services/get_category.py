@@ -11,8 +11,6 @@ def get_client_ip(request):  # get current ip address
     return ip
 
 
-
 def add_view_of_post(request, post):
     if not IpModel.objects.filter(ip=get_client_ip(request), product=post):
-            IpModel.objects.create(ip=get_client_ip(
-                request), product=post)
+        IpModel.objects.create(ip=get_client_ip(request), product=post)

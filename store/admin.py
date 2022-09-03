@@ -2,12 +2,16 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from characteristics.admin import BaseAdmin
 from store.models import (
+    Cart,
     Characteristics,
     Coupon,
     Product,
+    ProductComment,
+    ProductCommentPhotos,
     ProductImage,
     ProductLike,
     UserCoupon,
+    CartProduct,
 )
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -175,3 +179,7 @@ class UserCouponAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
 admin.site.register(Characteristics, CharacteristicAdmin)
+admin.site.register(ProductComment)
+admin.site.register(ProductCommentPhotos)
+admin.site.register(CartProduct)
+admin.site.register(Cart)

@@ -35,7 +35,7 @@ class ProductCharacteristicSerializer(ModelSerializer):
 
     class Meta:
         model = Characteristics
-        exclude = ("product",)
+        fields = "__all__"
 
 
 class ProductCharacteristicPostSerializer(ModelSerializer):

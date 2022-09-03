@@ -1,6 +1,10 @@
 import imp
 from django.urls import path, include
-from .views import ProductCharacteristicView, ProductImageView
+from .views import (
+    ProductCharacteristicView,
+    ProductImageView,
+    ProductAllCharacteristicView,
+)
 
 from .screen import urls as screen_urls
 from .processor import urls as processor_urls
@@ -19,6 +23,11 @@ urlpatterns = [
     path("processor/", include(processor_urls)),
     path("memory/", include(memory_urls)),
     path("video-card/", include(video_urls)),
+    path(
+        "all_products_characteristic/",
+        ProductAllCharacteristicView.as_view(),
+        name="get_all_products_characteristics",
+    ),
     path(
         "product_characteristic/<product_id>/",
         ProductCharacteristicView.as_view(),

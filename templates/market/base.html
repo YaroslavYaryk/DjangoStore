@@ -25,7 +25,7 @@
         <img src="{% static 'market/store/img/icons/logo.png' %}" style="background: #2b343c;" alt="" width="180px" > 
       </a>
         <form autocomplete="on" id="search"  method="get" action="{% url 'search_products' %}">
-          <input id=""search-query" minlength="3" name="search_query" style='height:40px' placeholder="Search"  type="search">
+          <input id="search-query" minlength="3" name="search_query" style='height:40px' placeholder="Search"  type="search">
           <a aria-label="submit"  href="{% url 'search_products' %}">
             <svg viewbox="0 0 20 20" style="width: 80px; height:40px; margin-top:-4px; border-radius:10% ">
               <path  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
@@ -51,14 +51,14 @@
             </a> 
             <div class="" style="margin: 15px 0 0 -30px ;">
               {% if request.user.is_authenticated %}
-                <a class=dropdown-toggle" href="{% url 'profile' %}">
+                <a class="dropdown-toggle" href="{% url 'profile' %}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                   </svg>
                 </a>
               {% else %}
-                <a class=dropdown-toggle" href="{% url 'sign_in' %}"  >
+                <a class="dropdown-toggle" href="{% url 'sign_in' %}"  >
                   <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -106,8 +106,8 @@
                 <td style="background: #19232c;" rowspan="2"><img style="background: #19232c;" src="{% static 'market/store/img/icons/user.png' %}" width="50px" alt=""></td>
                 <td style="background: #19232c;"> 
                   <a class="side_bar_link" style="background: #19232c; " href="{% url 'profile'  %}">Profile</a> |
-
-                  <a class="side_bar_link" style="background: #19232c; " href="{% url 'logout' request.user.user_name %}">Log out</a>
+                  {% if user.is_authenticated %}{% endif %}
+                  <a class="side_bar_link" style="background: #19232c; " href="{% url 'logout' request.user.username %}">Log out</a>
                 </td>
               </tr>
               

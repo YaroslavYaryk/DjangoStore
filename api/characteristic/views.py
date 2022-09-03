@@ -12,6 +12,17 @@ from .serializers import (
 )
 
 
+class ProductAllCharacteristicView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+
+        queryset = Characteristics.objects.all()
+        serializer = ProductCharacteristicSerializer(queryset, many=True)
+
+        return Response(serializer.data)
+
+
 class ProductCharacteristicView(APIView):
     permission_classes = [AllowAny]
 

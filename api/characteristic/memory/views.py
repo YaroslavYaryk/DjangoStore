@@ -11,6 +11,9 @@ from .serializers import (
     MemoryTypeSerializer,
 )
 from api.characteristic.mixins import BaseClassView
+from .services import OPER_MEMORY
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 class MemoryCapacityView(BaseClassView):
@@ -38,6 +41,12 @@ class MemoryCapacityView(BaseClassView):
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, model=MemoryCapacity, pk=kwargs.get("pk"))
+
+
+class OperMemoryCapacityForFilterView(APIView):
+    def get(self, request, *args, **kwargs):
+
+        return Response(OPER_MEMORY)
 
 
 class MemorySlotView(BaseClassView):

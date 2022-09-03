@@ -4,6 +4,7 @@ from .views import (
     MemorySlotView,
     MemoryTypeView,
     DataStorageDevicesView,
+    OperMemoryCapacityForFilterView,
 )
 
 
@@ -14,8 +15,7 @@ urlpatterns = [
     path(
         "get_ram_capacity/<pk>/", MemoryCapacityView.as_view(), name="get_ram_capacity"
     ),
-    path("get_ram_capacity/", MemoryCapacityView.as_view(),
-         name="get_ram_capacities"),
+    path("get_ram_capacity/", MemoryCapacityView.as_view(), name="get_ram_capacities"),
     path(
         "create_ram_capacity/", MemoryCapacityView.as_view(), name="create_ram_capacity"
     ),
@@ -28,6 +28,11 @@ urlpatterns = [
         "delete_ram_capacity/<pk>/",
         MemoryCapacityView.as_view(),
         name="delete_ram_capacity",
+    ),
+    path(
+        "get_ram_capacity_for_filter/",
+        OperMemoryCapacityForFilterView.as_view(),
+        name="get_ram_capacity_for_filter",
     ),
     #
     # ram type

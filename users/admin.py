@@ -7,25 +7,51 @@ from django.db import models
 
 class UserAdminConfig(UserAdmin):
     model = NewUser
-    search_fields = ('email', 'user_name',)
-    list_filter = ("id", 'email', 'user_name',
-                   'is_active', 'is_staff')
-    ordering = ('-start_date',)
-    list_display = ("id", 'email', 'user_name',
-                    'is_active', 'is_staff')
+    search_fields = (
+        "email",
+        "username",
+    )
+    list_display_links = ("email",)
+    list_filter = ("id", "email", "username", "is_active", "is_staff")
+    ordering = ("-start_date",)
+    list_display = ("id", "email", "username", "is_active", "is_staff")
     fieldsets = (
-        (None, {'fields': ('email', 'user_name', )}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
-        ('Personal', {'fields': ('about',)}),
+        (
+            None,
+            {"fields": ("email", "username", "first_name", "last_name", "middle_name")},
+        ),
+        ("Permissions", {"fields": ("is_staff", "is_active")}),
+        (
+            "Personal",
+            {
+                "fields": (
+                    "about",
+                    "living_place",
+                    "ware_house",
+                    "delivery_type",
+                    "phone",
+                )
+            },
+        ),
     )
     formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 20, 'cols': 60})},
+        models.TextField: {"widget": Textarea(attrs={"rows": 20, "cols": 60})},
     }
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'user_name', 'password1', 'password2', 'is_active', 'is_staff')}
-         ),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "username",
+                    "password1",
+                    "password2",
+                    "is_active",
+                    "is_staff",
+                ),
+            },
+        ),
     )
 
 
