@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 
-from store.models import Characteristics, ProductImage
+from store.models import Characteristics, Product, ProductImage
 
 from .serializers import (
     ProductCharacteristicSerializer,

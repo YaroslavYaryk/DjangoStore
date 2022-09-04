@@ -74,6 +74,18 @@ class ProductView(APIView):
         return Response({"message": "Item was succesfully deleted"})
 
 
+class ProductSpecCharacteristicView(APIView):
+    def get(self, request, charact_type, slug):
+        lookup = f"{charact_type}__slug"
+        query = {lookup: slug}
+        list_queryset = Characteristics.objects.filter(**query)
+        ids = [el.product.id for el in list_queryset]
+        queryset = Product.objects.filter(id__in=ids)
+
+        serializer = ProductSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
 class CommentResponseView(APIView):
     # permission_classes = [IsAuthenticated]
 

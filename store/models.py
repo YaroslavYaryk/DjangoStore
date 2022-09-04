@@ -150,9 +150,6 @@ class Characteristics(models.Model):
     wireless_connection = models.CharField(max_length=255, null=True)
     input_output = models.CharField(max_length=255, null=True)
 
-    def __str__(self):
-        return self.product.name
-
 
 class CommentResponse(models.Model):
     post = models.ForeignKey(

@@ -11,6 +11,7 @@ from .views import (
     UserCouponView,
     UserOrderHistoryView,
     UserSearchHistoryView,
+    ProductSpecCharacteristicView,
 )
 
 from .characteristic import urls as characteristic_urls
@@ -22,6 +23,11 @@ urlpatterns = [
     path("create_product/", ProductView.as_view(), name="create_product"),
     path("update_product/<pk>/", ProductView.as_view(), name="update_product"),
     path("delete_product/<pk>/", ProductView.as_view(), name="delete_product"),
+    path(
+        "specific_characteristics/<charact_type>/<slug>/",
+        ProductSpecCharacteristicView.as_view(),
+        name="specific_characteristics",
+    ),
     #
     # comment responce
     #

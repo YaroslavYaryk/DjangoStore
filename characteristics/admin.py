@@ -100,12 +100,7 @@ class DataStorageDevicesAdmin(BaseAdmin):
         "hard_drive_type",
     )  # that's will be displayed in django-admin
     fields = ("hard_drive_capacity", "hard_drive_type", "slug")
-    prepopulated_fields = {
-        "slug": (
-            "hard_drive_capacity",
-            "hard_drive_type",
-        )
-    }
+    prepopulated_fields = {"slug": ("hard_drive_capacity",)}
 
 
 class VideoCardAdmin(BaseAdmin):
