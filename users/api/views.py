@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, UserEditBaseSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
@@ -19,6 +19,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import (
     check_password,
 )
+from django.contrib.auth import get_user_model
 
 
 class CustomUserCreate(APIView):
@@ -62,9 +63,10 @@ class CreateUserAPIView(CreateAPIView):
             # serializer.instance.username = request.data.get("username")
             # serializer.instance.save()
             token = Token.objects.create(user=serializer.instance)
+            user = {"user_id": serializer.instance.id}
             token_data = {"token": token.key}
             return Response(
-                {**serializer.data, **token_data},
+                {**serializer.data, **token_data, **user},
                 status=status.HTTP_201_CREATED,
                 headers=headers,
             )
@@ -85,7 +87,6 @@ class UserApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        print("hete")
         user = request.user
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -109,3 +110,15 @@ class CustomAuthToken(ObtainAuthToken):
                 raise Exception("Cannot log with this credentials")
         else:
             raise Exception("There is no such user")
+
+
+class UserEditBaseAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, *args, **kwargs):
+        user = request.user
+        serializer = UserEditBaseSerializer(instance=user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

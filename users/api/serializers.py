@@ -34,7 +34,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ("email", "password", "username")
+        fields = ("email", "password", "username", "first_name", "last_name")
         write_only_fields = "password"
         read_only_fields = (
             "is_staff",
@@ -58,3 +58,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = "__all__"
         write_only_fields = "password"
+
+
+class UserEditBaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("email", "first_name", "last_name", "middle_name", "phone")
