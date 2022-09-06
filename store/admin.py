@@ -147,10 +147,10 @@ class ProductLikeAdmin(admin.ModelAdmin):
         "post",
         "user",
     )
-    readonly_fields = (
-        "post",
-        "user",
-    )
+    # readonly_fields = (
+    #     "post",
+    #     "user",
+    # )
 
 
 @admin.register(Coupon)

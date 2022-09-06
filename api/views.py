@@ -8,6 +8,7 @@ from django.utils.text import slugify
 from store.models import (
     Product,
     CommentResponse,
+    ProductCommentPhotos,
     ProductLike,
     LikedComment,
     UserSearchHistory,
@@ -29,7 +30,12 @@ from .serializers import (
     UserSearchHistorySerializer,
     ProductCommentPostPutSerializer,
 )
-from .services.product import get_comment_by_pk, get_coupon_by_pk, get_product_by_pk
+from .services.product import (
+    get_comment_by_pk,
+    get_coupon_by_pk,
+    get_product_by_pk,
+    get_photos,
+)
 from store.services.get_category import get_client_ip
 from store.services.get_cart import *
 from store.services.get_details import *
@@ -132,22 +138,36 @@ class ProductCommentView(APIView):
 
     def post(self, request, pk):
 
-        data = {**request.data, "user": request.user.pk, "product": pk}
-
+        data = {
+            **{
+                "comment": request.data["comment"],
+                "pros": request.data["pros"],
+                "cons": request.data["cons"],
+                "rating": int(request.data["rating"]),
+                "parent": request.data.get("parent"),
+            },
+            "user": request.user.pk,
+            "product": pk,
+        }
         serializer = ProductCommentPostPutSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
-            # ProductComment.objects.create(
-            #     comment=serializer.data["comment"],
-            #     pros=serializer.data["comment"],
-            #     cons=serializer.data["comment"],
-            #     rating=serializer.data["rating"],
-            #     product=get_product_by_pk(pk),
-            #     parent=serializer.data["parent"],
-            #     user=request.user,
-            # )
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.error_messages)
+            instance = serializer.save()
+            try:
+
+                instance.photos.add(
+                    ProductCommentPhotos.objects.create(photo=request.data["photo"])
+                )
+                instance.save()
+            except:
+                pass
+            response = {
+                **serializer.data,
+                **get_photos(instance),
+                "creation_date": instance.creation_date,
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+
+        print(serializer.error_messages, serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, comment_pk):
@@ -199,6 +219,7 @@ class ProductLikeView(APIView):
     def get(self, request, *args, **kwargs):
 
         queryset = ProductLike.objects.filter(post__pk=kwargs["pk"])
+        print(ProductLike.objects.filter(post__pk=kwargs["pk"]))
         serializer = ProductLikeSerializer(queryset, many=True)
 
         return Response(serializer.data)
@@ -210,14 +231,30 @@ class ProductLikeView(APIView):
         serializer = ProductLikeSerializer(data=data)
         if serializer.is_valid():
             print(request.user)
-            ProductLike.objects.create(user=request.user, post=get_product_by_pk(pk))
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            product_like = ProductLike.objects.create(
+                user=request.user, post=get_product_by_pk(pk)
+            )
+            return Response(
+                {**serializer.data, "id": product_like.id},
+                status=status.HTTP_201_CREATED,
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, requset, pk, like_pk):
         post = ProductLike.objects.get(post__pk=pk, pk=like_pk)
         post.delete()
         return Response({"message": "Item was succesfully deleted"})
+
+
+class UserLikesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+
+        queryset = ProductLike.objects.filter(user=request.user)
+        serializer = ProductLikeSerializer(queryset, many=True)
+
+        return Response(serializer.data)
 
 
 class CartView(APIView):

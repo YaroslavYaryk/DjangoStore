@@ -147,7 +147,7 @@ class ProductLikeSerializer(ModelSerializer):
 class ProductCommentPostPutSerializer(ModelSerializer):
     class Meta:
         model = ProductComment
-        fields = "__all__"
+        exclude = ("photos", "creation_date")
 
 
 class ProductCommentSerializer(ModelSerializer):
@@ -199,6 +199,14 @@ class ProductCommentSerializer(ModelSerializer):
                     "phone": user_services.get_user_by_id(el.user_id).phone,
                 },
                 "date": el.creation_date,
+                "photos": [
+                    {
+                        "id": elem.id,
+                        "url": f"{config('USERHOST')}:{config('USERPORT')}{elem.photo.url}",
+                    }
+                    for elem in el.photos.all()
+                ],
+                "rating": el.rating,
             }
             for el in instance.children()
         ]

@@ -12,6 +12,7 @@ from .views import (
     UserOrderHistoryView,
     UserSearchHistoryView,
     ProductSpecCharacteristicView,
+    UserLikesView,
 )
 
 from .characteristic import urls as characteristic_urls
@@ -72,7 +73,7 @@ urlpatterns = [
     # comments likes
     #
     path("comment/<pk>/get_likes/", CommentLikeView.as_view(), name="get_likes"),
-    path("comment/<pk>/add_likes/", CommentLikeView.as_view(), name="add_likes"),
+    path("comment/<pk>/add_like/", CommentLikeView.as_view(), name="add_likes"),
     path(
         "comment/<pk>/delete_like/<like_pk>/",
         CommentLikeView.as_view(),
@@ -88,6 +89,7 @@ urlpatterns = [
         ProductLikeView.as_view(),
         name="delete_like",
     ),
+    path("user_likes/", UserLikesView.as_view(), name="user_likes"),
     #
     # cart
     #
