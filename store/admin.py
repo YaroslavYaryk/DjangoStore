@@ -5,6 +5,7 @@ from store.models import (
     Cart,
     Characteristics,
     Coupon,
+    LikedComment,
     Product,
     ProductComment,
     ProductCommentPhotos,
@@ -183,3 +184,4 @@ admin.site.register(ProductComment)
 admin.site.register(ProductCommentPhotos)
 admin.site.register(CartProduct)
 admin.site.register(Cart)
+admin.site.register(LikedComment)

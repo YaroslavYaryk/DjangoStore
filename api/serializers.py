@@ -32,6 +32,7 @@ from users.services import users as user_services
 from django.contrib.admin.options import get_content_type_for_model
 from django.contrib.contenttypes.models import ContentType
 from decouple import config
+from .services.product import get_likesCount
 
 
 class ProductSerializer(ModelSerializer):
@@ -207,6 +208,7 @@ class ProductCommentSerializer(ModelSerializer):
                     for elem in el.photos.all()
                 ],
                 "rating": el.rating,
+                "comment_likes": get_likesCount(el),
             }
             for el in instance.children()
         ]

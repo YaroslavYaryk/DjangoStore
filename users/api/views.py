@@ -9,7 +9,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from rest_framework import status
+
 from rest_framework.views import APIView
 from .serializers import CreateUserSerializer, UserSerializer
 from django.db.utils import IntegrityError
@@ -107,6 +107,10 @@ class CustomAuthToken(ObtainAuthToken):
                     {"token": token.key, "user_id": user.pk, "email": user.email}
                 )
             else:
+                return Response(
+                    {"message": "Cannot log with this credentials"},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
                 raise Exception("Cannot log with this credentials")
         else:
             raise Exception("There is no such user")

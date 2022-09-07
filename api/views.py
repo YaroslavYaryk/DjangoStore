@@ -1,10 +1,11 @@
+from operator import imod
 from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.utils.text import slugify
-
+from .characteristic.serializers import ProductCharacteristicSerializer
 from store.models import (
     Product,
     CommentResponse,
@@ -39,6 +40,7 @@ from .services.product import (
 from store.services.get_category import get_client_ip
 from store.services.get_cart import *
 from store.services.get_details import *
+from .services import product
 
 
 class ProductView(APIView):
@@ -201,16 +203,29 @@ class CommentLikeView(APIView):
 
         serializer = CommentLikeSerializer(data=data)
         if serializer.is_valid():
-            LikedComment.objects.create(
+            instance = LikedComment.objects.create(
                 post_comment=get_comment_by_pk(pk), user=request.user
             )
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                {**serializer.data, "id": instance.id}, status=status.HTTP_201_CREATED
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, requset, pk, like_pk):
+    def delete(self, request, pk, like_pk):
         post = LikedComment.objects.get(post_comment__pk=pk, pk=like_pk)
         post.delete()
         return Response({"message": "Item was succesfully deleted"})
+
+
+class UserCommentLikesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+
+        queryset = LikedComment.objects.filter(user=request.user)
+        serializer = CommentLikeSerializer(queryset, many=True)
+
+        return Response(serializer.data)
 
 
 class ProductLikeView(APIView):
@@ -412,3 +427,16 @@ class UserOrderHistoryView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProductSearchFilterView(APIView):
+    def post(self, request):
+        pattern = request.data.get("pattern")
+        filter_options = request.data.get("filter")
+        search_queryset = product.search_queryset(pattern)
+        filtered_queryset = product.handle_filter_queryset(
+            search_queryset, filter_options
+        )
+        serializer = ProductSerializer(filtered_queryset, many=True)
+
+        return Response(serializer.data)
