@@ -15,6 +15,10 @@ from .views import (
     ProductSpecCharacteristicView,
     UserLikesView,
     ProductSearchFilterView,
+    ProductCategoryFilterView,
+    ProductCharacteristicFilterView,
+    SearchQueryAPIView,
+    SearchProductsAPIView,
 )
 
 from .characteristic import urls as characteristic_urls
@@ -32,6 +36,22 @@ urlpatterns = [
         name="specific_characteristics",
     ),
     path("product_search/", ProductSearchFilterView.as_view(), name="product_search"),
+    path(
+        "product_categories/",
+        ProductCategoryFilterView.as_view(),
+        name="product_categories",
+    ),
+    path(
+        "product_characteristic/",
+        ProductCharacteristicFilterView.as_view(),
+        name="product_characteristic",
+    ),
+    path("search_query/<pattern>/", SearchQueryAPIView.as_view(), name="search_query"),
+    path(
+        "search_product/<pattern>/",
+        SearchProductsAPIView.as_view(),
+        name="search_product",
+    ),
     #
     # comment responce
     #

@@ -440,3 +440,49 @@ class ProductSearchFilterView(APIView):
         serializer = ProductSerializer(filtered_queryset, many=True)
 
         return Response(serializer.data)
+
+
+class ProductCategoryFilterView(APIView):
+    def post(self, request):
+        pattern = request.data.get("pattern")
+        filter_options = request.data.get("filter")
+        search_queryset = product.category_queryset(pattern)
+        filtered_queryset = product.handle_filter_queryset(
+            search_queryset, filter_options
+        )
+        serializer = ProductSerializer(filtered_queryset, many=True)
+
+        return Response(serializer.data)
+
+
+class ProductCharacteristicFilterView(APIView):
+    def post(self, request):
+        pattern = request.data.get("pattern")
+        filter_options = request.data.get("filter")
+        search_queryset = product.characteristic_queryset(pattern)
+        filtered_queryset = product.handle_filter_queryset(
+            search_queryset, filter_options
+        )
+        serializer = ProductSerializer(filtered_queryset, many=True)
+
+        return Response(serializer.data)
+
+
+class SearchQueryAPIView(APIView):
+    def get(self, request, pattern):
+        search_keys = [
+            y.strip()
+            for x in Product.objects.all()
+            for y in x.search_keys.split(",")
+            if pattern.lower() in y.strip().lower()
+        ]
+
+        return Response({"data": search_keys})
+
+
+class SearchProductsAPIView(APIView):
+    def get(self, request, pattern):
+        queryset = product.search_queryset(pattern)
+        serializer = ProductSerializer(queryset, many=True)
+
+        return Response(serializer.data)

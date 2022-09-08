@@ -68,6 +68,7 @@ class ProductAdmin(BaseAdmin):
         "is_published",
         "country_made",
         ("country_brand", "get_flag"),
+        "search_keys",
         "warranty",
         "price",
         "is_available",

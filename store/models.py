@@ -55,7 +55,9 @@ class Product(models.Model):
     country_brand = models.ForeignKey(
         CountryBrand, verbose_name=("CountryBrand"), on_delete=models.CASCADE, null=True
     )
+    search_keys = models.CharField(max_length=1000, null=True)
     warranty = models.IntegerField(null=True)
+
     price = models.IntegerField(null=True)
     is_available = models.BooleanField(default=True)
 
