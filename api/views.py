@@ -1,4 +1,6 @@
 from operator import imod
+import re
+from urllib import response
 from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.views import APIView
@@ -6,7 +8,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.utils.text import slugify
 from .characteristic.serializers import ProductCharacteristicSerializer
+from rest_framework.decorators import api_view
+
 from store.models import (
+    Order,
     Product,
     CommentResponse,
     ProductCommentPhotos,
@@ -16,6 +21,13 @@ from store.models import (
     UserOrderHistory,
 )
 from .serializers import (
+    OrderPostDeliveryTypeSerializer,
+    OrderPostPaymentMethodsSerializer,
+    OrderPostPlaceSerializer,
+    OrderPostRecieverInfoSerializer,
+    OrderPostSerializer,
+    OrderPostWarehouseSerializer,
+    OrderSerializer,
     ProductSerializer,
     ProductPostSerializer,
     ProductPostPutSerializer,
@@ -26,6 +38,7 @@ from .serializers import (
     ProductCommentSerializer,
     CommentLikeSerializer,
     CouponSerializer,
+    ProductSimpleCommentSerializer,
     UserCouponSerializer,
     UserOrderHistorySerializer,
     UserSearchHistorySerializer,
@@ -169,22 +182,35 @@ class ProductCommentView(APIView):
             }
             return Response(response, status=status.HTTP_201_CREATED)
 
-        print(serializer.error_messages, serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk, comment_pk):
         post = ProductComment.objects.get(product__pk=pk, pk=comment_pk)
-        serializer = ProductCommentPostPutSerializer(instance=post, data=request.data)
+        valid_request_data = product.get_valid_request_data(request.data)
+        data = {**valid_request_data, "user": request.user.pk, "product": pk}
+        serializer = ProductCommentPostPutSerializer(instance=post, data=data)
 
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            instance = serializer.save()
+            try:
+
+                instance.photos.set(
+                    [ProductCommentPhotos.objects.create(photo=request.data["photo"])]
+                )
+                instance.save()
+                new_serializer = ProductCommentSerializer(instance=instance)
+            except Exception as ex:
+                print(ex)
+            return Response(new_serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, requset, pk, comment_pk):
         post = ProductComment.objects.get(product__pk=pk, pk=comment_pk)
+
+        serializer = ProductCommentSerializer(instance=post)
+        data = {**serializer.data}
         post.delete()
-        return Response({"message": "Item was succesfully deleted"})
+        return Response(data)
 
 
 class CommentLikeView(APIView):
@@ -207,14 +233,38 @@ class CommentLikeView(APIView):
                 post_comment=get_comment_by_pk(pk), user=request.user
             )
             return Response(
-                {**serializer.data, "id": instance.id}, status=status.HTTP_201_CREATED
+                {
+                    **serializer.data,
+                    "id": instance.id,
+                    "parent": instance.post_comment.parent.id
+                    if instance.post_comment.parent
+                    else None,
+                },
+                status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, like_pk):
         post = LikedComment.objects.get(post_comment__pk=pk, pk=like_pk)
+        serializer = CommentLikeSerializer(instance=post)
+        data = {
+            **serializer.data,
+            "id": post.id,
+            "parent": post.post_comment.parent.id if post.post_comment.parent else None,
+        }
         post.delete()
-        return Response({"message": "Item was succesfully deleted"})
+        return Response(data)
+
+
+class UserCommentsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+
+        queryset = ProductComment.objects.filter(user=request.user)
+        serializer = ProductSimpleCommentSerializer(queryset, many=True)
+
+        return Response(serializer.data)
 
 
 class UserCommentLikesView(APIView):
@@ -234,7 +284,6 @@ class ProductLikeView(APIView):
     def get(self, request, *args, **kwargs):
 
         queryset = ProductLike.objects.filter(post__pk=kwargs["pk"])
-        print(ProductLike.objects.filter(post__pk=kwargs["pk"]))
         serializer = ProductLikeSerializer(queryset, many=True)
 
         return Response(serializer.data)
@@ -245,7 +294,6 @@ class ProductLikeView(APIView):
 
         serializer = ProductLikeSerializer(data=data)
         if serializer.is_valid():
-            print(request.user)
             product_like = ProductLike.objects.create(
                 user=request.user, post=get_product_by_pk(pk)
             )
@@ -272,41 +320,47 @@ class UserLikesView(APIView):
         return Response(serializer.data)
 
 
+from store.services.get_category import add_view_of_post, get_client_ip
+from django.db.models import Q
+
+
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
 
-        queryset = Cart.objects.filter(owner=request.user.id)
+        queryset = Cart.objects.filter(user=request.user)
         serializer = CartSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, pk):
         try:
-            ip = request.user.id
-            cart = get_cart_by_user(ip)
+            cart = get_cart_by_request_user(request.user)
             product = Product.objects.get(pk=pk)
-            cart_product = create_cart_product(ip, cart, product)
-            add_productcart_to_cart(ip, cart, cart_product, product)
+            cart_product = create_cart_product(request.user, cart, product)
+            add_productcart_to_cart(request.user, cart, cart_product, product)
             serializer = CartSerializer(cart)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as er:
-            return Response({"err": er}, status=status.HTTP_400_BAD_REQUEST)
+            print(er)
+            return Response({"err": str(er)}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, slug):
         try:
-            ip = get_client_ip(request)
-            cart = get_cart_by_user(ip)
+            cart = get_cart_by_request_user(request.user)
             product = Product.objects.get(pk=pk)
-            cart_product = get_cart_product(user=ip, product=product)
+            cart_product = get_cart_product(user=request.user, product=product)
             if slug == "one":
-                remove_product_from_cart(cart, cart_product, ip, product, True)
+                remove_product_from_cart(
+                    cart, cart_product, request.user, product, True
+                )
             else:
-                remove_product_from_cart(cart, cart_product, ip, product)
-            serializer = CartSerializer(cart)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                remove_product_from_cart(cart, cart_product, request.user, product)
+            # serializer = CartSerializer(cart)
+            return Response({"message": "deleted"}, status=status.HTTP_201_CREATED)
         except Exception as ex:
-            return Response({"err": ex}, status=status.HTTP_400_BAD_REQUEST)
+            print(str(ex))
+            return Response({"err": str(ex)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DeleteCartView(APIView):
@@ -314,8 +368,7 @@ class DeleteCartView(APIView):
 
     def delete(self, request):
 
-        ip = get_client_ip(request)
-        remove_all_from_cart(ip)
+        remove_all_from_cart_api(request.user)
         return Response({"message": "Cart was successfully unfilled"})
 
 
@@ -486,3 +539,135 @@ class SearchProductsAPIView(APIView):
         serializer = ProductSerializer(queryset, many=True)
 
         return Response(serializer.data)
+
+
+class OrderAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+
+        queryset = Order.objects.filter(owner=request.user)
+        serializer = OrderSerializer(queryset, many=True)
+
+        return Response(serializer.data)
+
+    def post(self, request):
+        print(request.data.get("cart"))
+        data = {"owner": request.user.id, "cart": request.data.get("cart")}
+        serializer = OrderPostSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+
+
+@api_view(["POST"])
+def add_place_to_order(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        serializer = OrderPostPlaceSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def add_ware_house(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        serializer = OrderPostWarehouseSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def add_delivery_type(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        serializer = OrderPostDeliveryTypeSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def change_payment_methods(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        serializer = OrderPostPaymentMethodsSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def add_order_coupon(request):
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=request.data["cart"])
+        coupon = Coupon.objects.get(coupon_code=request.data["coupon"])
+        instance.coupones.add(coupon)
+
+        return Response({"operation": "Successfull"})
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["DELETE"])
+def discard_order(request, cart_id):
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=cart_id)
+        instance.delete()
+        return Response({"operation": "Successfull"})
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def add_reciever_info(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        serializer = OrderPostRecieverInfoSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def save_order(request):
+
+    data = {"owner": request.user.id, **request.data}
+    try:
+        instance = Order.objects.get(owner=request.user, cart__id=data["cart"])
+        instance.total_price = instance.cart.total_price
+        instance.saved = True
+        instance.save()
+        return Response({"operation": "Successfull"})
+    except Exception as ex:
+        return Response({"error": str(ex)})

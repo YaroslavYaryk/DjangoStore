@@ -1,7 +1,13 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer, UserEditBaseSerializer
+from .serializers import (
+    CustomUserSerializer,
+    UserDeliveryTypeSerializer,
+    UserEditBaseSerializer,
+    UserLivingPlaceSerializer,
+    UserWareHouseSerializer,
+)
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
@@ -9,6 +15,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
 
 from rest_framework.views import APIView
 from .serializers import CreateUserSerializer, UserSerializer
@@ -39,7 +46,7 @@ class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = ()
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         try:
             refresh_token = request.data["refresh_token"]
             token = RefreshToken(refresh_token)
@@ -126,3 +133,48 @@ class UserEditBaseAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["POST"])
+def change_place_info(request):
+
+    data = {"id": request.user.id, **request.data}
+    try:
+        instance = request.user
+        serializer = UserLivingPlaceSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def change_warehouse_info(request):
+
+    data = {"id": request.user.id, **request.data}
+    try:
+        instance = request.user
+        serializer = UserWareHouseSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})
+
+
+@api_view(["POST"])
+def change_delivery_type_info(request):
+
+    data = {"id": request.user.id, **request.data}
+    try:
+        instance = request.user
+        serializer = UserDeliveryTypeSerializer(data=data, instance=instance)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error_messages)
+    except Exception as ex:
+        return Response({"error": str(ex)})

@@ -4,6 +4,13 @@ from store.models import Cart, CartProduct, Coupon, UserCoupon
 from django.contrib.admin.options import get_content_type_for_model
 
 
+def get_cart_by_request_user(user):
+    result = Cart.objects.filter(user=user)
+    if result:
+        return result.first()
+    return Cart.objects.create(user=user)
+
+
 def get_cart_by_user(user):
     result = Cart.objects.filter(owner=user, in_order=False)
     if result:
@@ -13,7 +20,6 @@ def get_cart_by_user(user):
 
 def create_cart_product(user, cart, product):
 
-    print(CartProduct.objects.filter(user=user, cart=cart))
     cart_product = CartProduct.objects.create(
         user=user, cart=cart, content_object=product
     )
@@ -79,6 +85,12 @@ def remove_product_from_cart(cart, cart_product, user, product, one_product=Fals
 def remove_all_from_cart(user):
 
     Cart.objects.filter(owner=user).delete()
+    CartProduct.objects.filter(user=user).delete()
+
+
+def remove_all_from_cart_api(user):
+
+    Cart.objects.filter(user=user).delete()
     CartProduct.objects.filter(user=user).delete()
 
 

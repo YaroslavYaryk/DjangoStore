@@ -82,3 +82,7 @@ def characteristic_queryset(pattern):
         **{f"{pattern['name']}__slug": pattern["value"]}
     )
     return Product.objects.filter(id__in=[el.product.id for el in charact_query])
+
+
+def get_valid_request_data(data):
+    return {key: value for key, value in data.items()}

@@ -13,6 +13,7 @@ from store.models import (
     ProductLike,
     UserCoupon,
     CartProduct,
+    Order,
 )
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -179,10 +180,19 @@ class UserCouponAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(ProductComment)
+class ProductCommentAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "comment",
+        "product",
+    )
+
+
 admin.site.register(Product, ProductAdmin)  # in order to show it in django-admin
 admin.site.register(Characteristics, CharacteristicAdmin)
-admin.site.register(ProductComment)
 admin.site.register(ProductCommentPhotos)
 admin.site.register(CartProduct)
 admin.site.register(Cart)
 admin.site.register(LikedComment)
+admin.site.register(Order)

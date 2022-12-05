@@ -208,7 +208,12 @@ class ProductLike(models.Model):
 class CartProduct(models.Model):
     """class of product-cart for user"""
 
-    user = models.CharField(max_length=100, null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="cart_product_user",
+        on_delete=models.CASCADE,
+        null=True,
+    )
 
     cart = models.ForeignKey(
         "Cart",
@@ -231,6 +236,13 @@ class Cart(models.Model):
     """class of cart of products"""
 
     owner = models.CharField(max_length=100, null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="cart_owner_user",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     products = models.ManyToManyField(
         CartProduct, blank=True, related_name="related_cart"
@@ -363,3 +375,40 @@ class LikedComment(models.Model):
             if len(str(self.post_comment)) < 100
             else str(self.post_comment)[:100]
         )
+
+
+class Order(models.Model):
+
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="order_owner", on_delete=models.CASCADE
+    )
+
+    cart = models.ForeignKey(Cart, verbose_name=("cart"), on_delete=models.CASCADE)
+    place_id = models.IntegerField(blank=True, null=True)
+    place = models.CharField(("place"), max_length=50, blank=True, null=True)
+    ware_house_id = models.IntegerField(blank=True, null=True)
+    ware_house_name = models.CharField(
+        ("ware_house"), max_length=50, blank=True, null=True
+    )
+    delivery_type = models.CharField(
+        ("delivery_type"), max_length=50, blank=True, null=True
+    )
+    price_method = models.IntegerField(blank=True, null=True)
+    reciever_first_name = models.CharField(
+        ("reciever_first_name"), max_length=50, blank=True, null=True
+    )
+    reciever_last_name = models.CharField(
+        ("reciever_last_name"), max_length=50, blank=True, null=True
+    )
+    reciever_middle_name = models.CharField(
+        ("reciever_middle_name"), max_length=50, blank=True, null=True
+    )
+    reciever_phone = models.CharField(
+        ("reciever_phone"), max_length=50, blank=True, null=True
+    )
+    coupones = models.ManyToManyField(Coupon, verbose_name=("coupones"), blank=True)
+    total_price = models.FloatField(blank=True, null=True)
+    saved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.owner.id} - {self.cart.id} - {self.total_price}"

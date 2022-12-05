@@ -64,3 +64,21 @@ class UserEditBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ("email", "first_name", "last_name", "middle_name", "phone")
+
+
+class UserLivingPlaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "living_place")
+
+
+class UserWareHouseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "ware_house")
+
+
+class UserDeliveryTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "delivery_type")

@@ -1,4 +1,5 @@
 from copyreg import constructor
+from dataclasses import fields
 import json
 import html_to_json
 from rest_framework.serializers import ModelSerializer
@@ -15,7 +16,9 @@ from store.models import (
     UserOrderHistory,
     UserSearchHistory,
     ProductImage,
+    Order,
 )
+from decouple import config
 from math import floor
 from django.utils.html import strip_tags
 from rest_framework.fields import SerializerMethodField
@@ -151,6 +154,18 @@ class ProductCommentPostPutSerializer(ModelSerializer):
         exclude = ("photos", "creation_date")
 
 
+class ProductSimpleCommentSerializer(ModelSerializer):
+
+    user = SerializerMethodField()
+
+    class Meta:
+        model = ProductComment
+        fields = ("id", "product", "user")
+
+    def get_user(self, instance):
+        return instance.user.id
+
+
 class ProductCommentSerializer(ModelSerializer):
 
     photos = SerializerMethodField()
@@ -241,22 +256,22 @@ class CartSerializer(ModelSerializer):
 
     @staticmethod
     def get_product_count(product, instance):
-        print(instance.products.get(id=product))
-        return instance.products.get(id=product).quantity
+        try:
+            return instance.products.get(id=product).quantity
+        except:
+            return 0
 
     @staticmethod
     def get_product(id):
-        a = Product.objects.get(pk=id)
-        print(a)
-        return a
+        return Product.objects.get(pk=id)
 
     def get_products(self, instance):
 
         return [
             {
-                "id": self.get_product(el.object_id).id,
+                "productId": self.get_product(el.object_id).id,
                 "fullName": self.get_product(el.object_id).name,
-                "image": self.get_product(el.object_id).photo.url,
+                "image": f"{config('USERHOST')}:{config('USERPORT')}{self.get_product(el.object_id).photo.url}",
                 "count": self.get_product_count(el.id, instance),
                 "price": self.get_product(el.object_id).price,
             }
@@ -265,9 +280,21 @@ class CartSerializer(ModelSerializer):
 
 
 class CommentLikeSerializer(ModelSerializer):
+    comment_parent = SerializerMethodField()
+
     class Meta:
         model = LikedComment
         fields = "__all__"
+
+    def get_comment_parent(self, instance):
+        try:
+            return (
+                instance.post_comment.parent.id
+                if instance.post_comment.parent
+                else None
+            )
+        except:
+            return None
 
 
 class CouponSerializer(ModelSerializer):
@@ -292,3 +319,52 @@ class UserSearchHistorySerializer(ModelSerializer):
     class Meta:
         model = UserSearchHistory
         fields = "__all__"
+
+
+class OrderSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"
+
+
+class OrderPostSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ("owner", "cart")
+
+
+class OrderPostPlaceSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ("owner", "cart", "place_id", "place")
+
+
+class OrderPostWarehouseSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ("owner", "cart", "ware_house_id", "ware_house_name", "place_id")
+
+
+class OrderPostDeliveryTypeSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ("owner", "cart", "delivery_type")
+
+
+class OrderPostPaymentMethodsSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ("owner", "cart", "price_method")
+
+
+class OrderPostRecieverInfoSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = (
+            "owner",
+            "cart",
+            "reciever_first_name",
+            "reciever_last_name",
+            "reciever_middle_name",
+            "reciever_phone",
+        )

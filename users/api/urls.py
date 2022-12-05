@@ -8,6 +8,9 @@ from .views import (
     UserApiView,
     CustomAuthToken,
     UserEditBaseAPIView,
+    change_place_info,
+    change_warehouse_info,
+    change_delivery_type_info,
 )
 
 
@@ -19,4 +22,11 @@ urlpatterns = [
     re_path(r"^auth/logout/$", LogoutUserAPIView.as_view(), name="auth_user_logout"),
     path("user_profile/", UserApiView.as_view(), name="user_profile"),
     path("user_base_edit/", UserEditBaseAPIView.as_view(), name="user_base_edit"),
+    path("edit_living_place/", change_place_info, name="change_place_info"),
+    path("edit_warehouse/", change_warehouse_info, name="change_warehouse_info"),
+    path(
+        "edit_delivery_type/",
+        change_delivery_type_info,
+        name="change_delivery_type_info",
+    ),
 ]

@@ -19,6 +19,16 @@ from .views import (
     ProductCharacteristicFilterView,
     SearchQueryAPIView,
     SearchProductsAPIView,
+    UserCommentsView,
+    OrderAPIView,
+    add_delivery_type,
+    add_order_coupon,
+    add_place_to_order,
+    add_reciever_info,
+    add_ware_house,
+    change_payment_methods,
+    discard_order,
+    save_order,
 )
 
 from .characteristic import urls as characteristic_urls
@@ -92,6 +102,7 @@ urlpatterns = [
         ProductCommentView.as_view(),
         name="delete_comment",
     ),
+    path("user_comments/", UserCommentsView.as_view(), name="user_comments"),
     #
     # comments likes
     #
@@ -122,7 +133,7 @@ urlpatterns = [
     path("get_cart/", CartView.as_view(), name="get_cart_api"),
     path("product/<pk>/add_to_cart/", CartView.as_view(), name="add_to_cart"),
     path(
-        "product/<pk>/remove_from_cart/<slug>",
+        "product/<pk>/remove_from_cart/<slug>/",
         CartView.as_view(),
         name="remove_from_cart",
     ),
@@ -186,4 +197,21 @@ urlpatterns = [
         UserOrderHistoryView.as_view(),
         name="add_user_order_history",
     ),
+    # order
+    path("orders/all/", OrderAPIView.as_view(), name="OrderAPIView"),
+    path("orders/add/", OrderAPIView.as_view(), name="AddOrderAPIView"),
+    path("orders/add_place/", add_place_to_order, name="add_place_to_order"),
+    path("orders/add_warehouse/", add_ware_house, name="add_ware_house"),
+    path(
+        "orders/add_delivery_type/", add_delivery_type, name="add_delivery_type_house"
+    ),
+    path(
+        "orders/change_payment_methods/",
+        change_payment_methods,
+        name="change_payment_methods",
+    ),
+    path("orders/add_coupon/", add_order_coupon, name="add_order_coupon"),
+    path("orders/discard/<cart_id>/", discard_order, name="discard_order"),
+    path("orders/add_reciever_info/", add_reciever_info, name="add_reciever_info"),
+    path("orders/save/", save_order, name="save_order"),
 ]
